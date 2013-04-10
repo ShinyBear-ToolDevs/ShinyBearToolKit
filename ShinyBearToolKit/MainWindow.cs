@@ -20,7 +20,7 @@ namespace ShinyBearToolkit
 {
     public partial class MainWindow : Form
     {
-        FormAnimation formAnimation;
+
         //ManagerToolbarComponents managerToolbarComponents = new ManagerToolbarComponents();
 
         //ManagerGamePanel managerGamePanel = new ManagerGamePanel();
@@ -30,14 +30,16 @@ namespace ShinyBearToolkit
         //ManagerToolbarUnder managerToolbarUnder = new ManagerToolbarUnder();
         ManagerMenuEditor managerMenuEditor = new ManagerMenuEditor();
 
+        FormTextureAtlas formTextureAtlas = new FormTextureAtlas();
+        
+
        
 
         public MainWindow()
         {
             InitializeComponent();
             SetUpMenuHandlers();
-            formAnimation = new FormAnimation();
-            formAnimation.ShowDialog();
+           
 
         }
 
@@ -74,10 +76,9 @@ namespace ShinyBearToolkit
             menuViewHelp.Click += managerMenuEditor.HandlerViewHelp;
         }
 
-        private void menuLoadImage_Click(object sender, EventArgs e)
+        private void spriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             managerMenuEditor.HandlerLoadFile();
-            
         }
 
 
