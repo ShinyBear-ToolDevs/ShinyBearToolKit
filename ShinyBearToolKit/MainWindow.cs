@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //using ShinyBearToolkit.Gamepanel;
 using ShinyBearToolkit.MenuEditor;
+using ShinyBearToolKit.MenuEditor;
 //using ShinyBearToolkit.ToolbarComponents;
 //using ShinyBearToolkit.ToolbarTools;
 //using ShinyBearToolkit.ToolbarUnder;
@@ -28,6 +29,9 @@ namespace ShinyBearToolkit
 
         //ManagerToolbarUnder managerToolbarUnder = new ManagerToolbarUnder();
         ManagerMenuEditor managerMenuEditor = new ManagerMenuEditor();
+
+        FormTextureAtlas formTextureAtlas = new FormTextureAtlas();
+        
 
        
 
@@ -72,7 +76,7 @@ namespace ShinyBearToolkit
             menuViewHelp.Click += managerMenuEditor.HandlerViewHelp;
         }
 
-        private void menuLoadImage_Click(object sender, EventArgs e)
+        private void spriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             managerMenuEditor.HandlerLoadFile();
         }

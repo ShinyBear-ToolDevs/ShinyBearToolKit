@@ -1,6 +1,6 @@
 ﻿namespace ShinyBearToolKit.MenuEditor
 {
-    partial class FormAnimation
+    partial class FormTextureAtlas
     {
         /// <summary>
         /// Required designer variable.

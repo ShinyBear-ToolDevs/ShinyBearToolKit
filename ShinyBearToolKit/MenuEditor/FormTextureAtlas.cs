@@ -11,13 +11,13 @@ using ShinyBearToolkit.MenuEditor;
 
 namespace ShinyBearToolKit.MenuEditor
 {
-    public partial class FormAnimation : Form
+    public partial class FormTextureAtlas : Form
     {
-        ManagerMenuEditor managerMenuEditor = new ManagerMenuEditor();
+        MenuEditorImage managerMenuImage = new MenuEditorImage();
 
         public static Graphics Graphics { get; private set; }
 
-        public FormAnimation()
+        public FormTextureAtlas()
         {
             InitializeComponent();
             Graphics = this.CreateGraphics();

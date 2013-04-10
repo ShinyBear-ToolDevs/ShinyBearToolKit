@@ -36,7 +36,6 @@
             this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpenProject = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpenFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLoadImage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSaveAll = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +65,7 @@
             this.ToolbarToolTabbs = new System.Windows.Forms.TabControl();
             this.ToolbarToolsTabbsPageCode = new System.Windows.Forms.TabPage();
             this.ToolbarToolsTabbPage2 = new System.Windows.Forms.TabPage();
+            this.spriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEditor.SuspendLayout();
             this.ToolbarToolTabbs.SuspendLayout();
             this.SuspendLayout();
@@ -105,7 +105,8 @@
             // 
             this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuNewProject,
-            this.menuNewFile});
+            this.menuNewFile,
+            this.spriteToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
@@ -126,8 +127,7 @@
             // 
             this.menuOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOpenProject,
-            this.menuOpenFile,
-            this.menuLoadImage});
+            this.menuOpenFile});
             this.menuOpen.Name = "menuOpen";
             this.menuOpen.Size = new System.Drawing.Size(152, 22);
             this.menuOpen.Text = "Open";
@@ -143,13 +143,6 @@
             this.menuOpenFile.Name = "menuOpenFile";
             this.menuOpenFile.Size = new System.Drawing.Size(152, 22);
             this.menuOpenFile.Text = "File";
-            // 
-            // menuLoadImage
-            // 
-            this.menuLoadImage.Name = "menuLoadImage";
-            this.menuLoadImage.Size = new System.Drawing.Size(152, 22);
-            this.menuLoadImage.Text = "Load Image";
-            this.menuLoadImage.Click += new System.EventHandler(this.menuLoadImage_Click);
             // 
             // menuSave
             // 
@@ -269,7 +262,7 @@
             // menuToolsOptions
             // 
             this.menuToolsOptions.Name = "menuToolsOptions";
-            this.menuToolsOptions.Size = new System.Drawing.Size(152, 22);
+            this.menuToolsOptions.Size = new System.Drawing.Size(116, 22);
             this.menuToolsOptions.Text = "Options";
             // 
             // windowToolStripMenuItem
@@ -283,7 +276,7 @@
             // menuWindowFullSize
             // 
             this.menuWindowFullSize.Name = "menuWindowFullSize";
-            this.menuWindowFullSize.Size = new System.Drawing.Size(152, 22);
+            this.menuWindowFullSize.Size = new System.Drawing.Size(116, 22);
             this.menuWindowFullSize.Text = "Full Size";
             // 
             // helpToolStripMenuItem
@@ -360,7 +353,14 @@
             this.ToolbarToolsTabbPage2.TabIndex = 1;
             this.ToolbarToolsTabbPage2.Text = "Design";
             // 
-            // Main
+            // spriteToolStripMenuItem
+            // 
+            this.spriteToolStripMenuItem.Name = "spriteToolStripMenuItem";
+            this.spriteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.spriteToolStripMenuItem.Text = "Sprite";
+            this.spriteToolStripMenuItem.Click += new System.EventHandler(this.spriteToolStripMenuItem_Click);
+            // 
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -371,7 +371,7 @@
             this.Controls.Add(this.PanelGamePanel);
             this.Controls.Add(this.menuEditor);
             this.MainMenuStrip = this.menuEditor;
-            this.Name = "Main";
+            this.Name = "MainWindow";
             this.Text = "Shiny-Bear";
             this.menuEditor.ResumeLayout(false);
             this.menuEditor.PerformLayout();
@@ -416,11 +416,11 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuLoadImage;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TabControl ToolbarToolTabbs;
         private System.Windows.Forms.TabPage ToolbarToolsTabbsPageCode;
         private System.Windows.Forms.TabPage ToolbarToolsTabbPage2;
+        private System.Windows.Forms.ToolStripMenuItem spriteToolStripMenuItem;
     }
 }
 

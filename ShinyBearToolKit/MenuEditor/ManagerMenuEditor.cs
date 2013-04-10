@@ -6,17 +6,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using ShinyBearToolkit;
+using ShinyBearToolKit.MenuEditor;
 
 namespace ShinyBearToolkit.MenuEditor
 {
     public class ManagerMenuEditor
     {
         MenuEditorImage managerMenuEditorImage = new MenuEditorImage();
-
-        public ManagerMenuEditor()
-        {
-
-        }
+        //FormTextureAtlas formTextureAtlas = new FormTextureAtlas();
 
         public void HandleExit(object sender, EventArgs e)
         {
