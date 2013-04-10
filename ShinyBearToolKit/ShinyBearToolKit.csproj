@@ -59,7 +59,7 @@
       <DependentUpon>FormTextureAtlas.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuEditor\ManagerMenuEditor.cs" />
-    <Compile Include="MenuEditor\MenuEditorImage.cs" />
+    <Compile Include="MenuEditor\SpriteListManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainWindow.resx">

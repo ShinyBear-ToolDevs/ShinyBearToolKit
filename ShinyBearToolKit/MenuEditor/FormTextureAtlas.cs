@@ -23,6 +23,14 @@ namespace ShinyBearToolKit.MenuEditor
             Graphics = this.CreateGraphics();
         }
 
+        public void ShowImage()
+        {
+            for (int m = 0; m < image.Count; m++)
+            {
+                Graphics.DrawImage(image[m], new Point(100, 100));
+            }
+        }
+
       
     }
 }
