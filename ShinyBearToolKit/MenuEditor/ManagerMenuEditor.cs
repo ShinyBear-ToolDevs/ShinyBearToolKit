@@ -12,7 +12,7 @@ namespace ShinyBearToolkit.MenuEditor
 {
     public class ManagerMenuEditor
     {
-        MenuEditorImage managerMenuEditorImage = new MenuEditorImage();
+        SpriteListManager managerMenuEditorImage = new SpriteListManager();
         //FormTextureAtlas formTextureAtlas = new FormTextureAtlas();
 
         public void HandleExit(object sender, EventArgs e)
@@ -90,7 +90,9 @@ namespace ShinyBearToolkit.MenuEditor
 
         public void HandlerLoadFile()
         {
-            managerMenuEditorImage.OpenImage();
+            // Call and show the FormTextureAtlas.
+            FormTextureAtlas formTextureAtlas = new FormTextureAtlas();
+            formTextureAtlas.Show();
 
         }
     }

@@ -13,7 +13,7 @@ namespace ShinyBearToolKit.MenuEditor
 {
     public partial class FormTextureAtlas : Form
     {
-        MenuEditorImage managerMenuImage = new MenuEditorImage();
+        SpriteListManager spriteListManager = new SpriteListManager();
 
         public static Graphics Graphics { get; private set; }
 
@@ -21,16 +21,22 @@ namespace ShinyBearToolKit.MenuEditor
         {
             InitializeComponent();
             Graphics = this.CreateGraphics();
+            
         }
 
-        public void ShowImage()
+        private void btnImage_Click(object sender, EventArgs e)
         {
-            for (int m = 0; m < image.Count; m++)
-            {
-                Graphics.DrawImage(image[m], new Point(100, 100));
-            }
+            spriteListManager.OpenImage();
         }
 
-      
+        //public void ShowImage()
+        //{
+        //    for (int m = 0; m < image.Count; m++)
+        //    {
+        //        Graphics.DrawImage(image[m], new Point(100, 100));
+        //    }
+        //}
+
+       
     }
 }

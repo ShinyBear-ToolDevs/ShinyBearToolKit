@@ -12,12 +12,13 @@ using ShinyBearToolKit.MenuEditor;
 namespace ShinyBearToolkit.MenuEditor
 {
 
-    public class MenuEditorImage
+    public class SpriteListManager
     {
         //list with sprites.
         List<Image> image = new List<Image>();
+        
 
-        public void OpenImage(Image image)
+        public void OpenImage()
         {
 
             OpenFileDialog i = new OpenFileDialog();
