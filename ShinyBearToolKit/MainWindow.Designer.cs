@@ -36,6 +36,7 @@
             this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpenProject = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpenFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLoadImage = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSaveAll = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,6 @@
             this.ToolbarToolTabbs = new System.Windows.Forms.TabControl();
             this.ToolbarToolsTabbsPageCode = new System.Windows.Forms.TabPage();
             this.ToolbarToolsTabbPage2 = new System.Windows.Forms.TabPage();
-            this.spriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEditor.SuspendLayout();
             this.ToolbarToolTabbs.SuspendLayout();
             this.SuspendLayout();
@@ -105,67 +105,74 @@
             // 
             this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuNewProject,
-            this.menuNewFile,
-            this.spriteToolStripMenuItem});
+            this.menuNewFile});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.newToolStripMenuItem.Text = "New";
             // 
             // menuNewProject
             // 
             this.menuNewProject.Name = "menuNewProject";
-            this.menuNewProject.Size = new System.Drawing.Size(152, 22);
+            this.menuNewProject.Size = new System.Drawing.Size(111, 22);
             this.menuNewProject.Text = "Project";
             // 
             // menuNewFile
             // 
             this.menuNewFile.Name = "menuNewFile";
-            this.menuNewFile.Size = new System.Drawing.Size(152, 22);
+            this.menuNewFile.Size = new System.Drawing.Size(111, 22);
             this.menuNewFile.Text = "File";
             // 
             // menuOpen
             // 
             this.menuOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuOpenProject,
-            this.menuOpenFile});
+            this.menuOpenFile,
+            this.menuLoadImage});
             this.menuOpen.Name = "menuOpen";
-            this.menuOpen.Size = new System.Drawing.Size(152, 22);
+            this.menuOpen.Size = new System.Drawing.Size(115, 22);
             this.menuOpen.Text = "Open";
             // 
             // menuOpenProject
             // 
             this.menuOpenProject.Name = "menuOpenProject";
-            this.menuOpenProject.Size = new System.Drawing.Size(152, 22);
+            this.menuOpenProject.Size = new System.Drawing.Size(136, 22);
             this.menuOpenProject.Text = "Project";
             // 
             // menuOpenFile
             // 
             this.menuOpenFile.Name = "menuOpenFile";
-            this.menuOpenFile.Size = new System.Drawing.Size(152, 22);
+            this.menuOpenFile.Size = new System.Drawing.Size(136, 22);
             this.menuOpenFile.Text = "File";
+            // 
+            // menuLoadImage
+            // 
+            this.menuLoadImage.Name = "menuLoadImage";
+            this.menuLoadImage.Size = new System.Drawing.Size(136, 22);
+            this.menuLoadImage.Text = "Load Image";
+            this.menuLoadImage.Click += new System.EventHandler(this.menuLoadImage_Click);
             // 
             // menuSave
             // 
             this.menuSave.Name = "menuSave";
-            this.menuSave.Size = new System.Drawing.Size(152, 22);
+            this.menuSave.Size = new System.Drawing.Size(115, 22);
             this.menuSave.Text = "Save";
             // 
             // menuSaveAs
             // 
             this.menuSaveAs.Name = "menuSaveAs";
-            this.menuSaveAs.Size = new System.Drawing.Size(152, 22);
+            this.menuSaveAs.Size = new System.Drawing.Size(115, 22);
             this.menuSaveAs.Text = "Save As";
             // 
             // menuSaveAll
             // 
             this.menuSaveAll.Name = "menuSaveAll";
-            this.menuSaveAll.Size = new System.Drawing.Size(152, 22);
+            this.menuSaveAll.Size = new System.Drawing.Size(115, 22);
             this.menuSaveAll.Text = "Save All";
             // 
             // menuExit
             // 
             this.menuExit.Name = "menuExit";
-            this.menuExit.Size = new System.Drawing.Size(152, 22);
+            this.menuExit.Size = new System.Drawing.Size(115, 22);
             this.menuExit.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -353,13 +360,6 @@
             this.ToolbarToolsTabbPage2.TabIndex = 1;
             this.ToolbarToolsTabbPage2.Text = "Design";
             // 
-            // spriteToolStripMenuItem
-            // 
-            this.spriteToolStripMenuItem.Name = "spriteToolStripMenuItem";
-            this.spriteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.spriteToolStripMenuItem.Text = "Sprite";
-            this.spriteToolStripMenuItem.Click += new System.EventHandler(this.spriteToolStripMenuItem_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -416,11 +416,11 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuLoadImage;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TabControl ToolbarToolTabbs;
         private System.Windows.Forms.TabPage ToolbarToolsTabbsPageCode;
         private System.Windows.Forms.TabPage ToolbarToolsTabbPage2;
-        private System.Windows.Forms.ToolStripMenuItem spriteToolStripMenuItem;
     }
 }
 
