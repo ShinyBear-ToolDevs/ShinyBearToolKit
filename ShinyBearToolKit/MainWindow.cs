@@ -30,13 +30,13 @@ namespace ShinyBearToolkit
 
         ManagerMenuEditor managerMenuEditor = new ManagerMenuEditor();
 
-        public static Graphics Graphics { get; private set; }
+       
 
         public MainWindow()
         {
             InitializeComponent();
             SetUpMenuHandlers();
-            Graphics = this.CreateGraphics();
+           
 
         }
 

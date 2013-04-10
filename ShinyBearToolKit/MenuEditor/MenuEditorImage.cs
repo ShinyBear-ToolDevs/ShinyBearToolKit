@@ -24,7 +24,7 @@ namespace ShinyBearToolkit.MenuEditor
 
         public void OpenImage()
         {
-            Graphics graphics = MainWindow.Graphics;
+            Graphics graphics = FormAnimation.Graphics;
 
             OpenFileDialog i = new OpenFileDialog();
             i.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;) | *.png; *.jpg; *. jpeg; *.gif; *.bmp";
