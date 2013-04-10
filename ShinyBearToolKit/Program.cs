@@ -14,6 +14,7 @@ namespace ShinyBearToolKit
         [STAThread]
         static void Main()
         {
+            MessageBox.Show("asd");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
