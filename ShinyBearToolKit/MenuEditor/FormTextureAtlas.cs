@@ -17,6 +17,14 @@ namespace ShinyBearToolKit.MenuEditor
 
         public static Graphics Graphics { get; private set; }
 
+        private Image image;
+
+        public Image Image
+        {
+            get { return image; }
+            set { image = value; }
+        }
+
         public FormTextureAtlas()
         {
             InitializeComponent();
@@ -29,13 +37,15 @@ namespace ShinyBearToolKit.MenuEditor
             spriteListManager.OpenImage();
         }
 
-        //public void ShowImage()
-        //{
-        //    for (int m = 0; m < image.Count; m++)
-        //    {
-        //        Graphics.DrawImage(image[m], new Point(100, 100));
-        //    }
-        //}
+        public void ShowImage()
+        {
+
+            for (int m = 1; m < image; m++)
+            {
+                listView1.Items.AddRange(spriteListManager.OpenImage());
+
+            }
+        }
 
        
     }

@@ -16,7 +16,6 @@ namespace ShinyBearToolkit.MenuEditor
     {
         //list with sprites.
         List<Image> image = new List<Image>();
-        
 
         public void OpenImage()
         {
@@ -26,17 +25,17 @@ namespace ShinyBearToolkit.MenuEditor
 
             if( i.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                
-                this.image.Add(Image.FromFile(i.FileName));
+                    this.image.Add(Image.FromFile(i.FileName));
 
                     //Check the file type
                     int dotIndex = i.FileName.LastIndexOf('.');
                     imageExtension = i.FileName.Substring(i.FileName.Length - dotIndex);
 
-                
             }
         }
-
         string imageExtension = "";
+
+       
+        }
     }
-}
+
