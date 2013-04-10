@@ -27,7 +27,6 @@ namespace ShinyBearToolkit
         //ManagerToolbarTools managerToolbarTools = new ManagerToolbarTools();
 
         //ManagerToolbarUnder managerToolbarUnder = new ManagerToolbarUnder();
-        int a = 0;
         ManagerMenuEditor managerMenuEditor = new ManagerMenuEditor();
 
         public static Graphics Graphics { get; private set; }

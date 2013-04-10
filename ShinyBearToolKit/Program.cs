@@ -14,7 +14,6 @@ namespace ShinyBearToolKit
         [STAThread]
         static void Main()
         {
-            MessageBox.Show("Conflict generator of dewm!");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
