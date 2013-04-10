@@ -52,11 +52,11 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuEditor\FormTextureAtlas.cs">
+    <Compile Include="MenuEditor\FormAnimation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuEditor\FormTextureAtlas.Designer.cs">
-      <DependentUpon>FormTextureAtlas.cs</DependentUpon>
+    <Compile Include="MenuEditor\FormAnimation.Designer.cs">
+      <DependentUpon>FormAnimation.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuEditor\ManagerMenuEditor.cs" />
     <Compile Include="MenuEditor\MenuEditorImage.cs" />
@@ -65,8 +65,8 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuEditor\FormTextureAtlas.resx">
-      <DependentUpon>FormTextureAtlas.cs</DependentUpon>
+    <EmbeddedResource Include="MenuEditor\FormAnimation.resx">
+      <DependentUpon>FormAnimation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
