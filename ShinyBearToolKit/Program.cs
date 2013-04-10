@@ -17,7 +17,6 @@ namespace ShinyBearToolKit
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainWindow());
-            string v = "asd";
         }
     }
 }
