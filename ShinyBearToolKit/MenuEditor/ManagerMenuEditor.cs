@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +6,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using ShinyBearToolkit;
 using ShinyBearToolKit.MenuEditor;
+using System;
 
 namespace ShinyBearToolkit.MenuEditor
 {
@@ -14,6 +14,7 @@ namespace ShinyBearToolkit.MenuEditor
     {
         SpriteListManager managerMenuEditorImage = new SpriteListManager();
         FormTextureAtlas formTextureAtlas;
+
         public void HandleExit(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you want to Exit?", "EXIT!",

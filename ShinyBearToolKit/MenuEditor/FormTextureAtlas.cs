@@ -43,10 +43,13 @@ namespace ShinyBearToolKit.MenuEditor
             animationTimer.Start();
         }
 
+   
+
         private void btnImage_Click(object sender, EventArgs e)
         {
             spriteListManager.OpenImage();
             LoadImages();
+            CreateDragDrop();
         }
 
        
@@ -92,7 +95,8 @@ namespace ShinyBearToolKit.MenuEditor
             {
                 Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
                 g.DrawRectangle(new Pen(Color.Black, 5), lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, 10, 10);
-
+                
+                
             }
         }
         private void PanelTextureAtlas_MouseEnter(object sender, EventArgs e)
@@ -126,7 +130,7 @@ namespace ShinyBearToolKit.MenuEditor
            
             this.AllowDrop = true;
             this.DragDrop += new DragEventHandler(FormTextureAtlas_DragDrop);
-            this.DragEnter +=new DragEventHandler(FormTextureAtlas_DragEnter);
+            this.DragEnter += new DragEventHandler(FormTextureAtlas_DragEnter);
         }
 
         private void FormTextureAtlas_DragDrop(object sender, DragEventArgs e)
@@ -184,12 +188,24 @@ namespace ShinyBearToolKit.MenuEditor
             {
                 e.Effect = DragDropEffects.None;
             }
+            
+        }
+
+        private void ImageOnPanel(PaintEventArgs e)
+        {
+            if (defaultPosition != null && defaultPosition != Point.Empty)
+            {
+                e.Graphics.DrawImage(image, defaultPosition);
+            }
 
         }
 
-
-
-
-        
+        private void listView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && e.Clicks == 2)
+            {
+                MessageBox.Show("hej");
+            }
+        }
     }
 }

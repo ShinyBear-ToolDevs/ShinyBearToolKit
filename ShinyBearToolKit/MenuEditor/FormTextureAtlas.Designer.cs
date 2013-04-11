@@ -34,6 +34,9 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.PanelTextureAtlas = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.PanelTextureAtlas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnImage
@@ -71,12 +74,21 @@
             // PanelTextureAtlas
             // 
             this.PanelTextureAtlas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelTextureAtlas.Controls.Add(this.dataGridView1);
             this.PanelTextureAtlas.Location = new System.Drawing.Point(243, 12);
             this.PanelTextureAtlas.Name = "PanelTextureAtlas";
             this.PanelTextureAtlas.Size = new System.Drawing.Size(614, 416);
             this.PanelTextureAtlas.TabIndex = 2;
             this.PanelTextureAtlas.MouseEnter += new System.EventHandler(this.PanelTextureAtlas_MouseEnter);
             this.PanelTextureAtlas.MouseLeave += new System.EventHandler(this.PanelTextureAtlas_MouseLeave);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(256, 150);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(8, 8);
+            this.dataGridView1.TabIndex = 0;
             // 
             // FormTextureAtlas
             // 
@@ -89,6 +101,8 @@
             this.Name = "FormTextureAtlas";
             this.Text = "FormTextureAtlas";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTextureAtlas_FormClosing);
+            this.PanelTextureAtlas.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -100,5 +114,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Panel PanelTextureAtlas;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
