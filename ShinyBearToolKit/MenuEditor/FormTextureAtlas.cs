@@ -21,8 +21,9 @@ namespace ShinyBearToolKit.MenuEditor
         private bool mouseOverAtlas = false;
         SpriteListManager spriteListManager = new SpriteListManager();
         Timer animationTimer;
+        
         public static Graphics Graphics { get; private set; }
-
+        private Graphics panelGraphics { get; set; }
         private Image image;
 
         public Image Image
@@ -34,7 +35,9 @@ namespace ShinyBearToolKit.MenuEditor
         public FormTextureAtlas()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
             Graphics = this.CreateGraphics();
+            panelGraphics = PanelTextureAtlas.CreateGraphics();
             animationTimer = new Timer();
             animationTimer.Interval = ANIMATION_MS_INTERVAL;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
@@ -81,15 +84,21 @@ namespace ShinyBearToolKit.MenuEditor
         }
         public void paintPanel(Color color)
         {
-            Brush brush = new SolidBrush(color);
-            Bitmap bufl = new Bitmap(PanelTextureAtlas.Width, PanelTextureAtlas.Height);
-            using (Graphics g = Graphics.FromImage(bufl))
+            using (Brush brush = new SolidBrush(color))
             {
-                g.FillRectangle(brush, new Rectangle(0, 0, PanelTextureAtlas.Width, PanelTextureAtlas.Height));
-                drawRecOnMouse(g);
-                //DrawItems(g);
-                //DrawMoreItems(g);
-                PanelTextureAtlas.CreateGraphics().DrawImageUnscaled(bufl, 0, 0);
+                Bitmap bufl = new Bitmap(PanelTextureAtlas.Width, PanelTextureAtlas.Height);
+                using (panelGraphics = PanelTextureAtlas.CreateGraphics())
+                {
+                    using (Graphics g = Graphics.FromImage(bufl))
+                    {
+                        g.FillRectangle(brush, new Rectangle(0, 0, PanelTextureAtlas.Width, PanelTextureAtlas.Height));
+                        drawRecOnMouse(g);
+                        //DrawItems(g);
+                        //DrawMoreItems(g);
+                        panelGraphics.DrawImageUnscaled(bufl, 0, 0);
+                        GC.Collect();
+                    }
+                }
             }
         }
         public void drawRecOnMouse(Graphics g)
