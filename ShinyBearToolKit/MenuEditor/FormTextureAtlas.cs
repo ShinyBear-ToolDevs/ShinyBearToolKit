@@ -79,7 +79,7 @@ namespace ShinyBearToolKit.MenuEditor
             //Updates
             listView1.Update();
         }
-        public void paintPanelBackground(Color color)
+        public void paintPanel(Color color)
         {
             Brush brush = new SolidBrush(color);
             Bitmap bufl = new Bitmap(PanelTextureAtlas.Width, PanelTextureAtlas.Height);
@@ -112,7 +112,7 @@ namespace ShinyBearToolKit.MenuEditor
         }
         private void animationTimer_Tick(object sender, EventArgs e)
         {
-            paintPanelBackground(panelBackground);
+            paintPanel(panelBackground);
         }
         /// <summary>
         /// Stopping the timer from ticking in the background if the FormTextureAtlas isn't active
