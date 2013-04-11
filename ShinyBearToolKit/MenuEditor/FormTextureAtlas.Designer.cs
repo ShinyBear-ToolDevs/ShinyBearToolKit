@@ -31,8 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.btnImage = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.PanelTextureAtlas = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // btnImage
@@ -56,21 +57,30 @@
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Images";
+            // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(32, 32);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // columnHeader1
+            // PanelTextureAtlas
             // 
-            this.columnHeader1.Text = "Images";
+            this.PanelTextureAtlas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PanelTextureAtlas.Location = new System.Drawing.Point(243, 12);
+            this.PanelTextureAtlas.Name = "PanelTextureAtlas";
+            this.PanelTextureAtlas.Size = new System.Drawing.Size(614, 416);
+            this.PanelTextureAtlas.TabIndex = 2;
             // 
             // FormTextureAtlas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 440);
+            this.Controls.Add(this.PanelTextureAtlas);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.btnImage);
             this.Name = "FormTextureAtlas";
@@ -85,5 +95,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Panel PanelTextureAtlas;
     }
 }

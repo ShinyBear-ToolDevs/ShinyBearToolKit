@@ -13,8 +13,9 @@ namespace ShinyBearToolKit.MenuEditor
 {
     public partial class FormTextureAtlas : Form
     {
+        private const int ANIMATION_MS_INTERVAL = 25;
         SpriteListManager spriteListManager = new SpriteListManager();
-
+        Timer animationTimer;
         public static Graphics Graphics { get; private set; }
 
         private Image image;
@@ -29,7 +30,8 @@ namespace ShinyBearToolKit.MenuEditor
         {
             InitializeComponent();
             Graphics = this.CreateGraphics();
-            
+            animationTimer = new Timer();
+            animationTimer.Interval = ANIMATION_MS_INTERVAL;            
         }
 
         private void btnImage_Click(object sender, EventArgs e)
@@ -70,7 +72,18 @@ namespace ShinyBearToolKit.MenuEditor
             //Updates
             listView1.Update();
         }
-
+        public void paintBackground(Color color)
+        {
+            Brush brush = new SolidBrush(color);
+            Bitmap bufl = new Bitmap(PanelTextureAtlas.Width, PanelTextureAtlas.Height);
+            using (Graphics g = Graphics.FromImage(bufl))
+            {
+                g.FillRectangle(brush, new Rectangle(PanelTextureAtlas.Location.X, PanelTextureAtlas.Location.Y, PanelTextureAtlas.Width, PanelTextureAtlas.Height));
+                //DrawItems(g);
+                //DrawMoreItems(g);
+                PanelTextureAtlas.CreateGraphics().DrawImageUnscaled(bufl, 0, 0);
+            }
+        }
        
     }
 }
