@@ -29,8 +29,6 @@ namespace ShinyBearToolkit
 
         //ManagerToolbarUnder managerToolbarUnder = new ManagerToolbarUnder();
         ManagerMenuEditor managerMenuEditor = new ManagerMenuEditor();
-
-        FormTextureAtlas formTextureAtlas = new FormTextureAtlas();
         
 
        

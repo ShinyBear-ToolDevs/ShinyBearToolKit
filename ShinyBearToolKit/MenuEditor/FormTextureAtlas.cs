@@ -13,6 +13,7 @@ namespace ShinyBearToolKit.MenuEditor
 {
     public partial class FormTextureAtlas : Form
     {
+        private Color panelBackground = Color.LawnGreen;
         private const int ANIMATION_MS_INTERVAL = 25;
         SpriteListManager spriteListManager = new SpriteListManager();
         Timer animationTimer;
@@ -31,7 +32,9 @@ namespace ShinyBearToolKit.MenuEditor
             InitializeComponent();
             Graphics = this.CreateGraphics();
             animationTimer = new Timer();
-            animationTimer.Interval = ANIMATION_MS_INTERVAL;            
+            animationTimer.Interval = ANIMATION_MS_INTERVAL;
+            this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
+            animationTimer.Start();
         }
 
         private void btnImage_Click(object sender, EventArgs e)
@@ -72,7 +75,7 @@ namespace ShinyBearToolKit.MenuEditor
             //Updates
             listView1.Update();
         }
-        public void paintBackground(Color color)
+        public void paintPanelBackground(Color color)
         {
             Brush brush = new SolidBrush(color);
             Bitmap bufl = new Bitmap(PanelTextureAtlas.Width, PanelTextureAtlas.Height);
@@ -84,6 +87,10 @@ namespace ShinyBearToolKit.MenuEditor
                 PanelTextureAtlas.CreateGraphics().DrawImageUnscaled(bufl, 0, 0);
             }
         }
-       
+        private void animationTimer_Tick(object sender, EventArgs e)
+        {
+            if( this.
+            paintPanelBackground(panelBackground);
+        }
     }
 }

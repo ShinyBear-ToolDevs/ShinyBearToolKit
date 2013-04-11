@@ -13,8 +13,7 @@ namespace ShinyBearToolkit.MenuEditor
     public class ManagerMenuEditor
     {
         SpriteListManager managerMenuEditorImage = new SpriteListManager();
-        //FormTextureAtlas formTextureAtlas = new FormTextureAtlas();
-
+        FormTextureAtlas formTextureAtlas;
         public void HandleExit(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you want to Exit?", "EXIT!",
@@ -91,7 +90,7 @@ namespace ShinyBearToolkit.MenuEditor
         public void HandlerLoadFile()
         {
             // Call and show the FormTextureAtlas.
-            FormTextureAtlas formTextureAtlas = new FormTextureAtlas();
+            formTextureAtlas = new FormTextureAtlas();
             formTextureAtlas.Show();
 
         }
