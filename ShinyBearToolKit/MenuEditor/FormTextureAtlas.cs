@@ -13,6 +13,8 @@ namespace ShinyBearToolKit.MenuEditor
 {
     public partial class FormTextureAtlas : Form
     {
+        private const int EDGE_HEIGHT_SIZE_OFFSET = 50;
+        private const int EDGE_WIDTH_SIZE_OFFSET = 28;
         private Color panelBackground = Color.LawnGreen;
         private const int ANIMATION_MS_INTERVAL = 25;
 
@@ -92,8 +94,12 @@ namespace ShinyBearToolKit.MenuEditor
         }
         public void drawRecOnMouse(Graphics g)
         {
-            if(mouseOverAtlas)
-                g.DrawRectangle(new Pen(Color.Black, 5), Cursor.Position.X-(this.Width-PanelTextureAtlas.Width), Cursor.Position.Y-(this.Height-PanelTextureAtlas.Height), 10, 10);
+            if (mouseOverAtlas)
+            {
+                Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
+                g.DrawRectangle(new Pen(Color.Black, 5), lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, 10, 10);
+
+            }
         }
         private void PanelTextureAtlas_MouseEnter(object sender, EventArgs e)
         {
