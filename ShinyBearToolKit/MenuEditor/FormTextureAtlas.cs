@@ -23,6 +23,8 @@ namespace ShinyBearToolKit.MenuEditor
         Timer animationTimer;
         public static Graphics Graphics { get; private set; }
 
+        private Point defaultPosition;
+
         private Image image;
 
         public Image Image
@@ -47,15 +49,7 @@ namespace ShinyBearToolKit.MenuEditor
             LoadImages();
         }
 
-        //public void ShowImage()
-        //{
-
-        //    for (int m = 1; m < image; m++)
-        //    {
-        //        listView1.Items.AddRange(spriteListManager.OpenImage());
-
-        //    }
-        //}
+       
         /// <summary>
         /// Loads the images from SpriteListManager's List, and imputs them into the listview
         /// </summary>
@@ -124,7 +118,77 @@ namespace ShinyBearToolKit.MenuEditor
             animationTimer.Stop();
         }
 
-        
+        /// <summary>
+        /// Drag and dropEventhandlers to put the imga inside the panel
+        /// </summary>
+        private void CreateDragDrop()
+        {
+           
+            this.AllowDrop = true;
+            this.DragDrop += new DragEventHandler(FormTextureAtlas_DragDrop);
+            this.DragEnter +=new DragEventHandler(FormTextureAtlas_DragEnter);
+        }
+
+        private void FormTextureAtlas_DragDrop(object sender, DragEventArgs e)
+        {   
+            // Handle file drop data.
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Assign the file names to a string array in case the user has selected multiple files.
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                try
+                {
+                    // assign the first image.
+                    this.image = Image.FromFile(files[0]);
+
+                    // set the image position equal to the drop point.
+                    this.defaultPosition = this.PointToClient(new Point(e.X, e.Y));
+                }
+                catch (Exception message)
+                {
+                    MessageBox.Show(message.Message);
+                    return;
+                }
+
+            }
+            // handle the bitmap data
+            if (e.Data.GetDataPresent(DataFormats.Bitmap))
+            {
+                try
+                {
+                    // Create an Image and assign it to the image.
+                    this.image = (Image)e.Data.GetData(DataFormats.Bitmap);
+                    // set the image position equal to  the drop point.
+                    this.defaultPosition = this.PointToClient(new Point(e.X, e.Y));
+                }
+                catch (Exception message)
+                {
+                    MessageBox.Show(message.Message);
+                    return;
+                }
+            }
+            // force the form to be redraw with the image.
+            this.Invalidate();
+        }
+
+        private void FormTextureAtlas_DragEnter(object sender, DragEventArgs e)
+        {
+            // if the data is a file or a bitmap
+            if (e.Data.GetDataPresent(DataFormats.Bitmap) ||
+                e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+
+        }
+
+
+
 
         
     }
