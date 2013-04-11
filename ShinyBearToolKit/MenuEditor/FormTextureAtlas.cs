@@ -15,17 +15,21 @@ namespace ShinyBearToolKit.MenuEditor
     {
         private const int EDGE_HEIGHT_SIZE_OFFSET = 50;
         private const int EDGE_WIDTH_SIZE_OFFSET = 28;
-        private Color panelBackground = Color.LawnGreen;
+        
         private const int ANIMATION_MS_INTERVAL = 25;
 
         
-        private bool mouseOverAtlas = false;
+        
         SpriteListManager spriteListManager = new SpriteListManager();
-        Timer animationTimer;
+        
         
         public static Graphics Graphics { get; private set; }
 
-        List<Image> texturesOnAtlas = new List<Image>();
+        //TextureAtlas
+        private bool mouseOverAtlas = false;
+        private Color panelBackground = Color.LawnGreen;
+        Timer animationTimer;
+        TextureAtlasManager textureAtlasManager = new TextureAtlasManager();
         // DragDrop
         private int indexOfItemUnderMouseToDrag;
         private int indexOfItemUnderMouseToDrop;
@@ -100,12 +104,21 @@ namespace ShinyBearToolKit.MenuEditor
                     {
                         g.FillRectangle(brush, new Rectangle(0, 0, PanelTextureAtlas.Width, PanelTextureAtlas.Height));
                         drawRecOnMouse(g);
-                        //DrawItems(g);
+                        drawSprites(g);
                         //DrawMoreItems(g);
                         panelGraphics.DrawImageUnscaled(bufl, 0, 0);
                         GC.Collect();
                     }
                 }
+            }
+        }
+        public void drawSprites(Graphics g)
+        {
+            Sprite tempSprite;
+            for(int i = 0; i < textureAtlasManager.NrOfSprites; i++)
+            {
+                tempSprite = textureAtlasManager.getSpriteAtIndex(i);
+                g.DrawImageUnscaled(tempSprite.Texture, new Point(tempSprite.X, tempSprite.Y));
             }
         }
         public void drawRecOnMouse(Graphics g)
@@ -155,23 +168,7 @@ namespace ShinyBearToolKit.MenuEditor
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.DoDragDrop(e.Item, DragDropEffects.Copy);
-                currentDraggedImage = (Image)e.Item;
-            }
-        }
-
-        private void listView1_DragEnter(object sender, DragEventArgs e)
-        {
-            
-
-            // if the data is a file or a bitmap
-            if (e.Data.GetDataPresent(DataFormats.Bitmap) ||
-                e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
+                //currentDraggedImage = (Image)e.Item;
             }
         }
 
@@ -183,6 +180,16 @@ namespace ShinyBearToolKit.MenuEditor
         private void PanelTextureAtlas_DragEnter(object sender, DragEventArgs e)
         {
             draggingOverAtlas = true;
+            // if the data is a file or a bitmap
+            //if (e.Data.GetDataPresent(typeof(Image)) ||
+            //    e.Data.GetDataPresent(DataFormats.FileDrop))
+            //{
+            //    e.Effect = DragDropEffects.Copy;
+            //}
+            //else
+            //{
+            //    e.Effect = DragDropEffects.None;
+            //}
         }
 
         private void PanelTextureAtlas_DragLeave(object sender, EventArgs e)
@@ -192,7 +199,13 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void PanelTextureAtlas_DragDrop(object sender, DragEventArgs e)
         {
-
+            Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
+            if (e.Data.GetDataPresent(DataFormats.Bitmap))
+            {
+                Sprite newSprite = new Sprite((Image)e.Data.GetData(DataFormats.Bitmap), lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, currentDraggedImage.Size.Width, currentDraggedImage.Size.Height, new Point(currentDraggedImage.Size.Width / 2, currentDraggedImage.Size.Height / 2));
+                textureAtlasManager.addSprite(newSprite);
+            }
+            currentDraggedImage = null;
         }
 
         
