@@ -24,7 +24,9 @@ namespace ShinyBearToolKit.MenuEditor
         
         public static Graphics Graphics { get; private set; }
 
-
+        // DragDrop
+        private int indexOfItemUnderMouseToDrag;
+        private int indexOfItemUnderMouseToDrop;
         private Point defaultPosition;
 
         private Graphics panelGraphics { get; set; }
@@ -56,7 +58,7 @@ namespace ShinyBearToolKit.MenuEditor
         {
             spriteListManager.OpenImage();
             LoadImages();
-            CreateDragDrop();
+            //CreateDragDrop();
         }
 
        
@@ -135,19 +137,38 @@ namespace ShinyBearToolKit.MenuEditor
             animationTimer.Stop();
         }
 
-        /// <summary>
-        /// Drag and dropEventhandlers to put the imga inside the panel
-        /// </summary>
-        private void CreateDragDrop()
+        //private void ImageOnPanel(PaintEventArgs e)
+        //{
+        //    if (defaultPosition != null && defaultPosition != Point.Empty)
+        //    {
+        //        e.Graphics.DrawImage(image, defaultPosition);
+        //    }
+
+        //}
+
+        private void listVIew_ItemDrag(object sender, ItemDragEventArgs e)
         {
-           
-            this.AllowDrop = true;
-            this.DragDrop += new DragEventHandler(FormTextureAtlas_DragDrop);
-            this.DragEnter += new DragEventHandler(FormTextureAtlas_DragEnter);
+            listView1.DoDragDrop(listView1.SelectedItems, DragDropEffects.Copy);
         }
 
-        private void FormTextureAtlas_DragDrop(object sender, DragEventArgs e)
-        {   
+        private void listView1_DragEnter(object sender, DragEventArgs e)
+        {
+            
+
+            // if the data is a file or a bitmap
+            if (e.Data.GetDataPresent(DataFormats.Bitmap) ||
+                e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void listView1_DragDrop(object sender, DragEventArgs e)
+        {
             // Handle file drop data.
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -189,38 +210,17 @@ namespace ShinyBearToolKit.MenuEditor
             this.Invalidate();
         }
 
-        private void FormTextureAtlas_DragEnter(object sender, DragEventArgs e)
-        {
-            // if the data is a file or a bitmap
-            if (e.Data.GetDataPresent(DataFormats.Bitmap) ||
-                e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
-            
-        }
-
-        private void ImageOnPanel(PaintEventArgs e)
-        {
-            if (defaultPosition != null && defaultPosition != Point.Empty)
-            {
-                e.Graphics.DrawImage(image, defaultPosition);
-            }
-
-        }
-
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            
-            
-                MessageBox.Show("hej");
+            listView1.Items.AddRange(image);
+        }
+
+        private void listView_MouseDown(object sender, MouseEventArgs e)
+        {
             
         }
 
-        
+       
+
     }
 }
