@@ -23,13 +23,12 @@ namespace ShinyBearToolKit.MenuEditor
         Timer animationTimer;
         
         public static Graphics Graphics { get; private set; }
-<<<<<<< HEAD
+
 
         private Point defaultPosition;
 
-=======
         private Graphics panelGraphics { get; set; }
->>>>>>> f51eb1c95c402c7d46f5d8e74b4c8eb8f5daf6c6
+
         private Image image;
 
         public Image Image
@@ -48,6 +47,7 @@ namespace ShinyBearToolKit.MenuEditor
             animationTimer.Interval = ANIMATION_MS_INTERVAL;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             animationTimer.Start();
+
         }
 
    
@@ -213,12 +213,14 @@ namespace ShinyBearToolKit.MenuEditor
 
         }
 
-        private void listView1_MouseDown(object sender, MouseEventArgs e)
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && e.Clicks == 2)
-            {
+            
+            
                 MessageBox.Show("hej");
-            }
+            
         }
+
+        
     }
 }

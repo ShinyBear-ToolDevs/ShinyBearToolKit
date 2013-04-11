@@ -60,6 +60,7 @@
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Tile;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -115,5 +116,6 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Panel PanelTextureAtlas;
         private System.Windows.Forms.DataGridView dataGridView1;
+        
     }
 }
