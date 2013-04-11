@@ -74,6 +74,8 @@
             this.PanelTextureAtlas.Name = "PanelTextureAtlas";
             this.PanelTextureAtlas.Size = new System.Drawing.Size(614, 416);
             this.PanelTextureAtlas.TabIndex = 2;
+            this.PanelTextureAtlas.MouseEnter += new System.EventHandler(this.PanelTextureAtlas_MouseEnter);
+            this.PanelTextureAtlas.MouseLeave += new System.EventHandler(this.PanelTextureAtlas_MouseLeave);
             // 
             // FormTextureAtlas
             // 
@@ -85,6 +87,7 @@
             this.Controls.Add(this.btnImage);
             this.Name = "FormTextureAtlas";
             this.Text = "FormTextureAtlas";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTextureAtlas_FormClosing);
             this.ResumeLayout(false);
 
         }

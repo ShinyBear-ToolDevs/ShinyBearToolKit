@@ -15,6 +15,8 @@ namespace ShinyBearToolKit.MenuEditor
     {
         private Color panelBackground = Color.LawnGreen;
         private const int ANIMATION_MS_INTERVAL = 25;
+
+        private bool mouseOverAtlas = false;
         SpriteListManager spriteListManager = new SpriteListManager();
         Timer animationTimer;
         public static Graphics Graphics { get; private set; }
@@ -81,16 +83,43 @@ namespace ShinyBearToolKit.MenuEditor
             Bitmap bufl = new Bitmap(PanelTextureAtlas.Width, PanelTextureAtlas.Height);
             using (Graphics g = Graphics.FromImage(bufl))
             {
-                g.FillRectangle(brush, new Rectangle(PanelTextureAtlas.Location.X, PanelTextureAtlas.Location.Y, PanelTextureAtlas.Width, PanelTextureAtlas.Height));
+                g.FillRectangle(brush, new Rectangle(0, 0, PanelTextureAtlas.Width, PanelTextureAtlas.Height));
+                drawRecOnMouse(g);
                 //DrawItems(g);
                 //DrawMoreItems(g);
                 PanelTextureAtlas.CreateGraphics().DrawImageUnscaled(bufl, 0, 0);
             }
         }
+        public void drawRecOnMouse(Graphics g)
+        {
+            if(mouseOverAtlas)
+                g.DrawRectangle(new Pen(Color.Black, 5), Cursor.Position.X-(this.Width-PanelTextureAtlas.Width), Cursor.Position.Y-(this.Height-PanelTextureAtlas.Height), 10, 10);
+        }
+        private void PanelTextureAtlas_MouseEnter(object sender, EventArgs e)
+        {
+            mouseOverAtlas = true;
+        }
+
+        private void PanelTextureAtlas_MouseLeave(object sender, EventArgs e)
+        {
+            mouseOverAtlas = false;
+        }
         private void animationTimer_Tick(object sender, EventArgs e)
         {
-            if( this.
             paintPanelBackground(panelBackground);
         }
+        /// <summary>
+        /// Stopping the timer from ticking in the background if the FormTextureAtlas isn't active
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormTextureAtlas_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            animationTimer.Stop();
+        }
+
+        
+
+        
     }
 }
