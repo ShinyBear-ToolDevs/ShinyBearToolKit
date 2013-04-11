@@ -18,15 +18,19 @@ namespace ShinyBearToolKit.MenuEditor
         private Color panelBackground = Color.LawnGreen;
         private const int ANIMATION_MS_INTERVAL = 25;
 
+        
         private bool mouseOverAtlas = false;
         SpriteListManager spriteListManager = new SpriteListManager();
         Timer animationTimer;
         
         public static Graphics Graphics { get; private set; }
 
+        List<Image> texturesOnAtlas = new List<Image>();
         // DragDrop
         private int indexOfItemUnderMouseToDrag;
         private int indexOfItemUnderMouseToDrop;
+        private bool draggingOverAtlas = false;
+        private Image currentDraggedImage;
         private Point defaultPosition;
 
         private Graphics panelGraphics { get; set; }
@@ -146,9 +150,13 @@ namespace ShinyBearToolKit.MenuEditor
 
         //}
 
-        private void listVIew_ItemDrag(object sender, ItemDragEventArgs e)
+        private void listView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            listView1.DoDragDrop(listView1.SelectedItems, DragDropEffects.Copy);
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.DoDragDrop(e.Item, DragDropEffects.Copy);
+                currentDraggedImage = (Image)e.Item;
+            }
         }
 
         private void listView1_DragEnter(object sender, DragEventArgs e)
@@ -167,58 +175,27 @@ namespace ShinyBearToolKit.MenuEditor
             }
         }
 
-        private void listView1_DragDrop(object sender, DragEventArgs e)
-        {
-            // Handle file drop data.
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                // Assign the file names to a string array in case the user has selected multiple files.
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-
-                try
-                {
-                    // assign the first image.
-                    this.image = Image.FromFile(files[0]);
-
-                    // set the image position equal to the drop point.
-                    this.defaultPosition = this.PointToClient(new Point(e.X, e.Y));
-                }
-                catch (Exception message)
-                {
-                    MessageBox.Show(message.Message);
-                    return;
-                }
-
-            }
-            // handle the bitmap data
-            if (e.Data.GetDataPresent(DataFormats.Bitmap))
-            {
-                try
-                {
-                    // Create an Image and assign it to the image.
-                    this.image = (Image)e.Data.GetData(DataFormats.Bitmap);
-                    // set the image position equal to  the drop point.
-                    this.defaultPosition = this.PointToClient(new Point(e.X, e.Y));
-                }
-                catch (Exception message)
-                {
-                    MessageBox.Show(message.Message);
-                    return;
-                }
-            }
-            // force the form to be redraw with the image.
-            this.Invalidate();
-        }
-
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            listView1.Items.AddRange(image);
+            //listView1.Items.AddRange(image);
         }
 
-        private void listView_MouseDown(object sender, MouseEventArgs e)
+        private void PanelTextureAtlas_DragEnter(object sender, DragEventArgs e)
         {
-            
+            draggingOverAtlas = true;
         }
+
+        private void PanelTextureAtlas_DragLeave(object sender, EventArgs e)
+        {
+            draggingOverAtlas = false;
+        }
+
+        private void PanelTextureAtlas_DragDrop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        
 
        
 

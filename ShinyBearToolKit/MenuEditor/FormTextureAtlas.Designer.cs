@@ -60,11 +60,9 @@
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Tile;
-            this.listView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listVIew_ItemDrag);
-            this.listView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
+            this.listView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listView1_ItemDrag);
             this.listView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView1_DragEnter);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
-            this.listView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listView_MouseDown);
             // 
             // columnHeader1
             // 
@@ -78,12 +76,16 @@
             // 
             // PanelTextureAtlas
             // 
+            this.PanelTextureAtlas.AllowDrop = true;
             this.PanelTextureAtlas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PanelTextureAtlas.Controls.Add(this.dataGridView1);
             this.PanelTextureAtlas.Location = new System.Drawing.Point(243, 12);
             this.PanelTextureAtlas.Name = "PanelTextureAtlas";
             this.PanelTextureAtlas.Size = new System.Drawing.Size(614, 416);
             this.PanelTextureAtlas.TabIndex = 2;
+            this.PanelTextureAtlas.DragDrop += new System.Windows.Forms.DragEventHandler(this.PanelTextureAtlas_DragDrop);
+            this.PanelTextureAtlas.DragEnter += new System.Windows.Forms.DragEventHandler(this.PanelTextureAtlas_DragEnter);
+            this.PanelTextureAtlas.DragLeave += new System.EventHandler(this.PanelTextureAtlas_DragLeave);
             this.PanelTextureAtlas.MouseEnter += new System.EventHandler(this.PanelTextureAtlas_MouseEnter);
             this.PanelTextureAtlas.MouseLeave += new System.EventHandler(this.PanelTextureAtlas_MouseLeave);
             // 
