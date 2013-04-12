@@ -209,7 +209,7 @@ namespace ShinyBearToolKit.MenuEditor
                 new Point(PanelTextureAtlas.Height / 2, 
                     PanelTextureAtlas.Width / 2));
                
-               
+               textureAtlasManager.addSprite(newSprite);
         }
     }
 }
