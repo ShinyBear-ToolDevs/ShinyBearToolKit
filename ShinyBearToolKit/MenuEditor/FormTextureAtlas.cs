@@ -133,7 +133,8 @@ namespace ShinyBearToolKit.MenuEditor
             if (mouseOverAtlas)
             {
                 Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
-                g.DrawRectangle(new Pen(Color.Black, 5), lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, 10, 10);
+                g.DrawRectangle(new Pen(Color.Black, 5), lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, 
+                    lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, 10, 10);
 
             }
         }
@@ -196,7 +197,9 @@ namespace ShinyBearToolKit.MenuEditor
             {
                 ListViewItem viewItem = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
                 Image lTexture = viewItem.ImageList.Images[0];
-                Point imagePosition = new Point(lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET);
+                Point imagePosition = new Point(lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, 
+                    lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET);
+
                 Rectangle spriteEdge = new Rectangle(imagePosition, lTexture.Size);
                 Sprite newSprite = new Sprite(lTexture, 
                     imagePosition.X,
@@ -223,7 +226,10 @@ namespace ShinyBearToolKit.MenuEditor
                 tempImages.Height, 
                 new Point(tempImages.Height / 2,
                     tempImages.Width / 2),
-                    new Rectangle(new Point(defaultPosition.X, defaultPosition.Y), new Size(tempImages.Width, tempImages.Height)));
+                    new Rectangle(new Point(defaultPosition.X, 
+                        defaultPosition.Y), 
+                        new Size(tempImages.Width, 
+                            tempImages.Height)));
                
                textureAtlasManager.addSprite(newSprite);
         }
