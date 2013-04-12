@@ -188,12 +188,15 @@ namespace ShinyBearToolKit.MenuEditor
             {
                 ListViewItem viewItem = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
                 Image lTexture = viewItem.ImageList.Images[0];
+                Point imagePosition = new Point(lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET);
+                Rectangle spriteEdge = new Rectangle(imagePosition, lTexture.Size);
                 Sprite newSprite = new Sprite(lTexture, 
-                    lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET,
-                    lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET,
+                    imagePosition.X,
+                    imagePosition.Y,
                     lTexture.Size.Width,
                     lTexture.Size.Height,
-                    new Point(lTexture.Size.Width / 2, lTexture.Size.Height / 2));
+                    new Point(lTexture.Size.Width / 2, lTexture.Size.Height / 2),
+                    spriteEdge);
                 textureAtlasManager.addSprite(newSprite);
             }
             currentDraggedImage = null;
@@ -211,7 +214,8 @@ namespace ShinyBearToolKit.MenuEditor
                 tempImages.Width, 
                 tempImages.Height, 
                 new Point(tempImages.Height / 2,
-                    tempImages.Width / 2));
+                    tempImages.Width / 2),
+                    new Rectangle(new Point(defaultPosition.X, defaultPosition.Y), new Size(tempImages.Width, tempImages.Height)));
                
                textureAtlasManager.addSprite(newSprite);
         }
