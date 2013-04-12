@@ -48,6 +48,7 @@
             // 
             // listView1
             // 
+            this.listView1.AllowDrop = true;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
             this.listView1.LargeImageList = this.imageList1;
@@ -57,7 +58,11 @@
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Tile;
+
+            
+
             this.listView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listView1_ItemDrag);
+
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // columnHeader1
@@ -78,9 +83,13 @@
             this.PanelTextureAtlas.Name = "PanelTextureAtlas";
             this.PanelTextureAtlas.Size = new System.Drawing.Size(614, 416);
             this.PanelTextureAtlas.TabIndex = 2;
+
+            this.PanelTextureAtlas.DragDrop += new System.Windows.Forms.DragEventHandler(this.PanelTextureAtlas_DragDrop);
+
             //this.PanelTextureAtlas.DragDrop += new System.Windows.Forms.DragEventHandler(this.PanelTextureAtlas_DragDrop);
             //this.PanelTextureAtlas.DragEnter += new System.Windows.Forms.DragEventHandler(this.PanelTextureAtlas_DragEnter);
             //this.PanelTextureAtlas.DragLeave += new System.EventHandler(this.PanelTextureAtlas_DragLeave);
+
             this.PanelTextureAtlas.MouseEnter += new System.EventHandler(this.PanelTextureAtlas_MouseEnter);
             this.PanelTextureAtlas.MouseLeave += new System.EventHandler(this.PanelTextureAtlas_MouseLeave);
             // 

@@ -154,15 +154,6 @@ namespace ShinyBearToolKit.MenuEditor
             animationTimer.Stop();
         }
 
-        //private void ImageOnPanel(PaintEventArgs e)
-        //{
-        //    if (defaultPosition != null && defaultPosition != Point.Empty)
-        //    {
-        //        e.Graphics.DrawImage(image, defaultPosition);
-        //    }
-
-        //}
-
         private void listView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -174,7 +165,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            //listView1.Items.AddRange(image);
+            
         }
 
         private void PanelTextureAtlas_DragEnter(object sender, DragEventArgs e)
@@ -202,15 +193,16 @@ namespace ShinyBearToolKit.MenuEditor
             Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
             if (e.Data.GetDataPresent(DataFormats.Bitmap))
             {
-                Sprite newSprite = new Sprite((Image)e.Data.GetData(DataFormats.Bitmap), lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, currentDraggedImage.Size.Width, currentDraggedImage.Size.Height, new Point(currentDraggedImage.Size.Width / 2, currentDraggedImage.Size.Height / 2));
+                Sprite newSprite = new Sprite((Image)e.Data.GetData(DataFormats.Bitmap), 
+                    lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET,
+                    lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, 
+                    currentDraggedImage.Size.Width, 
+                    currentDraggedImage.Size.Height, 
+                    new Point(currentDraggedImage.Size.Width / 2, currentDraggedImage.Size.Height / 2));
                 textureAtlasManager.addSprite(newSprite);
             }
             currentDraggedImage = null;
         }
-
-        
-
-       
 
     }
 }
