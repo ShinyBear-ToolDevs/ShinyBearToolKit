@@ -60,16 +60,12 @@ namespace ShinyBearToolKit.MenuEditor
 
         }
 
-   
-
         private void btnImage_Click(object sender, EventArgs e)
         {
             spriteListManager.OpenImage();
             LoadImages();
-            //CreateDragDrop();
         }
 
-       
         /// <summary>
         /// Loads the images from SpriteListManager's List, and imputs them into the listview
         /// </summary>
@@ -127,8 +123,7 @@ namespace ShinyBearToolKit.MenuEditor
             {
                 Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
                 g.DrawRectangle(new Pen(Color.Black, 5), lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, 10, 10);
-                
-                
+
             }
         }
         private void PanelTextureAtlas_MouseEnter(object sender, EventArgs e)
@@ -159,7 +154,7 @@ namespace ShinyBearToolKit.MenuEditor
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.DoDragDrop(e.Item, DragDropEffects.Copy);
-                //currentDraggedImage = (Image)e.Item;
+                
             }
         }
 
