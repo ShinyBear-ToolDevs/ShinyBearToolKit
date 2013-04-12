@@ -125,7 +125,8 @@ namespace ShinyBearToolKit.MenuEditor
             if (mouseOverAtlas)
             {
                 Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
-                g.DrawRectangle(new Pen(Color.Black, 5), lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, 
+                g.DrawRectangle(new Pen(Color.Black, 5), 
+                    lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, 
                     lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, 10, 10);
 
             }
@@ -198,8 +199,9 @@ namespace ShinyBearToolKit.MenuEditor
                     imagePosition.Y,
                     lTexture.Size.Width,
                     lTexture.Size.Height,
-                    new Point(lTexture.Size.Width / 2, lTexture.Size.Height / 2),
-                    spriteEdge);
+                    new Point(lTexture.Size.Width / 2, 
+                        lTexture.Size.Height / 2),
+                        spriteEdge);
                 textureAtlasManager.addSprite(newSprite);
             }
             currentDraggedImage = null;
@@ -225,8 +227,27 @@ namespace ShinyBearToolKit.MenuEditor
                
                textureAtlasManager.addSprite(newSprite);
         }
+
+        private void listView1_DragDrop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void listView_DragEnter(object sender, DragEventArgs e)
+        {
+            draggingOverAtlas = true;
+            //if the data is a file or a bitmap
+            if (e.Data.GetDataPresent(typeof(ListViewItem)) ||
+                e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
     }
 }
 //gör bilden rörlig i panelen (Martin).
-// dubbel klicka på image och den visas i panelen
 // Möjliggör att det går att hämta en bild från hårddisken och placera i listViewn.
