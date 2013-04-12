@@ -45,6 +45,7 @@
             // 
             // listView1
             // 
+            this.listView1.AllowDrop = true;
             this.listView1.Location = new System.Drawing.Point(27, 89);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(302, 452);
@@ -56,6 +57,7 @@
             // 
             // panel1
             // 
+            this.panel1.AllowDrop = true;
             this.panel1.Location = new System.Drawing.Point(413, 89);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(332, 200);
@@ -66,6 +68,7 @@
             // 
             // panel2
             // 
+            this.panel2.AllowDrop = true;
             this.panel2.Location = new System.Drawing.Point(413, 315);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(332, 226);

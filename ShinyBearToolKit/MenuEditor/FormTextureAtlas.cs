@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ShinyBearToolkit.MenuEditor;
+using System.IO;
 
 
 namespace ShinyBearToolKit.MenuEditor
@@ -260,7 +261,64 @@ namespace ShinyBearToolKit.MenuEditor
         }
         private void listView1_DragDrop(object sender, DragEventArgs e)
         {
+            
+            Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
 
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] filePaths = (string[])(e.Data.GetData(DataFormats.FileDrop));
+
+                foreach (string file in filePaths)
+                {
+                    using (TextReader textReader = new StreamReader(file))
+                    {
+                        MessageBox.Show(textReader.ReadToEnd());
+                    }
+                }
+            }
+
+
+            // Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
+            //if (e.Data.GetDataPresent(typeof(ListViewItem)))
+            //{
+            //    ListViewItem viewItem = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
+            //    Image lTexture = viewItem.ImageList.Images[0];
+            //    Point imagePosition = new Point(lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET,
+            //        lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET);
+
+            //    Rectangle spriteEdge = new Rectangle(imagePosition, lTexture.Size);
+            //    Sprite newSprite = new Sprite(lTexture,
+            //        imagePosition.X,
+            //        imagePosition.Y,
+            //        lTexture.Size.Width,
+            //        lTexture.Size.Height,
+            //        new Point(lTexture.Size.Width / 2,
+            //            lTexture.Size.Height / 2),
+            //            spriteEdge);
+            //    textureAtlasManager.addSprite(newSprite);
+            //}
+            //currentDraggedImage = null;
+
+            //OpenFileDialog i = new OpenFileDialog();
+            ////Enables multiselect
+            //i.Multiselect = true;
+            //i.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;) | *.png; *.jpg; *. jpeg; *.gif; *.bmp";
+
+            //if (i.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //{
+            //    //Checks the number of images "i" contains
+            //    for (int m = 0; m < i.FileNames.Length; m++)
+            //    {
+            //        //Adds each file to the image list
+            //        this.image.Add(Image.FromFile(i.FileNames[m]));
+            //    }
+
+            //    //Check the file type
+            //    int dotIndex = i.FileName.LastIndexOf('.');
+            //    imageExtension = i.FileName.Substring(i.FileName.Length - dotIndex);
+
+            //}
+            
         }
 
         private void listView_DragEnter(object sender, DragEventArgs e)
