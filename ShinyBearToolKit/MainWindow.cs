@@ -30,14 +30,10 @@ namespace ShinyBearToolkit
         //ManagerToolbarUnder managerToolbarUnder = new ManagerToolbarUnder();
         ManagerMenuEditor managerMenuEditor = new ManagerMenuEditor();
         
-
-       
-
         public MainWindow()
         {
             InitializeComponent();
             SetUpMenuHandlers();
-           
 
         }
 
