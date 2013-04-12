@@ -166,16 +166,16 @@ namespace ShinyBearToolKit.MenuEditor
         private void PanelTextureAtlas_DragEnter(object sender, DragEventArgs e)
         {
             draggingOverAtlas = true;
-            // if the data is a file or a bitmap
-            //if (e.Data.GetDataPresent(typeof(Image)) ||
-            //    e.Data.GetDataPresent(DataFormats.FileDrop))
-            //{
-            //    e.Effect = DragDropEffects.Copy;
-            //}
-            //else
-            //{
-            //    e.Effect = DragDropEffects.None;
-            //}
+             //if the data is a file or a bitmap
+            if (e.Data.GetDataPresent(typeof(ListViewItem)) ||
+                e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
 
         private void PanelTextureAtlas_DragLeave(object sender, EventArgs e)
@@ -186,14 +186,16 @@ namespace ShinyBearToolKit.MenuEditor
         private void PanelTextureAtlas_DragDrop(object sender, DragEventArgs e)
         {
             Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
-            if (e.Data.GetDataPresent(DataFormats.Bitmap))
+            if (e.Data.GetDataPresent(typeof(ListViewItem)))
             {
-                Sprite newSprite = new Sprite((Image)e.Data.GetData(DataFormats.Bitmap), 
+                ListViewItem viewItem = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
+                Image lTexture = viewItem.ImageList.Images[0];
+                Sprite newSprite = new Sprite(lTexture, 
                     lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET,
-                    lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET, 
-                    currentDraggedImage.Size.Width, 
-                    currentDraggedImage.Size.Height, 
-                    new Point(currentDraggedImage.Size.Width / 2, currentDraggedImage.Size.Height / 2));
+                    lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET,
+                    lTexture.Size.Width,
+                    lTexture.Size.Height,
+                    new Point(lTexture.Size.Width / 2, lTexture.Size.Height / 2));
                 textureAtlasManager.addSprite(newSprite);
             }
             currentDraggedImage = null;
