@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace ShinyBearToolKit.MenuEditor
 {
@@ -26,6 +27,24 @@ namespace ShinyBearToolKit.MenuEditor
         public Sprite getSpriteAtIndex(int index)
         {
             return sprites[index];
+        }
+        /// <summary>
+        /// Checks collision with the mouse on any of the sprites on the panel, and returns the index of the image, else -1
+        /// </summary>
+        /// <param name="mouseCoordinates">Current mouse coordinates</param>
+        /// <returns>index of the image clicked on, else -1</returns>
+        public int checkCollision(Point mouseCoordinates)
+        {
+            int output = -1;
+            for (int i = 0; i < NrOfSprites; i++)
+            {
+                if (sprites[i].PictureEdge.Contains(mouseCoordinates))
+                {
+                    output = i;
+                    break;
+                }
+            }
+            return output;
         }
     }
 }
