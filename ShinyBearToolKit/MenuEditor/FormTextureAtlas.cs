@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ShinyBearToolkit.MenuEditor;
 using System.IO;
+using System.Runtime.Serialization;
 
 
 namespace ShinyBearToolKit.MenuEditor
@@ -262,7 +263,7 @@ namespace ShinyBearToolKit.MenuEditor
         private void listView1_DragDrop(object sender, DragEventArgs e)
         {
             
-            Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
+            //Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
 
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -270,9 +271,10 @@ namespace ShinyBearToolKit.MenuEditor
 
                 foreach (string file in filePaths)
                 {
-                    using (TextReader textReader = new StreamReader(file))
+                    using ( files textReader = new StreamReader(file))
                     {
-                        MessageBox.Show(textReader.ReadToEnd());
+                        MessageBox.Show("hej");
+                        //textureAtlasManager.addSprite();
                     }
                 }
             }
