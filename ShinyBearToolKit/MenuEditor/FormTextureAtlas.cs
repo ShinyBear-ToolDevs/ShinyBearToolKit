@@ -30,11 +30,12 @@ namespace ShinyBearToolKit.MenuEditor
         private Color panelBackground = Color.LawnGreen;
         Timer animationTimer;
         TextureAtlasManager textureAtlasManager = new TextureAtlasManager();
+
         // DragDrop
-        private int indexOfItemUnderMouseToDrag;
-        private int indexOfItemUnderMouseToDrop;
         private bool draggingOverAtlas = false;
         private Image currentDraggedImage;
+
+        // image position by dafault
         private Point defaultPosition;
 
         private Graphics panelGraphics { get; set; }
@@ -89,6 +90,7 @@ namespace ShinyBearToolKit.MenuEditor
             //Updates
             listView1.Update();
         }
+
         public void paintPanel(Color color)
         {
             using (Brush brush = new SolidBrush(color))
@@ -108,6 +110,7 @@ namespace ShinyBearToolKit.MenuEditor
                 }
             }
         }
+
         public void drawSprites(Graphics g)
         {
             Sprite tempSprite;
@@ -158,11 +161,6 @@ namespace ShinyBearToolKit.MenuEditor
             }
         }
 
-        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            
-        }
-
         private void PanelTextureAtlas_DragEnter(object sender, DragEventArgs e)
         {
             draggingOverAtlas = true;
@@ -201,5 +199,20 @@ namespace ShinyBearToolKit.MenuEditor
             currentDraggedImage = null;
         }
 
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Sprite newSprite = new Sprite(image, 
+                defaultPosition.X, 
+                defaultPosition.Y, 
+                image.Width, 
+                image.Height, 
+                new Point(PanelTextureAtlas.Height / 2, 
+                    PanelTextureAtlas.Width / 2));
+               
+               
+        }
     }
 }
+//gör bilden rörlig i panelen (Martin).
+// dubbel klicka på image och den visas i panelen
+// Möjliggör att det går att hämta en bild från hårddisken och placera i listViewn.
