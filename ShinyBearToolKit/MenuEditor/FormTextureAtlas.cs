@@ -36,7 +36,7 @@ namespace ShinyBearToolKit.MenuEditor
         private Image currentDraggedImage;
 
         // image position by dafault
-        private Point defaultPosition;
+        private Point defaultPosition = new Point(100, 100);
 
         private Graphics panelGraphics { get; set; }
 
@@ -201,13 +201,17 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Sprite newSprite = new Sprite(image, 
+           
+            ListViewItem tempItems = listView1.SelectedItems[0];
+            Image tempImages = tempItems.ImageList.Images[0];
+
+            Sprite newSprite = new Sprite(tempImages, 
                 defaultPosition.X, 
-                defaultPosition.Y, 
-                image.Width, 
-                image.Height, 
-                new Point(PanelTextureAtlas.Height / 2, 
-                    PanelTextureAtlas.Width / 2));
+                defaultPosition.Y,
+                tempImages.Width, 
+                tempImages.Height, 
+                new Point(tempImages.Height / 2,
+                    tempImages.Width / 2));
                
                textureAtlasManager.addSprite(newSprite);
         }
