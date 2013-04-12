@@ -14,7 +14,7 @@ namespace ShinyBearToolKit.MenuEditor
         private int mHeight;
         private Image mTexture;
         private Point mOrigin;
-        private Rectangle pictureEdge;
+        private Rectangle mPictureEdge;
 
         public int X { get { return mX; } set { this.mX = value; } }
         public int Y { get { return mY; } set { this.mY = value; } }
@@ -22,7 +22,7 @@ namespace ShinyBearToolKit.MenuEditor
         public int Height { get { return mHeight; } set { this.mHeight = value; } }
         public Image Texture { get { return mTexture; } set { this.mTexture = value; } }
         public Point Origin { get { return mOrigin; } set { this.mOrigin = value; } }
-        public Rectangle PictureEdge { get { return pictureEdge; } set { this.pictureEdge = value; } }
+        public Rectangle PictureEdge { get { return mPictureEdge; } set { this.mPictureEdge = value; } }
 
         public Sprite(Image Texture, int X, int Y, int Width, int Height, Point Origin, Rectangle PictureEdge)
         {
@@ -32,7 +32,12 @@ namespace ShinyBearToolKit.MenuEditor
             this.mWidth = Width;
             this.mHeight = Height;
             this.mOrigin = Origin;
-            this.pictureEdge = PictureEdge;
+            this.mPictureEdge = PictureEdge;
+        }
+        public void UpdateRectanglePosition()
+        {
+            this.mPictureEdge.X = this.mX;
+            this.mPictureEdge.Y = this.mY;
         }
     }
 }

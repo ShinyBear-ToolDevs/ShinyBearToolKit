@@ -30,6 +30,8 @@ namespace ShinyBearToolKit.MenuEditor
         private Color panelBackground = Color.LawnGreen;
         Timer animationTimer;
         TextureAtlasManager textureAtlasManager = new TextureAtlasManager();
+        private bool draggingImageOnAtlas = false;
+        private int currentDraggedImageOnAtlasIndex;
 
         // DragDrop
         private bool draggingOverAtlas = false;
@@ -114,6 +116,12 @@ namespace ShinyBearToolKit.MenuEditor
         public void drawSprites(Graphics g)
         {
             Sprite tempSprite;
+            if (draggingImageOnAtlas)
+            {
+                Point newPosition = this.PointToClient(new Point(MousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, MousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET));
+                textureAtlasManager.Sprites[currentDraggedImageOnAtlasIndex].X = newPosition.X;
+                textureAtlasManager.Sprites[currentDraggedImageOnAtlasIndex].Y = newPosition.Y;
+            }
             for(int i = 0; i < textureAtlasManager.NrOfSprites; i++)
             {
                 tempSprite = textureAtlasManager.getSpriteAtIndex(i);
@@ -228,6 +236,28 @@ namespace ShinyBearToolKit.MenuEditor
                textureAtlasManager.addSprite(newSprite);
         }
 
+
+        private void PanelTextureAtlas_MouseDown(object sender, MouseEventArgs e)
+        {
+            int index = textureAtlasManager.checkCollision(e.Location);
+            if (index != -1)
+            {
+                draggingImageOnAtlas = true;
+                currentDraggedImageOnAtlasIndex = index;
+            }
+        }
+
+        private void PanelTextureAtlas_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (draggingImageOnAtlas)
+            {
+                draggingImageOnAtlas = false;
+                textureAtlasManager.Sprites[currentDraggedImageOnAtlasIndex].X = e.X;
+                textureAtlasManager.Sprites[currentDraggedImageOnAtlasIndex].Y = e.Y;
+                textureAtlasManager.Sprites[currentDraggedImageOnAtlasIndex].UpdateRectanglePosition();
+                currentDraggedImageOnAtlasIndex = -1;
+            }
+        }
         private void listView1_DragDrop(object sender, DragEventArgs e)
         {
 

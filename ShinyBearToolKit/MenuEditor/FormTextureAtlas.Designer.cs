@@ -84,8 +84,10 @@
             this.PanelTextureAtlas.DragDrop += new System.Windows.Forms.DragEventHandler(this.PanelTextureAtlas_DragDrop);
             this.PanelTextureAtlas.DragEnter += new System.Windows.Forms.DragEventHandler(this.PanelTextureAtlas_DragEnter);
             this.PanelTextureAtlas.DragLeave += new System.EventHandler(this.PanelTextureAtlas_DragLeave);
+            this.PanelTextureAtlas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTextureAtlas_MouseDown);
             this.PanelTextureAtlas.MouseEnter += new System.EventHandler(this.PanelTextureAtlas_MouseEnter);
             this.PanelTextureAtlas.MouseLeave += new System.EventHandler(this.PanelTextureAtlas_MouseLeave);
+            this.PanelTextureAtlas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelTextureAtlas_MouseUp);
             // 
             // FormTextureAtlas
             // 
