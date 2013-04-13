@@ -13,6 +13,8 @@ namespace ShinyBearToolKit.MenuEditor
     public partial class FormCreateTextureAtlas : Form
     {
         TextureListManager textureListManager;
+
+        private const int FORM_PADDING = 5;
         public FormCreateTextureAtlas()
         {
             InitializeComponent();
@@ -57,6 +59,19 @@ namespace ShinyBearToolKit.MenuEditor
         private void loadedTextureList_SelectedIndexChanged(object sender, EventArgs e)
         {
             //När användaren markerar en bild i listan, ska denne visas upp i selectedTexturePanel
+            int selectedImageIndex = loadedTextureList.SelectedItems[0].ImageIndex;
+            drawSelectedTexture(selectedImageIndex);
+            
+        }
+        private void drawSelectedTexture(int index)
+        {
+            using (Graphics g = selectedTexturePanel.CreateGraphics())
+            {
+                selectedPictureBox.Image = textureListManager.getImageAtIndex(index);
+                //g.Clear(Color.White);
+                //g.DrawImageUnscaled(textureListManager.getImageAtIndex(index), 0, 0);
+            }
+            
         }
         private void selectedTexturePanel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -77,6 +92,11 @@ namespace ShinyBearToolKit.MenuEditor
         private void TextureAtlasPanel_DragLeave(object sender, EventArgs e)
         {
             //Här avslutas animeringen, eftersom användaren inte draggar något i den
+        }
+
+        private void FormCreateTextureAtlas_SizeChanged(object sender, EventArgs e)
+        {
+
         }       
     }
 }

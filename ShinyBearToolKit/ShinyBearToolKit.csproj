@@ -60,11 +60,11 @@
     </Compile>
     <Compile Include="MenuEditor\ManagerMenuEditor.cs" />
     <Compile Include="MenuEditor\Sprite.cs" />
-    <Compile Include="MenuEditor\SpriteAnimation.cs">
+    <Compile Include="MenuEditor\FormCreateTextureAtlas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MenuEditor\SpriteAnimation.Designer.cs">
-      <DependentUpon>SpriteAnimation.cs</DependentUpon>
+    <Compile Include="MenuEditor\FormCreateTextureAtlas.Designer.cs">
+      <DependentUpon>FormCreateTextureAtlas.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuEditor\TextureListManager.cs" />
     <Compile Include="MenuEditor\TextureAtlasManager.cs" />
@@ -76,8 +76,8 @@
     <EmbeddedResource Include="MenuEditor\FormTextureAtlas.resx">
       <DependentUpon>FormTextureAtlas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuEditor\SpriteAnimation.resx">
-      <DependentUpon>SpriteAnimation.cs</DependentUpon>
+    <EmbeddedResource Include="MenuEditor\FormCreateTextureAtlas.resx">
+      <DependentUpon>FormCreateTextureAtlas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
