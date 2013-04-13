@@ -22,7 +22,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         
         
-        SpriteListManager spriteListManager = new SpriteListManager();
+        TextureListManager spriteListManager = new TextureListManager();
         
         
         public static Graphics Graphics { get; private set; }
@@ -271,7 +271,7 @@ namespace ShinyBearToolKit.MenuEditor
 
                 foreach (string file in filePaths)
                 {
-                    using ( files textReader = new StreamReader(file))
+                    //using ( files textReader = new StreamReader(file))
                     {
                         MessageBox.Show("hej");
                         //textureAtlasManager.addSprite();

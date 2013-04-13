@@ -28,24 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.addTextureButton = new System.Windows.Forms.Button();
             this.loadedTextureList = new System.Windows.Forms.ListView();
             this.selectedTexturePanel = new System.Windows.Forms.Panel();
             this.TextureAtlasPanel = new System.Windows.Forms.Panel();
+            this.loadedImages = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
-            // button1
+            // addTextureButton
             // 
-            this.button1.Location = new System.Drawing.Point(12, 55);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(171, 28);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.addTextureButton.Location = new System.Drawing.Point(12, 55);
+            this.addTextureButton.Name = "addTextureButton";
+            this.addTextureButton.Size = new System.Drawing.Size(171, 28);
+            this.addTextureButton.TabIndex = 0;
+            this.addTextureButton.Text = "Add image";
+            this.addTextureButton.UseVisualStyleBackColor = true;
+            this.addTextureButton.Click += new System.EventHandler(this.addTextureButton_Click);
             // 
             // loadedTextureList
             // 
             this.loadedTextureList.AllowDrop = true;
+            this.loadedTextureList.LargeImageList = this.loadedImages;
             this.loadedTextureList.Location = new System.Drawing.Point(12, 89);
             this.loadedTextureList.Name = "loadedTextureList";
             this.loadedTextureList.Size = new System.Drawing.Size(171, 452);
@@ -74,6 +78,12 @@
             this.TextureAtlasPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragEnter);
             this.TextureAtlasPanel.DragLeave += new System.EventHandler(this.TextureAtlasPanel_DragLeave);
             // 
+            // loadedImages
+            // 
+            this.loadedImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.loadedImages.ImageSize = new System.Drawing.Size(16, 16);
+            this.loadedImages.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // SpriteAnimation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -83,7 +93,7 @@
             this.Controls.Add(this.TextureAtlasPanel);
             this.Controls.Add(this.selectedTexturePanel);
             this.Controls.Add(this.loadedTextureList);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.addTextureButton);
             this.Name = "SpriteAnimation";
             this.Text = "SpriteAnimation";
             this.ResumeLayout(false);
@@ -92,9 +102,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button addTextureButton;
         private System.Windows.Forms.ListView loadedTextureList;
         private System.Windows.Forms.Panel selectedTexturePanel;
         private System.Windows.Forms.Panel TextureAtlasPanel;
+        private System.Windows.Forms.ImageList loadedImages;
     }
 }

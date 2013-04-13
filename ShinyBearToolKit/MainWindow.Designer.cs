@@ -33,6 +33,7 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuNewProject = new System.Windows.Forms.ToolStripMenuItem();
             this.menuNewFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.spriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpenProject = new System.Windows.Forms.ToolStripMenuItem();
             this.menuOpenFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,7 @@
             this.ToolbarToolTabbs = new System.Windows.Forms.TabControl();
             this.ToolbarToolsTabbsPageCode = new System.Windows.Forms.TabPage();
             this.ToolbarToolsTabbPage2 = new System.Windows.Forms.TabPage();
-            this.spriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textureAtlasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuEditor.SuspendLayout();
             this.ToolbarToolTabbs.SuspendLayout();
             this.SuspendLayout();
@@ -106,7 +107,8 @@
             this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuNewProject,
             this.menuNewFile,
-            this.spriteToolStripMenuItem});
+            this.spriteToolStripMenuItem,
+            this.textureAtlasToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
@@ -123,6 +125,13 @@
             this.menuNewFile.Size = new System.Drawing.Size(152, 22);
             this.menuNewFile.Text = "File";
             // 
+            // spriteToolStripMenuItem
+            // 
+            this.spriteToolStripMenuItem.Name = "spriteToolStripMenuItem";
+            this.spriteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.spriteToolStripMenuItem.Text = "Sprite";
+            this.spriteToolStripMenuItem.Click += new System.EventHandler(this.spriteToolStripMenuItem_Click);
+            // 
             // menuOpen
             // 
             this.menuOpen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -135,13 +144,13 @@
             // menuOpenProject
             // 
             this.menuOpenProject.Name = "menuOpenProject";
-            this.menuOpenProject.Size = new System.Drawing.Size(152, 22);
+            this.menuOpenProject.Size = new System.Drawing.Size(111, 22);
             this.menuOpenProject.Text = "Project";
             // 
             // menuOpenFile
             // 
             this.menuOpenFile.Name = "menuOpenFile";
-            this.menuOpenFile.Size = new System.Drawing.Size(152, 22);
+            this.menuOpenFile.Size = new System.Drawing.Size(111, 22);
             this.menuOpenFile.Text = "File";
             // 
             // menuSave
@@ -353,12 +362,12 @@
             this.ToolbarToolsTabbPage2.TabIndex = 1;
             this.ToolbarToolsTabbPage2.Text = "Design";
             // 
-            // spriteToolStripMenuItem
+            // textureAtlasToolStripMenuItem
             // 
-            this.spriteToolStripMenuItem.Name = "spriteToolStripMenuItem";
-            this.spriteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.spriteToolStripMenuItem.Text = "Sprite";
-            this.spriteToolStripMenuItem.Click += new System.EventHandler(this.spriteToolStripMenuItem_Click);
+            this.textureAtlasToolStripMenuItem.Name = "textureAtlasToolStripMenuItem";
+            this.textureAtlasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.textureAtlasToolStripMenuItem.Text = "TextureAtlas";
+            this.textureAtlasToolStripMenuItem.Click += new System.EventHandler(this.textureAtlasToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -421,6 +430,7 @@
         private System.Windows.Forms.TabPage ToolbarToolsTabbsPageCode;
         private System.Windows.Forms.TabPage ToolbarToolsTabbPage2;
         private System.Windows.Forms.ToolStripMenuItem spriteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem textureAtlasToolStripMenuItem;
     }
 }
 

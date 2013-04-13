@@ -6,16 +6,50 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ShinyBearToolkit.MenuEditor;
 
 namespace ShinyBearToolKit.MenuEditor
 {
     public partial class SpriteAnimation : Form
     {
+        TextureListManager textureListManager;
         public SpriteAnimation()
         {
             InitializeComponent();
+            initLocalComponents();
         }
+        private void initLocalComponents()
+        {
+            textureListManager = new TextureListManager();
+        }
+        private void addTextureButton_Click(object sender, EventArgs e)
+        {
+            textureListManager.OpenImage();
+            LoadImages();
+        }
+        /// <summary>
+        /// Loads the images from textureListManager's List, and imputs them into the listview
+        /// </summary>
+        public void LoadImages()
+        {
+            //Clears the list of old data
+            loadedTextureList.Items.Clear();
+            loadedImages.Images.Clear();
 
+            for (int m = 0; m < textureListManager.NrOfImages; m++)
+            {
+                //Adds the image from the textureListManager at the specific index to the imageList
+                loadedImages.Images.Add(textureListManager.getImageAtIndex(m));
+                //Creates a temporary ListViewItem to hold the image index
+                ListViewItem item = new ListViewItem();
+                //Sets the image index
+                item.ImageIndex = m;
+                //Adds the image at the image index to the listview
+                loadedTextureList.Items.Add(item);
+            }
+            //Updates
+            loadedTextureList.Update();
+        }
         private void loadedTextureList_DragDrop(object sender, DragEventArgs e)
         {
             //Funktioner för att kunna dragga in bilder utifrån
@@ -43,10 +77,6 @@ namespace ShinyBearToolKit.MenuEditor
         private void TextureAtlasPanel_DragLeave(object sender, EventArgs e)
         {
             //Här avslutas animeringen, eftersom användaren inte draggar något i den
-        }
-
-        
-
-        
+        }       
     }
 }

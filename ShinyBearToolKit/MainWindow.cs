@@ -75,6 +75,11 @@ namespace ShinyBearToolkit
             managerMenuEditor.HandlerLoadFile();
         }
 
+        private void textureAtlasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            managerMenuEditor.HandlerTextureAtlas();
+        }
+
 
     }
 }
