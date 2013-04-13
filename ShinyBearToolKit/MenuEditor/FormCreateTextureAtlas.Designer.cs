@@ -33,8 +33,8 @@
             this.loadedTextureList = new System.Windows.Forms.ListView();
             this.loadedImages = new System.Windows.Forms.ImageList(this.components);
             this.selectedTexturePanel = new System.Windows.Forms.Panel();
-            this.TextureAtlasPanel = new System.Windows.Forms.Panel();
             this.selectedPictureBox = new System.Windows.Forms.PictureBox();
+            this.TextureAtlasPanel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.selectedTexturePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.selectedPictureBox)).BeginInit();
@@ -91,6 +91,15 @@
             this.selectedTexturePanel.TabIndex = 2;
             this.selectedTexturePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.selectedTexturePanel_MouseDown);
             // 
+            // selectedPictureBox
+            // 
+            this.selectedPictureBox.Location = new System.Drawing.Point(1, 1);
+            this.selectedPictureBox.Name = "selectedPictureBox";
+            this.selectedPictureBox.Size = new System.Drawing.Size(375, 470);
+            this.selectedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.selectedPictureBox.TabIndex = 0;
+            this.selectedPictureBox.TabStop = false;
+            // 
             // TextureAtlasPanel
             // 
             this.TextureAtlasPanel.AllowDrop = true;
@@ -105,15 +114,6 @@
             this.TextureAtlasPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragDrop);
             this.TextureAtlasPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragEnter);
             this.TextureAtlasPanel.DragLeave += new System.EventHandler(this.TextureAtlasPanel_DragLeave);
-            // 
-            // selectedPictureBox
-            // 
-            this.selectedPictureBox.Location = new System.Drawing.Point(1, 1);
-            this.selectedPictureBox.Name = "selectedPictureBox";
-            this.selectedPictureBox.Size = new System.Drawing.Size(375, 470);
-            this.selectedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.selectedPictureBox.TabIndex = 0;
-            this.selectedPictureBox.TabStop = false;
             // 
             // splitContainer1
             // 
