@@ -14,7 +14,7 @@ namespace ShinyBearToolkit.MenuEditor
     {
         TextureListManager managerMenuEditorImage = new TextureListManager();
         FormTextureAtlas formTextureAtlas;
-        SpriteAnimation formSpriteAnimation;
+        FormCreateTextureAtlas formSpriteAnimation;
 
         public void HandleExit(object sender, EventArgs e)
         {
@@ -98,7 +98,7 @@ namespace ShinyBearToolkit.MenuEditor
         }
         public void HandlerTextureAtlas()
         {
-            formSpriteAnimation = new SpriteAnimation();
+            formSpriteAnimation = new FormCreateTextureAtlas();
             formSpriteAnimation.Show();
         }
     }

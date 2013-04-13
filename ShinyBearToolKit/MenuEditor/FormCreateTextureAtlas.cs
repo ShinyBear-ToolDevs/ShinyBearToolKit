@@ -10,10 +10,10 @@ using ShinyBearToolkit.MenuEditor;
 
 namespace ShinyBearToolKit.MenuEditor
 {
-    public partial class SpriteAnimation : Form
+    public partial class FormCreateTextureAtlas : Form
     {
         TextureListManager textureListManager;
-        public SpriteAnimation()
+        public FormCreateTextureAtlas()
         {
             InitializeComponent();
             initLocalComponents();
