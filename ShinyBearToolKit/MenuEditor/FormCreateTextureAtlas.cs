@@ -53,10 +53,7 @@ namespace ShinyBearToolKit.MenuEditor
             //Updates
             loadedTextureList.Update();
         }
-        private void loadedTextureList_DragDrop(object sender, DragEventArgs e)
-        {
-            //Funktioner för att kunna dragga in bilder utifrån
-        }
+       
         private void loadedTextureList_SelectedIndexChanged(object sender, EventArgs e)
         {
             //När användaren markerar en bild i listan, ska denne visas upp i selectedTexturePanel
@@ -99,10 +96,10 @@ namespace ShinyBearToolKit.MenuEditor
         {
 
         }
-
+       
         private void loadedTextureList_DragEnter(object sender, DragEventArgs e)
         {
-          
+            formtextureAtlas.DragEnter(sender, e);
         }       
     }
 }

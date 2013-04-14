@@ -68,7 +68,6 @@
             this.loadedTextureList.TabIndex = 1;
             this.loadedTextureList.UseCompatibleStateImageBehavior = false;
             this.loadedTextureList.SelectedIndexChanged += new System.EventHandler(this.loadedTextureList_SelectedIndexChanged);
-            this.loadedTextureList.DragDrop += new System.Windows.Forms.DragEventHandler(this.loadedTextureList_DragDrop);
             this.loadedTextureList.DragEnter += new System.Windows.Forms.DragEventHandler(this.loadedTextureList_DragEnter);
             // 
             // loadedImages

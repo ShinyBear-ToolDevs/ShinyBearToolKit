@@ -311,7 +311,7 @@ namespace ShinyBearToolKit.MenuEditor
             DragEnter(sender, e);
         }
 
-        private void DragEnter(object sender, DragEventArgs e)
+        public void DragEnter(object sender, DragEventArgs e)
         {
             draggingOverAtlas = true;
             //if the data is a file or a bitmap
