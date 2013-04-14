@@ -32,12 +32,11 @@ namespace ShinyBearToolKit.MenuEditor
         private bool draggingImageOnAtlas = false;
         private int currentDraggedImageOnAtlasIndex;
 
-        // DragDrop
+         //DragDrop
         private bool draggingOverAtlas = false;
         private Image currentDraggedImage;
 
-        // image position by dafault
-        private Point defaultPosition = new Point(100, 100);
+
 
         private Graphics panelGraphics { get; set; }
 
@@ -139,15 +138,6 @@ namespace ShinyBearToolKit.MenuEditor
             animationTimer.Stop();
         }
 
-        private void listViewImage_ItemDrag(object sender, ItemDragEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                this.DoDragDrop(e.Item, DragDropEffects.Copy);
-                
-            }
-        }
-
         private void PanelTextureAtlas_DragEnter(object sender, DragEventArgs e)
         {
             GenericDragEnter(sender, e);
@@ -180,11 +170,6 @@ namespace ShinyBearToolKit.MenuEditor
                 textureAtlasManager.addSprite(newSprite);
             }
             currentDraggedImage = null;
-        }
-
-        private void listViewImage_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-           
         }
 
         private void PanelTextureAtlas_MouseDown(object sender, MouseEventArgs e)

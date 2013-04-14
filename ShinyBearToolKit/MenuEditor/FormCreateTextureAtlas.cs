@@ -97,12 +97,12 @@ namespace ShinyBearToolKit.MenuEditor
        
         private void loadedTextureList_DragEnter(object sender, DragEventArgs e)
         {
-            textureListManager.GenericDragEnter(sender, e);
+            textureAtlasManager.GenericDragEnter(sender, e);
         }
 
         private void loadedTextureList_DragDrop(object sender, DragEventArgs e)
         {
-            textureListManager.DragDropDesktop(sender, e);
+            textureAtlasManager.DragDropDesktop(sender, e);
         }
 
         private void loadedTextureList_MouseDoubbleClick(object sender, MouseEventArgs e)
@@ -123,6 +123,15 @@ namespace ShinyBearToolKit.MenuEditor
                             tempImages.Height)));
 
             textureAtlasManager.addSprite(newSprite);
+        }
+
+        private void loadedTextureList_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                this.DoDragDrop(e.Item, DragDropEffects.Copy);
+
+            }
         }
        
     }

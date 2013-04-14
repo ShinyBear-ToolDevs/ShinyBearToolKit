@@ -67,6 +67,7 @@
             this.loadedTextureList.Size = new System.Drawing.Size(171, 484);
             this.loadedTextureList.TabIndex = 1;
             this.loadedTextureList.UseCompatibleStateImageBehavior = false;
+            this.loadedTextureList.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.loadedTextureList_ItemDrag);
             this.loadedTextureList.SelectedIndexChanged += new System.EventHandler(this.loadedTextureList_SelectedIndexChanged);
             this.loadedTextureList.DragDrop += new System.Windows.Forms.DragEventHandler(this.loadedTextureList_DragDrop);
             this.loadedTextureList.DragEnter += new System.Windows.Forms.DragEventHandler(this.loadedTextureList_DragEnter);

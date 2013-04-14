@@ -58,9 +58,9 @@
             this.listViewImage.TabIndex = 1;
             this.listViewImage.UseCompatibleStateImageBehavior = false;
             this.listViewImage.View = System.Windows.Forms.View.Tile;
-            this.listViewImage.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listViewImage_ItemDrag);
             
-            this.listViewImage.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewImage_MouseDoubleClick);
+            
+            
             // 
             // columnHeader1
             // 
