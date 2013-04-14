@@ -20,11 +20,8 @@ namespace ShinyBearToolKit.MenuEditor
         
         private const int ANIMATION_MS_INTERVAL = 25;
 
-        
-        
         TextureListManager spriteListManager = new TextureListManager();
-        
-        
+
         public static Graphics Graphics { get; private set; }
 
         //TextureAtlas
@@ -43,6 +40,8 @@ namespace ShinyBearToolKit.MenuEditor
         private Point defaultPosition = new Point(100, 100);
 
         private Graphics panelGraphics { get; set; }
+
+      
 
         private Image image;
 
@@ -65,35 +64,11 @@ namespace ShinyBearToolKit.MenuEditor
 
         }
 
-        private void btnImage_Click(object sender, EventArgs e)
-        {
-            spriteListManager.OpenImage();
-            LoadImages();
-        }
 
         /// <summary>
         /// Loads the images from SpriteListManager's List, and imputs them into the listview
         /// </summary>
-        public void LoadImages()
-        {
-            //Clears the list of old data
-            listViewImage.Items.Clear();
-            imageList1.Images.Clear();
-            
-            for (int m = 0; m < spriteListManager.NrOfImages; m++)
-            {
-                //Adds the image from the spriteListManager at the specific index to the imageList
-                imageList1.Images.Add(spriteListManager.getImageAtIndex(m));
-                //Creates a temporary ListViewItem to hold the image index
-                ListViewItem item = new ListViewItem();
-                //Sets the image index
-                item.ImageIndex = m;
-                //Adds the image at the image index to the listview
-                listViewImage.Items.Add(item);
-            }
-            //Updates
-            listViewImage.Update();
-        }
+        
 
         public void paintPanel(Color color)
         {
@@ -210,22 +185,6 @@ namespace ShinyBearToolKit.MenuEditor
         private void listViewImage_MouseDoubleClick(object sender, MouseEventArgs e)
         {
            
-            ListViewItem tempItems = listViewImage.SelectedItems[0];
-            Image tempImages = tempItems.ImageList.Images[0];
-
-            Sprite newSprite = new Sprite(tempImages, 
-                defaultPosition.X, 
-                defaultPosition.Y,
-                tempImages.Width, 
-                tempImages.Height, 
-                new Point(tempImages.Height / 2,
-                    tempImages.Width / 2),
-                    new Rectangle(new Point(defaultPosition.X, 
-                        defaultPosition.Y), 
-                        new Size(tempImages.Width, 
-                            tempImages.Height)));
-               
-               textureAtlasManager.addSprite(newSprite);
         }
 
         private void PanelTextureAtlas_MouseDown(object sender, MouseEventArgs e)
@@ -249,91 +208,8 @@ namespace ShinyBearToolKit.MenuEditor
                 currentDraggedImageOnAtlasIndex = -1;
             }
         }
-        private void listViewImage_DragDrop(object sender, DragEventArgs e)
-        {
-            DragDropDesktop(sender, e);
-        }    
+       
 
-        private void listViewImage_DragEnter(object sender, DragEventArgs e)
-        {
-            GenericDragEnter(sender, e);
-        }
-
-        public void GenericDragEnter(object sender, DragEventArgs e)
-        {
-            draggingOverAtlas = true;
-            //if the data is a file or a bitmap
-            if (e.Data.GetDataPresent(typeof(ListViewItem)) ||
-                e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
-        }
-
-        public void DragDropDesktop(object sender, DragEventArgs e)
-        {
-            string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            foreach (string s in handles)
-            {
-                if (File.Exists(s))
-                {
-                    if (string.Compare(Path.GetExtension(s), ".jpg", true) == 0)
-                    {
-                        AddFileToListView(s);
-                    }
-
-                    if (string.Compare(Path.GetExtension(s), ".png", true) == 0)
-                    {
-                        AddFileToListView(s);
-                    }
-
-                    if (string.Compare(Path.GetExtension(s), ".gif", true) == 0)
-                    {
-                        AddFileToListView(s);
-                    }
-
-                    if (string.Compare(Path.GetExtension(s), ".jpeg", true) == 0)
-                    {
-                        AddFileToListView(s);
-                    }
-
-                    if (string.Compare(Path.GetExtension(s), ".bmp", true) == 0)
-                    {
-                        AddFileToListView(s);
-                    }
-                }
-                else if (Directory.Exists(s))
-                {
-                    DirectoryInfo di = new DirectoryInfo(s);
-                    FileInfo[] files = di.GetFiles("*.jpg; *.png; *.gif; *.jpeg; *.bmp");
-                    foreach (FileInfo file in files)
-                        AddFileToListView(file.FullName);
-                }
-            } 
-        }
-
-        private void AddFileToListView(string fullFilePath)
-        {
-            if (!File.Exists(fullFilePath))
-            {
-                return;
-            }
-                string fileName = Path.GetFileName(fullFilePath);
-                string dirName = Path.GetDirectoryName(fullFilePath);
-            
-            if (dirName.EndsWith(Convert.ToString(Path.DirectorySeparatorChar)))
-                dirName = dirName.Substring(0, dirName.Length - 1);
-            {
-                imageList1.Images.Add(Image.FromFile(fullFilePath));
-                ListViewItem itm = listViewImage.Items.Add(fileName);
-                itm.ImageIndex = imageList1.Images.Count - 1;
-                itm.SubItems.Add(dirName);
-            }
-        }
 
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Data\DataManager.cs" />
     <Compile Include="MenuEditor\FormTextureAtlas.cs">
       <SubType>Form</SubType>
     </Compile>

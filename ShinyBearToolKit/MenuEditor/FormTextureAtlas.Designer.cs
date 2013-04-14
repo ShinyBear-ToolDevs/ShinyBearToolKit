@@ -44,7 +44,7 @@
             this.btnImage.TabIndex = 0;
             this.btnImage.Text = "Add Image";
             this.btnImage.UseVisualStyleBackColor = true;
-            this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
+            
             // 
             // listViewImage
             // 
@@ -59,8 +59,7 @@
             this.listViewImage.UseCompatibleStateImageBehavior = false;
             this.listViewImage.View = System.Windows.Forms.View.Tile;
             this.listViewImage.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listViewImage_ItemDrag);
-            this.listViewImage.DragDrop += new System.Windows.Forms.DragEventHandler(this.listViewImage_DragDrop);
-            this.listViewImage.DragEnter += new System.Windows.Forms.DragEventHandler(this.listViewImage_DragEnter);
+            
             this.listViewImage.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewImage_MouseDoubleClick);
             // 
             // columnHeader1

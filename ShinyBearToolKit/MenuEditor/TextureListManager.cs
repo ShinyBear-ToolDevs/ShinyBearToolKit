@@ -8,12 +8,22 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Drawing;
 using ShinyBearToolKit.MenuEditor;
+using System.IO;
 
 namespace ShinyBearToolkit.MenuEditor
 {
 
     public class TextureListManager
     {
+        FormCreateTextureAtlas formCreateTextureAtlas = new FormCreateTextureAtlas();
+
+        // which fil formats that are allowed to be used
+        private string[] ALLOWED_IMAGE_EXTENSIONS = { ".jpg", ".jpeg", ".png", ".bmp" };
+
+        // DragDrop
+        private bool draggingOverAtlas = false;
+        private Image currentDraggedImage;
+
         //list with sprites.
         List<Image> image = new List<Image>();
         /// <summary>
@@ -37,7 +47,7 @@ namespace ShinyBearToolkit.MenuEditor
             OpenFileDialog i = new OpenFileDialog();
             //Enables multiselect
             i.Multiselect = true;
-            i.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;) | *.png; *.jpg; *. jpeg; *.gif; *.bmp";
+            i.Filter = "Image Files(*.jpg; *.jpeg; *.bmp; *.png;) | *.png; *.jpg; *. jpeg; *.bmp";
 
             if (i.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -54,6 +64,8 @@ namespace ShinyBearToolkit.MenuEditor
 
             }
         }
+
+        
         /// <summary>
         /// Gets the image at the specified index
         /// </summary>
@@ -64,6 +76,64 @@ namespace ShinyBearToolkit.MenuEditor
             return image[index];
         }
         string imageExtension = "";
+
+
+        public void AddImage(Image imageInput)
+        {
+            this.image.Add(imageInput);
+        }
+
+
+        public void GenericDragEnter(object sender, DragEventArgs e)
+        {
+            draggingOverAtlas = true;
+            //if the data is a file or a bitmap
+            if (e.Data.GetDataPresent(typeof(ListViewItem)) ||
+                e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        public void DragDropDesktop(object sender, DragEventArgs e)
+        {
+            string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            foreach (string s in handles)
+            {
+                if (File.Exists(s))
+                {
+
+                    foreach (string q in ALLOWED_IMAGE_EXTENSIONS)
+                    {
+                        if (string.Compare(Path.GetExtension(s), q, true) == 0)
+                        {
+
+                            AddFileToListView(s);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Wrong file format (png, jpg, jpeg, bmp)");
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+
+        private void AddFileToListView(string fullFilePath)
+        {
+            Image image = Image.FromFile(fullFilePath);
+            AddImage(image);
+            formCreateTextureAtlas.LoadImages();
+        }
     }
 }
-
+//kunna lägga upp mappar i listviewn och då ska alla bilderna visas. (directory)
+// ändra storlek på ikonerna
+// rensa upp i syntaxen.

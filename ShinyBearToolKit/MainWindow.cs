@@ -21,13 +21,6 @@ namespace ShinyBearToolkit
     public partial class MainWindow : Form
     {
 
-        //ManagerToolbarComponents managerToolbarComponents = new ManagerToolbarComponents();
-
-        //ManagerGamePanel managerGamePanel = new ManagerGamePanel();
-
-        //ManagerToolbarTools managerToolbarTools = new ManagerToolbarTools();
-
-        //ManagerToolbarUnder managerToolbarUnder = new ManagerToolbarUnder();
         ManagerMenuEditor managerMenuEditor = new ManagerMenuEditor();
         
         public MainWindow()

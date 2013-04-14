@@ -70,6 +70,7 @@
             this.loadedTextureList.SelectedIndexChanged += new System.EventHandler(this.loadedTextureList_SelectedIndexChanged);
             this.loadedTextureList.DragDrop += new System.Windows.Forms.DragEventHandler(this.loadedTextureList_DragDrop);
             this.loadedTextureList.DragEnter += new System.Windows.Forms.DragEventHandler(this.loadedTextureList_DragEnter);
+            this.loadedTextureList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.loadedTextureList_MouseDoubbleClick);
             // 
             // loadedImages
             // 
@@ -88,7 +89,7 @@
             this.selectedTexturePanel.Controls.Add(this.selectedPictureBox);
             this.selectedTexturePanel.Location = new System.Drawing.Point(3, 3);
             this.selectedTexturePanel.Name = "selectedTexturePanel";
-            this.selectedTexturePanel.Size = new System.Drawing.Size(283, 478);
+            this.selectedTexturePanel.Size = new System.Drawing.Size(349, 478);
             this.selectedTexturePanel.TabIndex = 2;
             this.selectedTexturePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.selectedTexturePanel_MouseDown);
             // 
@@ -110,7 +111,7 @@
             this.TextureAtlasPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TextureAtlasPanel.Location = new System.Drawing.Point(3, 3);
             this.TextureAtlasPanel.Name = "TextureAtlasPanel";
-            this.TextureAtlasPanel.Size = new System.Drawing.Size(447, 473);
+            this.TextureAtlasPanel.Size = new System.Drawing.Size(552, 473);
             this.TextureAtlasPanel.TabIndex = 3;
             this.TextureAtlasPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragDrop);
             this.TextureAtlasPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragEnter);
@@ -131,8 +132,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.TextureAtlasPanel);
-            this.splitContainer1.Size = new System.Drawing.Size(746, 484);
-            this.splitContainer1.SplitterDistance = 289;
+            this.splitContainer1.Size = new System.Drawing.Size(917, 484);
+            this.splitContainer1.SplitterDistance = 355;
             this.splitContainer1.TabIndex = 4;
             // 
             // FormCreateTextureAtlas
@@ -140,13 +141,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(977, 577);
+            this.ClientSize = new System.Drawing.Size(1148, 577);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.loadedTextureList);
             this.Controls.Add(this.addTextureButton);
             this.Name = "FormCreateTextureAtlas";
             this.Text = "Create TextureAtlas";
-            this.SizeChanged += new System.EventHandler(this.FormCreateTextureAtlas_SizeChanged);
             this.selectedTexturePanel.ResumeLayout(false);
             this.selectedTexturePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.selectedPictureBox)).EndInit();
