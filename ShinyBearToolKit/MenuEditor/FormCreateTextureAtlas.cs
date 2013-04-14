@@ -99,7 +99,12 @@ namespace ShinyBearToolKit.MenuEditor
        
         private void loadedTextureList_DragEnter(object sender, DragEventArgs e)
         {
-            formtextureAtlas.DragEnter(sender, e);
+            formtextureAtlas.GenericDragEnter(sender, e);
+        }
+
+        private void loadedTextureList_DragDrop(object sender, DragEventArgs e)
+        {
+            formtextureAtlas.GenericDragDrop(sender, e);
         }       
     }
 }

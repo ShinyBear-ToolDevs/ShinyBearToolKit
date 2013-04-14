@@ -175,7 +175,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void PanelTextureAtlas_DragEnter(object sender, DragEventArgs e)
         {
-            DragEnter(sender, e);
+            GenericDragEnter(sender, e);
         }
 
         private void PanelTextureAtlas_DragLeave(object sender, EventArgs e)
@@ -228,7 +228,6 @@ namespace ShinyBearToolKit.MenuEditor
                textureAtlasManager.addSprite(newSprite);
         }
 
-
         private void PanelTextureAtlas_MouseDown(object sender, MouseEventArgs e)
         {
             int index = textureAtlasManager.checkCollision(e.Location);
@@ -252,66 +251,15 @@ namespace ShinyBearToolKit.MenuEditor
         }
         private void listViewImage_DragDrop(object sender, DragEventArgs e)
         {
-            string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false); 
-            foreach (string s in handles)  
-            {       
-                if (File.Exists(s))   
-                {
-                    if (string.Compare(Path.GetExtension(s), ".jpg", true) == 0) 
-                    {         
-                        AddFileToListViewImage(s);  
-                    }
-
-                    if (string.Compare(Path.GetExtension(s), ".png", true) == 0)
-                    {
-                        AddFileToListViewImage(s);
-                    }
-
-                    if (string.Compare(Path.GetExtension(s), ".gif", true) == 0)
-                    {
-                        AddFileToListViewImage(s);
-                    }
-
-                    if (string.Compare(Path.GetExtension(s), ".jpeg", true) == 0)
-                    {
-                        AddFileToListViewImage(s);
-                    }
-
-                    if (string.Compare(Path.GetExtension(s), ".bmp", true) == 0)
-                    {
-                        AddFileToListViewImage(s);
-                    }  
-                }       
-                else if (Directory.Exists(s))   
-                {         
-                    DirectoryInfo di = new DirectoryInfo(s);
-                    FileInfo[] files = di.GetFiles("*.jpg; *.png; *.gif; *.jpeg; *.bmp");   
-                    foreach (FileInfo file in files)        
-                    AddFileToListViewImage(file.FullName);    
-                }   
-            } 
+            GenericDragDrop(sender, e);
         }    
-
-        private void AddFileToListViewImage(string fullFilePath) 
-        {    
-              if (!File.Exists(fullFilePath))
-                return;
-              string fileName = Path.GetFileName(fullFilePath);
-              string dirName = Path.GetDirectoryName(fullFilePath);
-              if (dirName.EndsWith(Convert.ToString(Path.DirectorySeparatorChar)))
-                dirName = dirName.Substring(0, dirName.Length - 1); 
-              imageList1.Images.Add(Image.FromFile(fullFilePath));
-              ListViewItem itm = listViewImage.Items.Add(fileName);
-              itm.ImageIndex = imageList1.Images.Count - 1;
-              itm.SubItems.Add(dirName);
-         }
 
         private void listViewImage_DragEnter(object sender, DragEventArgs e)
         {
-            DragEnter(sender, e);
+            GenericDragEnter(sender, e);
         }
 
-        public void DragEnter(object sender, DragEventArgs e)
+        public void GenericDragEnter(object sender, DragEventArgs e)
         {
             draggingOverAtlas = true;
             //if the data is a file or a bitmap
@@ -323,6 +271,67 @@ namespace ShinyBearToolKit.MenuEditor
             else
             {
                 e.Effect = DragDropEffects.None;
+            }
+        }
+
+        public void GenericDragDrop(object sender, DragEventArgs e)
+        {
+            string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            foreach (string s in handles)
+            {
+                if (File.Exists(s))
+                {
+                    if (string.Compare(Path.GetExtension(s), ".jpg", true) == 0)
+                    {
+                        AddFileToListView(s);
+                    }
+
+                    if (string.Compare(Path.GetExtension(s), ".png", true) == 0)
+                    {
+                        AddFileToListView(s);
+                    }
+
+                    if (string.Compare(Path.GetExtension(s), ".gif", true) == 0)
+                    {
+                        AddFileToListView(s);
+                    }
+
+                    if (string.Compare(Path.GetExtension(s), ".jpeg", true) == 0)
+                    {
+                        AddFileToListView(s);
+                    }
+
+                    if (string.Compare(Path.GetExtension(s), ".bmp", true) == 0)
+                    {
+                        AddFileToListView(s);
+                    }
+                }
+                else if (Directory.Exists(s))
+                {
+                    DirectoryInfo di = new DirectoryInfo(s);
+                    FileInfo[] files = di.GetFiles("*.jpg; *.png; *.gif; *.jpeg; *.bmp");
+                    foreach (FileInfo file in files)
+                        AddFileToListView(file.FullName);
+                }
+            } 
+        }
+
+        private void AddFileToListView(string fullFilePath)
+        {
+            if (!File.Exists(fullFilePath))
+            {
+                return;
+            }
+                string fileName = Path.GetFileName(fullFilePath);
+                string dirName = Path.GetDirectoryName(fullFilePath);
+            
+            if (dirName.EndsWith(Convert.ToString(Path.DirectorySeparatorChar)))
+                dirName = dirName.Substring(0, dirName.Length - 1);
+            {
+                imageList1.Images.Add(Image.FromFile(fullFilePath));
+                ListViewItem itm = listViewImage.Items.Add(fileName);
+                itm.ImageIndex = imageList1.Images.Count - 1;
+                itm.SubItems.Add(dirName);
             }
         }
 
