@@ -9,14 +9,9 @@ using ShinyBearToolkit.MenuEditor;
 
 namespace ShinyBearToolKit.MenuEditor
 {
-    class TextureAtlasManager
+    public class TextureAtlasManager
     {
-        FormCreateTextureAtlas formCreateTextureAtlas = new FormCreateTextureAtlas();
         TextureListManager textureListManager = new TextureListManager();
-
-
-        // which fil formats that are allowed to be used
-        private string[] ALLOWED_IMAGE_EXTENSIONS = { ".jpg", ".jpeg", ".png", ".bmp" };
 
         // DragDrop
         private bool draggingOverAtlas = false;
@@ -78,6 +73,10 @@ namespace ShinyBearToolKit.MenuEditor
 
         public void DragDropDesktop(object sender, DragEventArgs e)
         {
+            
+        // which fil formats that are allowed to be used
+        string[] ALLOWED_IMAGE_EXTENSIONS = { ".jpg", ".jpeg", ".png", ".bmp" };
+
             string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach (string s in handles)
             {
@@ -98,20 +97,24 @@ namespace ShinyBearToolKit.MenuEditor
                     }
 
                 }
-
+                else
+                {
+                    MessageBox.Show("File not found");
+                }
+               
             }
-
         }
 
         private void AddFileToListView(string fullFilePath)
         {
             Image image = Image.FromFile(fullFilePath);
             textureListManager.AddImage(image);
+
+            FormCreateTextureAtlas formCreateTextureAtlas = new FormCreateTextureAtlas();
             formCreateTextureAtlas.LoadImages();
         }
     }
 }
 
 //kunna lägga upp mappar i listviewn och då ska alla bilderna visas. (directory)
-// ändra storlek på ikonerna
 // rensa upp i syntaxen.

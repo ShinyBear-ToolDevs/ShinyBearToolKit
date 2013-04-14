@@ -13,12 +13,12 @@ namespace ShinyBearToolKit.MenuEditor
     public partial class FormCreateTextureAtlas : Form
     {
         TextureListManager textureListManager = new TextureListManager();
-        FormTextureAtlas formtextureAtlas = new FormTextureAtlas();
         TextureAtlasManager textureAtlasManager = new TextureAtlasManager();
 
         private Point defaultPosition = new Point(100, 100);
 
         private const int FORM_PADDING = 5;
+
         public FormCreateTextureAtlas()
         {
             InitializeComponent();
@@ -105,25 +105,25 @@ namespace ShinyBearToolKit.MenuEditor
             textureAtlasManager.DragDropDesktop(sender, e);
         }
 
-        private void loadedTextureList_MouseDoubbleClick(object sender, MouseEventArgs e)
-        {
-            ListViewItem tempItems = loadedTextureList.SelectedItems[0];
-            Image tempImages = tempItems.ImageList.Images[0];
+        //private void loadedTextureList_MouseDoubbleClick(object sender, MouseEventArgs e)
+        //{
+        //    ListViewItem tempItems = loadedTextureList.SelectedItems[0];
+        //    Image tempImages = tempItems.ImageList.Images[0];
 
-            Sprite newSprite = new Sprite(tempImages,
-                defaultPosition.X,
-                defaultPosition.Y,
-                tempImages.Width,
-                tempImages.Height,
-                new Point(tempImages.Height / 2,
-                    tempImages.Width / 2),
-                    new Rectangle(new Point(defaultPosition.X,
-                        defaultPosition.Y),
-                        new Size(tempImages.Width,
-                            tempImages.Height)));
+        //    Sprite newSprite = new Sprite(tempImages,
+        //        defaultPosition.X,
+        //        defaultPosition.Y,
+        //        tempImages.Width,
+        //        tempImages.Height,
+        //        new Point(tempImages.Height / 2,
+        //            tempImages.Width / 2),
+        //            new Rectangle(new Point(defaultPosition.X,
+        //                defaultPosition.Y),
+        //                new Size(tempImages.Width,
+        //                    tempImages.Height)));
 
-            textureAtlasManager.addSprite(newSprite);
-        }
+        //    textureAtlasManager.addSprite(newSprite);
+        //}
 
         private void loadedTextureList_ItemDrag(object sender, ItemDragEventArgs e)
         {

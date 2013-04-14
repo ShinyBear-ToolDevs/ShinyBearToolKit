@@ -71,12 +71,11 @@
             this.loadedTextureList.SelectedIndexChanged += new System.EventHandler(this.loadedTextureList_SelectedIndexChanged);
             this.loadedTextureList.DragDrop += new System.Windows.Forms.DragEventHandler(this.loadedTextureList_DragDrop);
             this.loadedTextureList.DragEnter += new System.Windows.Forms.DragEventHandler(this.loadedTextureList_DragEnter);
-            this.loadedTextureList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.loadedTextureList_MouseDoubbleClick);
             // 
             // loadedImages
             // 
             this.loadedImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.loadedImages.ImageSize = new System.Drawing.Size(16, 16);
+            this.loadedImages.ImageSize = new System.Drawing.Size(40, 40);
             this.loadedImages.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // selectedTexturePanel

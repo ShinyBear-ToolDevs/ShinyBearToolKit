@@ -56,7 +56,6 @@ namespace ShinyBearToolkit.MenuEditor
             }
         }
 
-        
         /// <summary>
         /// Gets the image at the specified index
         /// </summary>
@@ -74,8 +73,6 @@ namespace ShinyBearToolkit.MenuEditor
             this.image.Add(imageInput);
         }
 
-
-       
     }
 }
 

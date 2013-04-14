@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace ShinyBearToolKit.MenuEditor
 {
-    class Sprite
+    public class Sprite
     {
         private int mX;
         private int mY;
