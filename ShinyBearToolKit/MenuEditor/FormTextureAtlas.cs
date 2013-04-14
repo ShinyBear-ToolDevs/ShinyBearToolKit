@@ -267,15 +267,35 @@ namespace ShinyBearToolKit.MenuEditor
             {       
                 if (File.Exists(s))   
                 {
-                    if (string.Compare(Path.GetExtension(s), ".JPG", true) == 0)
+                    if (string.Compare(Path.GetExtension(s), ".jpg", true) == 0) 
                     {         
                         AddFileToListViewImage(s);  
-                    }       
+                    }
+
+                    if (string.Compare(Path.GetExtension(s), ".png", true) == 0)
+                    {
+                        AddFileToListViewImage(s);
+                    }
+
+                    if (string.Compare(Path.GetExtension(s), ".gif", true) == 0)
+                    {
+                        AddFileToListViewImage(s);
+                    }
+
+                    if (string.Compare(Path.GetExtension(s), ".jpeg", true) == 0)
+                    {
+                        AddFileToListViewImage(s);
+                    }
+
+                    if (string.Compare(Path.GetExtension(s), ".bmp", true) == 0)
+                    {
+                        AddFileToListViewImage(s);
+                    }  
                 }       
                 else if (Directory.Exists(s))   
                 {         
                     DirectoryInfo di = new DirectoryInfo(s);
-                    FileInfo[] files = di.GetFiles("*.JPG");   
+                    FileInfo[] files = di.GetFiles("*.jpg; *.png; *.gif; *.jpeg; *.bmp");   
                     foreach (FileInfo file in files)        
                     AddFileToListViewImage(file.FullName);    
                 }   
