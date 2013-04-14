@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.btnImage = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewImage = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.PanelTextureAtlas = new System.Windows.Forms.Panel();
@@ -46,22 +46,22 @@
             this.btnImage.UseVisualStyleBackColor = true;
             this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
             // 
-            // listView1
+            // listViewImage
             // 
-            this.listView1.AllowDrop = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewImage.AllowDrop = true;
+            this.listViewImage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.listView1.LargeImageList = this.imageList1;
-            this.listView1.Location = new System.Drawing.Point(21, 77);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(216, 351);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Tile;
-            this.listView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listView1_ItemDrag);
-            this.listView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
-            this.listView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView_DragEnter);
-            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
+            this.listViewImage.LargeImageList = this.imageList1;
+            this.listViewImage.Location = new System.Drawing.Point(21, 77);
+            this.listViewImage.Name = "listViewImage";
+            this.listViewImage.Size = new System.Drawing.Size(216, 351);
+            this.listViewImage.TabIndex = 1;
+            this.listViewImage.UseCompatibleStateImageBehavior = false;
+            this.listViewImage.View = System.Windows.Forms.View.Tile;
+            this.listViewImage.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listViewImage_ItemDrag);
+            this.listViewImage.DragDrop += new System.Windows.Forms.DragEventHandler(this.listViewImage_DragDrop);
+            this.listViewImage.DragEnter += new System.Windows.Forms.DragEventHandler(this.listViewImage_DragEnter);
+            this.listViewImage.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listViewImage_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -95,7 +95,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 440);
             this.Controls.Add(this.PanelTextureAtlas);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listViewImage);
             this.Controls.Add(this.btnImage);
             this.Name = "FormTextureAtlas";
             this.Text = "FormTextureAtlas";
@@ -107,7 +107,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnImage;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listViewImage;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Panel PanelTextureAtlas;

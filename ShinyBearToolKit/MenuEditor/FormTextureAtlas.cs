@@ -77,7 +77,7 @@ namespace ShinyBearToolKit.MenuEditor
         public void LoadImages()
         {
             //Clears the list of old data
-            listView1.Items.Clear();
+            listViewImage.Items.Clear();
             imageList1.Images.Clear();
             
             for (int m = 0; m < spriteListManager.NrOfImages; m++)
@@ -89,10 +89,10 @@ namespace ShinyBearToolKit.MenuEditor
                 //Sets the image index
                 item.ImageIndex = m;
                 //Adds the image at the image index to the listview
-                listView1.Items.Add(item);
+                listViewImage.Items.Add(item);
             }
             //Updates
-            listView1.Update();
+            listViewImage.Update();
         }
 
         public void paintPanel(Color color)
@@ -164,7 +164,7 @@ namespace ShinyBearToolKit.MenuEditor
             animationTimer.Stop();
         }
 
-        private void listView1_ItemDrag(object sender, ItemDragEventArgs e)
+        private void listViewImage_ItemDrag(object sender, ItemDragEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
@@ -217,10 +217,10 @@ namespace ShinyBearToolKit.MenuEditor
             currentDraggedImage = null;
         }
 
-        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void listViewImage_MouseDoubleClick(object sender, MouseEventArgs e)
         {
            
-            ListViewItem tempItems = listView1.SelectedItems[0];
+            ListViewItem tempItems = listViewImage.SelectedItems[0];
             Image tempImages = tempItems.ImageList.Images[0];
 
             Sprite newSprite = new Sprite(tempImages, 
@@ -260,70 +260,43 @@ namespace ShinyBearToolKit.MenuEditor
                 currentDraggedImageOnAtlasIndex = -1;
             }
         }
-        private void listView1_DragDrop(object sender, DragEventArgs e)
+        private void listViewImage_DragDrop(object sender, DragEventArgs e)
         {
-            
-            //Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
-
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                string[] filePaths = (string[])(e.Data.GetData(DataFormats.FileDrop));
-
-                foreach (string file in filePaths)
+            string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false); 
+            foreach (string s in handles)  
+            {       
+                if (File.Exists(s))   
                 {
-                    //using ( files textReader = new StreamReader(file))
-                    {
-                        MessageBox.Show("hej");
-                        //textureAtlasManager.addSprite();
-                    }
-                }
-            }
+                    if (string.Compare(Path.GetExtension(s), ".JPG", true) == 0)
+                    {         
+                        AddFileToListViewImage(s);  
+                    }       
+                }       
+                else if (Directory.Exists(s))   
+                {         
+                    DirectoryInfo di = new DirectoryInfo(s);
+                    FileInfo[] files = di.GetFiles("*.JPG");   
+                    foreach (FileInfo file in files)        
+                    AddFileToListViewImage(file.FullName);    
+                }   
+            } 
+        }    
 
+        private void AddFileToListViewImage(string fullFilePath) 
+        {    
+              if (!File.Exists(fullFilePath))
+                return;
+              string fileName = Path.GetFileName(fullFilePath);
+              string dirName = Path.GetDirectoryName(fullFilePath);
+              if (dirName.EndsWith(Convert.ToString(Path.DirectorySeparatorChar)))
+                dirName = dirName.Substring(0, dirName.Length - 1); 
+              imageList1.Images.Add(Image.FromFile(fullFilePath));
+              ListViewItem itm = listViewImage.Items.Add(fileName);
+              itm.ImageIndex = imageList1.Images.Count - 1;
+              itm.SubItems.Add(dirName);
+         }
 
-            // Point lMousePosition = this.PointToClient(new Point(MousePosition.X, MousePosition.Y));
-            //if (e.Data.GetDataPresent(typeof(ListViewItem)))
-            //{
-            //    ListViewItem viewItem = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
-            //    Image lTexture = viewItem.ImageList.Images[0];
-            //    Point imagePosition = new Point(lMousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET,
-            //        lMousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET);
-
-            //    Rectangle spriteEdge = new Rectangle(imagePosition, lTexture.Size);
-            //    Sprite newSprite = new Sprite(lTexture,
-            //        imagePosition.X,
-            //        imagePosition.Y,
-            //        lTexture.Size.Width,
-            //        lTexture.Size.Height,
-            //        new Point(lTexture.Size.Width / 2,
-            //            lTexture.Size.Height / 2),
-            //            spriteEdge);
-            //    textureAtlasManager.addSprite(newSprite);
-            //}
-            //currentDraggedImage = null;
-
-            //OpenFileDialog i = new OpenFileDialog();
-            ////Enables multiselect
-            //i.Multiselect = true;
-            //i.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;) | *.png; *.jpg; *. jpeg; *.gif; *.bmp";
-
-            //if (i.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{
-            //    //Checks the number of images "i" contains
-            //    for (int m = 0; m < i.FileNames.Length; m++)
-            //    {
-            //        //Adds each file to the image list
-            //        this.image.Add(Image.FromFile(i.FileNames[m]));
-            //    }
-
-            //    //Check the file type
-            //    int dotIndex = i.FileName.LastIndexOf('.');
-            //    imageExtension = i.FileName.Substring(i.FileName.Length - dotIndex);
-
-            //}
-            
-        }
-
-        private void listView_DragEnter(object sender, DragEventArgs e)
+        private void listViewImage_DragEnter(object sender, DragEventArgs e)
         {
             draggingOverAtlas = true;
             //if the data is a file or a bitmap
@@ -337,6 +310,7 @@ namespace ShinyBearToolKit.MenuEditor
                 e.Effect = DragDropEffects.None;
             }
         }
+
     }
 }
 //gör bilden rörlig i panelen (Martin).
