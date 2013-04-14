@@ -251,7 +251,7 @@ namespace ShinyBearToolKit.MenuEditor
         }
         private void listViewImage_DragDrop(object sender, DragEventArgs e)
         {
-            GenericDragDrop(sender, e);
+            DragDropDesktop(sender, e);
         }    
 
         private void listViewImage_DragEnter(object sender, DragEventArgs e)
@@ -274,7 +274,7 @@ namespace ShinyBearToolKit.MenuEditor
             }
         }
 
-        public void GenericDragDrop(object sender, DragEventArgs e)
+        public void DragDropDesktop(object sender, DragEventArgs e)
         {
             string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach (string s in handles)
