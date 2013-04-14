@@ -20,6 +20,7 @@ namespace ShinyBearToolKit.MenuEditor
         
         private const int ANIMATION_MS_INTERVAL = 25;
 
+        TextureAtlasManager textureAtlasManager = new TextureAtlasManager();
         TextureListManager spriteListManager = new TextureListManager();
 
         public static Graphics Graphics { get; private set; }
@@ -28,7 +29,7 @@ namespace ShinyBearToolKit.MenuEditor
         private bool mouseOverAtlas = false;
         private Color panelBackground = Color.LawnGreen;
         Timer animationTimer;
-        TextureAtlasManager textureAtlasManager = new TextureAtlasManager();
+        
         private bool draggingImageOnAtlas = false;
         private int currentDraggedImageOnAtlasIndex;
 
@@ -67,7 +68,7 @@ namespace ShinyBearToolKit.MenuEditor
         /// <summary>
         /// Loads the images from SpriteListManager's List, and imputs them into the listview
         /// </summary>
-        
+
 
         public void paintPanel(Color color)
         {
@@ -140,7 +141,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void PanelTextureAtlas_DragEnter(object sender, DragEventArgs e)
         {
-            GenericDragEnter(sender, e);
+            //GenericDragEnter(sender, e);
         }
 
         private void PanelTextureAtlas_DragLeave(object sender, EventArgs e)
