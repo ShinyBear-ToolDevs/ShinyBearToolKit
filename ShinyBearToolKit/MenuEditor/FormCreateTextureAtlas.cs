@@ -13,6 +13,7 @@ namespace ShinyBearToolKit.MenuEditor
     public partial class FormCreateTextureAtlas : Form
     {
         TextureListManager textureListManager;
+        FormTextureAtlas formtextureAtlas = new FormTextureAtlas();
 
         private const int FORM_PADDING = 5;
         public FormCreateTextureAtlas()
@@ -97,6 +98,11 @@ namespace ShinyBearToolKit.MenuEditor
         private void FormCreateTextureAtlas_SizeChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void loadedTextureList_DragEnter(object sender, DragEventArgs e)
+        {
+          
         }       
     }
 }

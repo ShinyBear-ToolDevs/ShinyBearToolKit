@@ -175,17 +175,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void PanelTextureAtlas_DragEnter(object sender, DragEventArgs e)
         {
-            draggingOverAtlas = true;
-             //if the data is a file or a bitmap
-            if (e.Data.GetDataPresent(typeof(ListViewItem)) ||
-                e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
+            DragEnter(sender, e);
         }
 
         private void PanelTextureAtlas_DragLeave(object sender, EventArgs e)
@@ -318,6 +308,11 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void listViewImage_DragEnter(object sender, DragEventArgs e)
         {
+            DragEnter(sender, e);
+        }
+
+        private void DragEnter(object sender, DragEventArgs e)
+        {
             draggingOverAtlas = true;
             //if the data is a file or a bitmap
             if (e.Data.GetDataPresent(typeof(ListViewItem)) ||
@@ -333,5 +328,5 @@ namespace ShinyBearToolKit.MenuEditor
 
     }
 }
-//gör bilden rörlig i panelen (Martin).
-// Möjliggör att det går att hämta en bild från hårddisken och placera i listViewn.
+
+
