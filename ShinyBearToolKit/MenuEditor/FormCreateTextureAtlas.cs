@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ShinyBearToolkit.MenuEditor;
+using System.IO;
 
 namespace ShinyBearToolKit.MenuEditor
 {
     public partial class FormCreateTextureAtlas : Form
     {
-        TextureListManager textureListManager = new TextureListManager();
-        TextureAtlasManager textureAtlasManager = new TextureAtlasManager();
+        TextureListManager textureListManager;
 
         private Point defaultPosition = new Point(100, 100);
 
@@ -56,13 +56,13 @@ namespace ShinyBearToolKit.MenuEditor
             //Updates
             loadedTextureList.Update();
         }
-       
+
         private void loadedTextureList_SelectedIndexChanged(object sender, EventArgs e)
         {
             //När användaren markerar en bild i listan, ska denne visas upp i selectedTexturePanel
             int selectedImageIndex = loadedTextureList.SelectedItems[0].ImageIndex;
             drawSelectedTexture(selectedImageIndex);
-            
+
         }
         private void drawSelectedTexture(int index)
         {
@@ -72,7 +72,7 @@ namespace ShinyBearToolKit.MenuEditor
                 //g.Clear(Color.White);
                 //g.DrawImageUnscaled(textureListManager.getImageAtIndex(index), 0, 0);
             }
-            
+
         }
         private void selectedTexturePanel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -94,7 +94,7 @@ namespace ShinyBearToolKit.MenuEditor
         {
             //Här avslutas animeringen, eftersom användaren inte draggar något i den
         }
-       
+
         private void loadedTextureList_DragEnter(object sender, DragEventArgs e)
         {
             textureListManager.GenericDragEnter(sender, e);
@@ -133,6 +133,5 @@ namespace ShinyBearToolKit.MenuEditor
 
             }
         }
-       
     }
 }

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using ShinyBearToolkit.MenuEditor;
-using System.Drawing.Imaging;
 using System.Windows.Forms;
-using System.Drawing;
 using System.IO;
 using ShinyBearToolKit.MenuEditor;
+using System.Runtime.Serialization;
 
 
 namespace ShinyBearToolkit.MenuEditor
@@ -16,8 +16,7 @@ namespace ShinyBearToolkit.MenuEditor
 
     public class TextureListManager
     {
-        TextureListManager textureListManager = new TextureListManager();
-        FormCreateTextureAtlas formCreateTextureAtlas = new FormCreateTextureAtlas();
+       
 
         // DragDrop
         private bool draggingOverAtlas = false;
@@ -60,7 +59,7 @@ namespace ShinyBearToolkit.MenuEditor
                 //Check the file type
                 int dotIndex = i.FileName.LastIndexOf('.');
                 imageExtension = i.FileName.Substring(i.FileName.Length - dotIndex);
-
+                
             }
         }
 
@@ -121,7 +120,7 @@ namespace ShinyBearToolkit.MenuEditor
                             MessageBox.Show("Wrong file format (png, jpg, jpeg, bmp)");
                         }
                     }
-
+                   
                 }
                 else
                 {
@@ -133,12 +132,12 @@ namespace ShinyBearToolkit.MenuEditor
 
         private void AddFileToListView(string fullFilePath)
         {
-            Image image = Image.FromFile(fullFilePath);
-            textureListManager.AddImage(image);
-
-           
-            formCreateTextureAtlas.LoadImages();
+            Image picture = Image.FromFile(fullFilePath);
+            AddImage(picture);
+            FormCreateTextureAtlas formCreateTextureAtlas = new FormCreateTextureAtlas();
+           formCreateTextureAtlas.LoadImages();
         }
+
     }
 }
 
