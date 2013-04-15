@@ -16,8 +16,6 @@ namespace ShinyBearToolkit.MenuEditor
 
     public class TextureListManager
     {
-       
-
         // DragDrop
         private bool draggingOverAtlas = false;
         private Image currentDraggedImage;
@@ -107,20 +105,19 @@ namespace ShinyBearToolkit.MenuEditor
             {
                 if (File.Exists(s))
                 {
-
                     foreach (string q in ALLOWED_IMAGE_EXTENSIONS)
                     {
-                        if (string.Compare(Path.GetExtension(s), q, true) == 0)
+                        if (draggingOverAtlas == false)
                         {
+                            MessageBox.Show("hb");
 
-                            AddFileToListView(s);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Wrong file format (png, jpg, jpeg, bmp)");
+                            if (string.Compare(Path.GetExtension(s), q, true) == 0)
+                            {
+                                AddFileToListView(s);
+                                break;
+                            }
                         }
                     }
-                   
                 }
                 else
                 {
@@ -133,9 +130,7 @@ namespace ShinyBearToolkit.MenuEditor
         private void AddFileToListView(string fullFilePath)
         {
             Image picture = Image.FromFile(fullFilePath);
-            AddImage(picture);
-            FormCreateTextureAtlas formCreateTextureAtlas = new FormCreateTextureAtlas();
-           formCreateTextureAtlas.LoadImages();
+            AddImage(picture); 
         }
 
     }
