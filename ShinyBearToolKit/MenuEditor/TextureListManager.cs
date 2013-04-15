@@ -102,7 +102,7 @@ namespace ShinyBearToolkit.MenuEditor
         if (File.Exists(s))
         {
 
-          if (IsFileCorrectType(s))
+          if (IsFileCorrectType(s, ALLOWED_IMAGE_EXTENSIONS))
           {
             AddFileToListView(s);
           }
@@ -124,10 +124,10 @@ namespace ShinyBearToolkit.MenuEditor
     readonly string[] ALLOWED_IMAGE_EXTENSIONS = { ".jpg", ".jpeg", ".png", ".bmp" };
 
     // Determines if the file has one of the accepted extensions.
-    private bool IsFileCorrectType(string filepath)
+    private bool IsFileCorrectType(string filepath, string[] validExtensions)
     {
       bool isCorrect = false;
-      foreach (string extension in ALLOWED_IMAGE_EXTENSIONS)
+      foreach (string extension in validExtensions)
       {
         if (string.Compare(Path.GetExtension(filepath), extension, true) == 0)
         {
