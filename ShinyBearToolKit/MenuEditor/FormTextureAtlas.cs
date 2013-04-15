@@ -21,7 +21,6 @@ namespace ShinyBearToolKit.MenuEditor
         private const int ANIMATION_MS_INTERVAL = 25;
 
         TextureAtlasManager textureAtlasManager = new TextureAtlasManager();
-        TextureListManager spriteListManager = new TextureListManager();
 
         public static Graphics Graphics { get; private set; }
 
@@ -64,12 +63,6 @@ namespace ShinyBearToolKit.MenuEditor
 
         }
 
-
-        /// <summary>
-        /// Loads the images from SpriteListManager's List, and imputs them into the listview
-        /// </summary>
-
-
         public void paintPanel(Color color)
         {
             using (Brush brush = new SolidBrush(color))
@@ -95,7 +88,9 @@ namespace ShinyBearToolKit.MenuEditor
             Sprite tempSprite;
             if (draggingImageOnAtlas)
             {
-                Point newPosition = this.PointToClient(new Point(MousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET, MousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET));
+                Point newPosition = this.PointToClient(new Point(MousePosition.X - (this.Width - PanelTextureAtlas.Width) + EDGE_WIDTH_SIZE_OFFSET,
+                    MousePosition.Y - (this.Height - PanelTextureAtlas.Height) + EDGE_HEIGHT_SIZE_OFFSET));
+
                 textureAtlasManager.Sprites[currentDraggedImageOnAtlasIndex].X = newPosition.X;
                 textureAtlasManager.Sprites[currentDraggedImageOnAtlasIndex].Y = newPosition.Y;
             }
@@ -194,9 +189,6 @@ namespace ShinyBearToolKit.MenuEditor
                 currentDraggedImageOnAtlasIndex = -1;
             }
         }
-       
-
-
     }
 }
 

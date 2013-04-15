@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using ShinyBearToolkit.MenuEditor;
-using System.Drawing.Imaging;
 using System.Windows.Forms;
-using System.Drawing;
+using System.IO;
 using ShinyBearToolKit.MenuEditor;
+using System.Runtime.Serialization;
 
 
 namespace ShinyBearToolkit.MenuEditor
@@ -15,6 +16,12 @@ namespace ShinyBearToolkit.MenuEditor
 
     public class TextureListManager
     {
+       
+
+        // DragDrop
+        private bool draggingOverAtlas = false;
+        private Image currentDraggedImage;
+
         //list with sprites.
         List<Image> image = new List<Image>();
         /// <summary>
@@ -52,11 +59,10 @@ namespace ShinyBearToolkit.MenuEditor
                 //Check the file type
                 int dotIndex = i.FileName.LastIndexOf('.');
                 imageExtension = i.FileName.Substring(i.FileName.Length - dotIndex);
-
+                
             }
         }
 
-        
         /// <summary>
         /// Gets the image at the specified index
         /// </summary>
@@ -74,8 +80,68 @@ namespace ShinyBearToolkit.MenuEditor
             this.image.Add(imageInput);
         }
 
+        
+        public void GenericDragEnter(object sender, DragEventArgs e)
+        {
+            draggingOverAtlas = true;
+            //if the data is a file or a bitmap
+            if (e.Data.GetDataPresent(typeof(ListViewItem)) ||
+                e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
 
-       
+        public void DragDropDesktop(object sender, DragEventArgs e)
+        {
+            
+        // which fil formats that are allowed to be used
+        string[] ALLOWED_IMAGE_EXTENSIONS = { ".jpg", ".jpeg", ".png", ".bmp" };
+
+            string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            foreach (string s in handles)
+            {
+                if (File.Exists(s))
+                {
+
+                    foreach (string q in ALLOWED_IMAGE_EXTENSIONS)
+                    {
+                        if (string.Compare(Path.GetExtension(s), q, true) == 0)
+                        {
+
+                            AddFileToListView(s);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Wrong file format (png, jpg, jpeg, bmp)");
+                        }
+                    }
+                   
+                }
+                else
+                {
+                    MessageBox.Show("File not found");
+                }
+               
+            }
+        }
+
+        private void AddFileToListView(string fullFilePath)
+        {
+            Image picture = Image.FromFile(fullFilePath);
+            AddImage(picture);
+            FormCreateTextureAtlas formCreateTextureAtlas = new FormCreateTextureAtlas();
+           formCreateTextureAtlas.LoadImages();
+        }
+
     }
 }
+
+//kunna lägga upp mappar i listviewn och då ska alla bilderna visas. (directory)
+// rensa upp i syntaxen.
+ 
 

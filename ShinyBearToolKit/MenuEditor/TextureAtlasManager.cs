@@ -9,17 +9,9 @@ using ShinyBearToolkit.MenuEditor;
 
 namespace ShinyBearToolKit.MenuEditor
 {
-    class TextureAtlasManager
+    public class TextureAtlasManager
     {
         TextureListManager textureListManager = new TextureListManager();
-
-
-        // which fil formats that are allowed to be used
-        private string[] ALLOWED_IMAGE_EXTENSIONS = { ".jpg", ".jpeg", ".png", ".bmp" };
-
-        // DragDrop
-        private bool draggingOverAtlas = false;
-        private Image currentDraggedImage;
 
         private List<Sprite> sprites;
 
@@ -59,56 +51,6 @@ namespace ShinyBearToolKit.MenuEditor
             }
             return output;
         }
-
-        public void GenericDragEnter(object sender, DragEventArgs e)
-        {
-            draggingOverAtlas = true;
-            //if the data is a file or a bitmap
-            if (e.Data.GetDataPresent(typeof(ListViewItem)) ||
-                e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                e.Effect = DragDropEffects.Copy;
-            }
-            else
-            {
-                e.Effect = DragDropEffects.None;
-            }
-        }
-
-        public void DragDropDesktop(object sender, DragEventArgs e)
-        {
-            bool foundExtension = false;
-            string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            foreach (string s in handles)
-            {
-                if (File.Exists(s))
-                {
-
-                    foreach (string q in ALLOWED_IMAGE_EXTENSIONS)
-                    {
-                        if (string.Compare(Path.GetExtension(s), q, true) == 0)
-                        {
-                            foundExtension = true;
-                            AddFileToListView(s);
-                            break;
-                        }
-                    }
-
-                }
-                if (foundExtension)
-                    break;
-            }
-
-        }
-
-        private void AddFileToListView(string fullFilePath)
-        {
-            Image image = Image.FromFile(fullFilePath);
-            textureListManager.AddImage(image);
-        }
     }
 }
 
-//kunna lägga upp mappar i listviewn och då ska alla bilderna visas. (directory)
-// ändra storlek på ikonerna
-// rensa upp i syntaxen.
