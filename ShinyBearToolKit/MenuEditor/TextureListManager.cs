@@ -96,7 +96,8 @@ namespace ShinyBearToolkit.MenuEditor
 
         public void DragDropDesktop(object sender, DragEventArgs e)
         {
-            
+            bool nisse = false;
+
         // which fil formats that are allowed to be used
         string[] ALLOWED_IMAGE_EXTENSIONS = { ".jpg", ".jpeg", ".png", ".bmp" };
 
@@ -107,16 +108,18 @@ namespace ShinyBearToolkit.MenuEditor
                 {
                     foreach (string q in ALLOWED_IMAGE_EXTENSIONS)
                     {
-                        if (draggingOverAtlas == false)
+                        if (string.Compare(Path.GetExtension(s), q, true) == 0)
                         {
-                            MessageBox.Show("hb");
+                            AddFileToListView(s);
+                            nisse = true;
 
-                            if (string.Compare(Path.GetExtension(s), q, true) == 0)
+                            if (nisse == false)
                             {
-                                AddFileToListView(s);
-                                break;
+                                MessageBox.Show("Wrong file format");
                             }
+                            
                         }
+                       
                     }
                 }
                 else
@@ -137,6 +140,6 @@ namespace ShinyBearToolkit.MenuEditor
 }
 
 //kunna lägga upp mappar i listviewn och då ska alla bilderna visas. (directory)
-// rensa upp i syntaxen.
+
  
 
