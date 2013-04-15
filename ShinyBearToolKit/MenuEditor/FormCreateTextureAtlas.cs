@@ -103,6 +103,7 @@ namespace ShinyBearToolKit.MenuEditor
         private void loadedTextureList_DragDrop(object sender, DragEventArgs e)
         {
             textureAtlasManager.DragDropDesktop(sender, e);
+            LoadImages();
         }
 
         private void loadedTextureList_MouseDoubbleClick(object sender, MouseEventArgs e)

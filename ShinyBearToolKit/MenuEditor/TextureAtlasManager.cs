@@ -11,7 +11,6 @@ namespace ShinyBearToolKit.MenuEditor
 {
     class TextureAtlasManager
     {
-        FormCreateTextureAtlas formCreateTextureAtlas = new FormCreateTextureAtlas();
         TextureListManager textureListManager = new TextureListManager();
 
 
@@ -78,6 +77,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         public void DragDropDesktop(object sender, DragEventArgs e)
         {
+            bool foundExtension = false;
             string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach (string s in handles)
             {
@@ -88,17 +88,15 @@ namespace ShinyBearToolKit.MenuEditor
                     {
                         if (string.Compare(Path.GetExtension(s), q, true) == 0)
                         {
-
+                            foundExtension = true;
                             AddFileToListView(s);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Wrong file format (png, jpg, jpeg, bmp)");
+                            break;
                         }
                     }
 
                 }
-
+                if (foundExtension)
+                    break;
             }
 
         }
@@ -107,7 +105,6 @@ namespace ShinyBearToolKit.MenuEditor
         {
             Image image = Image.FromFile(fullFilePath);
             textureListManager.AddImage(image);
-            formCreateTextureAtlas.LoadImages();
         }
     }
 }
