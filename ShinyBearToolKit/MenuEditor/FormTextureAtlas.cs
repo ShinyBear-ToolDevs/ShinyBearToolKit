@@ -63,12 +63,6 @@ namespace ShinyBearToolKit.MenuEditor
 
         }
 
-
-        /// <summary>
-        /// Loads the images from SpriteListManager's List, and imputs them into the listview
-        /// </summary>
-
-
         public void paintPanel(Color color)
         {
             using (Brush brush = new SolidBrush(color))
@@ -195,9 +189,6 @@ namespace ShinyBearToolKit.MenuEditor
                 currentDraggedImageOnAtlasIndex = -1;
             }
         }
-       
-
-
     }
 }
 

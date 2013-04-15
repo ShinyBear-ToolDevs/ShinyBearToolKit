@@ -97,12 +97,12 @@ namespace ShinyBearToolKit.MenuEditor
        
         private void loadedTextureList_DragEnter(object sender, DragEventArgs e)
         {
-            textureAtlasManager.GenericDragEnter(sender, e);
+            textureListManager.GenericDragEnter(sender, e);
         }
 
         private void loadedTextureList_DragDrop(object sender, DragEventArgs e)
         {
-            textureAtlasManager.DragDropDesktop(sender, e);
+            textureListManager.DragDropDesktop(sender, e);
         }
 
         //private void loadedTextureList_MouseDoubbleClick(object sender, MouseEventArgs e)
