@@ -108,7 +108,7 @@ namespace ShinyBearToolkit.MenuEditor
           }
           else
           {
-            MessageBox.Show("You shouldn't be dropping derpy files on the program!");
+            MessageBox.Show("The system only support the formats .jpg .jpeg .png .bmp");
           }
 
         }
