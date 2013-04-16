@@ -15,7 +15,10 @@ namespace ShinyBearToolkit.MenuEditor
 {
 
   public class TextureListManager
-  {
+  {   
+      // uses to checks witch formats that is ok
+    private readonly string[] ALLOWED_IMAGE_EXTENSIONS = { ".jpg", ".jpeg", ".png", ".bmp" };
+
     // DragDrop
     private bool draggingOverAtlas = false;
     private Image currentDraggedImage;
@@ -37,6 +40,10 @@ namespace ShinyBearToolkit.MenuEditor
     {
       get { return image.Count; }
     }
+
+    /// <summary>
+    /// Open files and validate the format through the openFileDialog class. This method is used by "Add buttons".
+    /// </summary>
     public void OpenImage()
     {
 
@@ -72,13 +79,20 @@ namespace ShinyBearToolkit.MenuEditor
     }
     string imageExtension = "";
 
-
+    /// <summary>
+    /// Adds an image object to the list<Image>image
+    /// </summary>
+    /// <param name="imageInput"></param>
     public void AddImage(Image imageInput)
     {
       this.image.Add(imageInput);
     }
 
-
+    /// <summary>
+    /// Enter the drag and drop function and copy the object. Validate if the object is a file or a bitmap
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public void GenericDragEnter(object sender, DragEventArgs e)
     {
       draggingOverAtlas = true;
@@ -94,9 +108,15 @@ namespace ShinyBearToolkit.MenuEditor
       }
     }
 
+    /// <summary>
+    ///  Check to se if the choosen object exist and uses the method IsFileCorrectType to verify that the format is ok.
+    ///  If ok add image to listView via  AddFileToListView and AddImage.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     public void DragDropDesktop(object sender, DragEventArgs e)
     {
-      string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+        string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
       foreach (string s in handles)
       {
         if (File.Exists(s))
@@ -120,10 +140,12 @@ namespace ShinyBearToolkit.MenuEditor
       }
     }
 
-    // Move this constant to a suitable location..
-    readonly string[] ALLOWED_IMAGE_EXTENSIONS = { ".jpg", ".jpeg", ".png", ".bmp" };
-
-    // Determines if the file has one of the accepted extensions.
+    /// <summary>
+    /// Determines if the file has one of the accepted extensions.
+    /// </summary>
+    /// <param name="filepath"></param>
+    /// <param name="validExtensions"></param>
+    /// <returns></returns>
     private bool IsFileCorrectType(string filepath, string[] validExtensions)
     {
       bool isCorrect = false;
@@ -138,7 +160,11 @@ namespace ShinyBearToolkit.MenuEditor
 
       return isCorrect;
     }
-
+    
+    /// <summary>
+    /// Adds the files to the list<Image>image in TextureListManager
+    /// </summary>
+    /// <param name="fullFilePath"></param>
     private void AddFileToListView(string fullFilePath)
     {
       Image picture = Image.FromFile(fullFilePath);
