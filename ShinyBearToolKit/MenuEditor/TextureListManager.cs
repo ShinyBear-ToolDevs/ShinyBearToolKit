@@ -116,34 +116,35 @@ namespace ShinyBearToolkit.MenuEditor
         /// <param name="e"></param>
         public void DragDropDesktop(object sender, DragEventArgs e)
         {
-            string[] filePaths = Directory.GetFiles(@"c:\hej\", ".jpg", SearchOption.AllDirectories);
+
+            //string[] dirPath = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-          foreach (string s in handles)
-          {
-              if(filePaths != null)
-              {
-                  MessageBox.Show("hej filen");
-                if (File.Exists(s))
-                {
+            foreach (string s in handles)
+            {
+               
+                
 
-                  if (IsFileCorrectType(s, ALLOWED_IMAGE_EXTENSIONS))
-                  {
-                    AddFileToListView(s);
-                  }
-                  else
-                  {
-                    MessageBox.Show("The system only support the formats .jpg .jpeg .png .bmp");
-                  }
+                    if (File.Exists(s) || Directory.Exists(s))
+                    {
 
-                }
-                else
-                {
-                  MessageBox.Show("File not found");
-                }
+                        if (IsFileCorrectType(s, ALLOWED_IMAGE_EXTENSIONS))
+                        {
+                            AddFileToListView(s);
+                        }
+                        else
+                        {
+                            MessageBox.Show("The system only support the formats .jpg .jpeg .png .bmp");
+                        }
 
-              }
+                    }
+                    else
+                    {
+                        MessageBox.Show("File not found");
+                    }
+
+                
             }
-           
+
         }
 
         /// <summary>
