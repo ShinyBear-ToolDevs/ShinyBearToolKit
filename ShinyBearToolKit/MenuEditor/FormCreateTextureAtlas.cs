@@ -58,7 +58,7 @@ namespace ShinyBearToolKit.MenuEditor
                 //Adds the image from the textureListManager at the specific index to the imageList
                 loadedImages.Images.Add(textureListManager.getImageAtIndex(m));
                 //Creates a temporary ListViewItem to hold the image index
-                ListViewItem item = new ListViewItem();
+                 ListViewItem item = new ListViewItem();
                 //Sets the image index
                 item.ImageIndex = m;
                 //Adds the image at the image index to the listview
@@ -191,6 +191,15 @@ namespace ShinyBearToolKit.MenuEditor
         private void selectedPictureBox_DragEnter(object sender, DragEventArgs e)
         {
             
+        }
+        /// <summary>
+        /// Enables scrolling with the mouse wheel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void selectedPictureBox_MouseEnter(object sender, EventArgs e)
+        {
+            selectedTexturePanel.Focus();
         }
 
        
