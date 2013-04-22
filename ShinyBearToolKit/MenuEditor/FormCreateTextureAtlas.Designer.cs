@@ -101,6 +101,8 @@
             this.selectedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.selectedPictureBox.TabIndex = 0;
             this.selectedPictureBox.TabStop = false;
+            this.selectedPictureBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.selectedPictureBox_DragDrop);
+            this.selectedPictureBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.selectedPictureBox_DragEnter);
             // 
             // TextureAtlasPanel
             // 

@@ -22,8 +22,8 @@ namespace ShinyBearToolKit.MenuEditor
 
         TextureAtlasManager textureAtlasManager = new TextureAtlasManager();
 
-        public static Graphics Graphics { get; private set; }
-
+        public static Graphics Graphics { get; private set; 
+}
         //TextureAtlas
         private bool mouseOverAtlas = false;
         private Color panelBackground = Color.LawnGreen;

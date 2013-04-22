@@ -15,7 +15,7 @@ namespace ShinyBearToolKit.MenuEditor
     {
         TextureListManager textureListManager;
 
-        private Point defaultPosition = new Point(100, 100);
+        //private Point defaultPosition = new Point(100, 100);
 
         private const int FORM_PADDING = 5;
 
@@ -88,6 +88,8 @@ namespace ShinyBearToolKit.MenuEditor
         private void TextureAtlasPanel_DragEnter(object sender, DragEventArgs e)
         {
             //Här initieras animeringen när användaren draggar in en bild från selectedTexturePanel
+
+            textureListManager.GenericDragEnter(sender, e);
         }
 
         private void TextureAtlasPanel_DragLeave(object sender, EventArgs e)
@@ -133,6 +135,16 @@ namespace ShinyBearToolKit.MenuEditor
                 this.DoDragDrop(e.Item, DragDropEffects.Copy);
 
             }
+        }
+
+        private void selectedPictureBox_DragDrop(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void selectedPictureBox_DragEnter(object sender, DragEventArgs e)
+        {
+            
         }
     }
 }

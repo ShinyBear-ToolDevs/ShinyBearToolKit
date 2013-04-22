@@ -23,6 +23,8 @@ namespace ShinyBearToolkit.MenuEditor
         private bool draggingOverAtlas = false;
         private Image currentDraggedImage;
 
+        // make it possible to change the texture in the pabel.
+        private Graphics panelGraphics { get; set; }
       
         //list with sprites.
         List<Image> image = new List<Image>();
