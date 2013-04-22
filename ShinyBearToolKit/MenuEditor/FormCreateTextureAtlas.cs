@@ -23,7 +23,7 @@ namespace ShinyBearToolKit.MenuEditor
       
         private Point clickedPointOne;
         private Rectangle rec;
-        private bool allowMouseToMove;
+        private bool allowMouseToDraw;
 
         private Bitmap imageInPictureBox;
         private Bitmap currentDraggedImage;
@@ -85,16 +85,6 @@ namespace ShinyBearToolKit.MenuEditor
             }
 
         }
-
-        private void selectedPictureBox_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-               
-
-            }
-        }
-
         /// <summary>
         ///  Paint the bitmap on the panel if the currentDraggedImage contains a Image.
         /// </summary>
@@ -118,6 +108,12 @@ namespace ShinyBearToolKit.MenuEditor
             //Här initieras markering, man ska kunna hålla ner musen och rita en rektangel för att markera en yta
             //Här initieras dragndrop, om en markering har gjorts.
             //Här initieras animering när användaren drar/markerar
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                selectedPictureBox.Size = new Size(Math.Abs(e.X - clickedPointOne.X - 2),
+                 Math.Abs(e.Y - clickedPointOne.Y - 2));
+
+            }
 
             rec = new Rectangle(clickedPointOne, selectedPictureBox.Size);
             currentDraggedImage = imageInPictureBox.Clone(rec, PixelFormat.Format32bppArgb);
@@ -127,8 +123,7 @@ namespace ShinyBearToolKit.MenuEditor
         private void TextureAtlasPanel_DragDrop(object sender, DragEventArgs e)
         {
             //Denna hämtar dragndrop från selectedTexturePanel
-            selectedPictureBox.Size = new Size(Math.Abs(e.X - clickedPointOne.X - 2),
-                Math.Abs(e.Y - clickedPointOne.Y - 2));
+            
         }
 
         private void TextureAtlasPanel_DragEnter(object sender, DragEventArgs e)
@@ -183,15 +178,6 @@ namespace ShinyBearToolKit.MenuEditor
             }
         }
 
-        private void selectedPictureBox_DragDrop(object sender, DragEventArgs e)
-        {
-            
-        }
-
-        private void selectedPictureBox_DragEnter(object sender, DragEventArgs e)
-        {
-            
-        }
         /// <summary>
         /// Enables scrolling with the mouse wheel
         /// </summary>

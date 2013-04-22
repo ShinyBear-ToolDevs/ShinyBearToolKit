@@ -100,8 +100,6 @@
             this.selectedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.selectedPictureBox.TabIndex = 0;
             this.selectedPictureBox.TabStop = false;
-            this.selectedPictureBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.selectedPictureBox_DragDrop);
-            this.selectedPictureBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.selectedPictureBox_DragEnter);
             this.selectedPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.selectedPictureBox_MouseClick);
             this.selectedPictureBox.MouseEnter += new System.EventHandler(this.selectedPictureBox_MouseEnter);
             

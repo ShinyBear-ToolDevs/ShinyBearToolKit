@@ -139,7 +139,7 @@ namespace ShinyBearToolkit.MenuEditor
                 foreach (string s in handles)
                 {
 
-                    if (File.Exists(s) || Directory.Exists(s))
+                    if (File.Exists(s))
                     {
 
                         if (IsFileCorrectType(s, ALLOWED_IMAGE_EXTENSIONS))
