@@ -19,7 +19,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         // make it possible to change the texture in the pabel.
         private Graphics PanelGraphics { get; set; }
-
+      
         private Point clickedPointOne;
 
         private Image currentDraggedImage;
