@@ -22,6 +22,7 @@ namespace ShinyBearToolKit.MenuEditor
         private Graphics PanelGraphics { get; set; }
       
         private Point clickedPointOne;
+        private Point clickedPointTwo;
         private Rectangle rec;
         private bool allowMouseToDraw;
 
@@ -103,21 +104,87 @@ namespace ShinyBearToolKit.MenuEditor
             }
         }
 
+        private void selectedPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            // if valid rectangle draw it
+            if (clickedPointOne.X - clickedPointTwo.X != 0 && clickedPointOne.Y - clickedPointTwo.Y != 0)
+            {
+                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(clickedPointOne.X, clickedPointTwo.Y,
+                    clickedPointOne.X - clickedPointTwo.X,
+                    clickedPointOne.Y - clickedPointTwo.Y));
+            }
+        }
+
         private void TextureAtlasPanel_MouseDown(object sender, MouseEventArgs e)
         {
             //Här initieras markering, man ska kunna hålla ner musen och rita en rektangel för att markera en yta
             //Här initieras dragndrop, om en markering har gjorts.
             //Här initieras animering när användaren drar/markerar
+            
+
+                //rec = new Rectangle(clickedPointOne, selectedPictureBox.Size);
+                //currentDraggedImage = imageInPictureBox.Clone(rec, PixelFormat.Format32bppArgb);
+                //selectedPictureBox.Invalidate();
+            
+        }
+
+        private void selectedPictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                selectedPictureBox.Size = new Size(Math.Abs(e.X - clickedPointOne.X - 2),
-                 Math.Abs(e.Y - clickedPointOne.Y - 2));
+                // set the upper left point in the rectangle
+                clickedPointOne = e.Location;
+            }
+        }
+
+        private void selectedPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                clickedPointTwo = e.Location;
+                Invalidate();
+            }
+        }
+
+        private void selectedPictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                GenerateBmp();
+            }
+           
+        }
+
+        private void GenerateBmp()
+        {
+            // check after a valid rectangle
+            if (clickedPointTwo.X - clickedPointOne.X > 0 && clickedPointTwo.Y - clickedPointOne.Y > 0)
+            {
+                // create the rectangle
+                Rectangle r = new Rectangle(clickedPointOne.X, clickedPointTwo.Y,
+                    clickedPointTwo.X - clickedPointOne.Y,
+                    clickedPointTwo.Y - clickedPointOne.Y);
+
+                // create the bitmap with the size of r
+                Bitmap bitMap = new Bitmap(r.Width, r.Height);
+
+                // draw the selected part of the original image
+                using (Graphics g = Graphics.FromImage(currentDraggedImage))
+                    g.DrawImage(this.TextureAtlasPanel.BackgroundImage, new Rectangle(0, 0, r.Width, r.Height), r, GraphicsUnit.Pixel);
+
+                // select the picture in pictureBoxen
+                Image picture = this.selectedPictureBox.Image;
+
+                // assign the new one
+                this.selectedPictureBox.Image = currentDraggedImage;
+
+                // release the old image
+                if (picture != null)
+                {
+                    picture.Dispose();
+                }
 
             }
-
-            rec = new Rectangle(clickedPointOne, selectedPictureBox.Size);
-            currentDraggedImage = imageInPictureBox.Clone(rec, PixelFormat.Format32bppArgb);
-            selectedPictureBox.Invalidate();
         }
 
         private void TextureAtlasPanel_DragDrop(object sender, DragEventArgs e)
@@ -149,26 +216,6 @@ namespace ShinyBearToolKit.MenuEditor
             LoadImages();
         }
 
-        //private void loadedTextureList_MouseDoubbleClick(object sender, MouseEventArgs e)
-        //{
-        //    ListViewItem tempItems = loadedTextureList.SelectedItems[0];
-        //    Image tempImages = tempItems.ImageList.Images[0];
-
-        //    Sprite newSprite = new Sprite(tempImages,
-        //        defaultPosition.X,
-        //        defaultPosition.Y,
-        //        tempImages.Width,
-        //        tempImages.Height,
-        //        new Point(tempImages.Height / 2,
-        //            tempImages.Width / 2),
-        //            new Rectangle(new Point(defaultPosition.X,
-        //                defaultPosition.Y),
-        //                new Size(tempImages.Width,
-        //                    tempImages.Height)));
-
-        //    textureAtlasManager.addSprite(newSprite);
-        //}
-
         private void loadedTextureList_ItemDrag(object sender, ItemDragEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -186,14 +233,6 @@ namespace ShinyBearToolKit.MenuEditor
         private void selectedPictureBox_MouseEnter(object sender, EventArgs e)
         {
             selectedTexturePanel.Focus();
-        }
-
-       
-
-       
-
-       
-
-        
+        } 
     }
 }
