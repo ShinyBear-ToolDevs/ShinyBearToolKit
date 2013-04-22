@@ -189,7 +189,7 @@ namespace ShinyBearToolkit.MenuEditor
     }
 }
 
-//kunna lägga upp mappar i listviewn och då ska alla bilderna visas. (directory)
+
 
 
 

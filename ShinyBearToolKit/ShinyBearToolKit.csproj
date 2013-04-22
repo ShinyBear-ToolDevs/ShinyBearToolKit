@@ -60,6 +60,7 @@
       <DependentUpon>FormTextureAtlas.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuEditor\ManagerMenuEditor.cs" />
+    <Compile Include="MenuEditor\NissePissePäronPung.cs" />
     <Compile Include="MenuEditor\Sprite.cs" />
     <Compile Include="MenuEditor\FormCreateTextureAtlas.cs">
       <SubType>Form</SubType>
