@@ -23,6 +23,7 @@ namespace ShinyBearToolkit.MenuEditor
         private bool draggingOverAtlas = false;
         private Image currentDraggedImage;
 
+      
         //list with sprites.
         List<Image> image = new List<Image>();
         /// <summary>
@@ -116,18 +117,14 @@ namespace ShinyBearToolkit.MenuEditor
         /// <param name="e"></param>
         public void DragDropDesktop(object sender, DragEventArgs e)
         {
-
-            //string[] dirPath = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             foreach (string s in handles)
             {
-               
-                
 
                     if (File.Exists(s) || Directory.Exists(s))
                     {
 
-                        if (IsFileCorrectType(s, ALLOWED_IMAGE_EXTENSIONS))
+                        if (IsFileCorrectType(s, ALLOWED_IMAGE_EXTENSIONS) || IsFilesInDirectoryCorrectType(s, ALLOWED_IMAGE_EXTENSIONS))
                         {
                             AddFileToListView(s);
                         }
@@ -141,24 +138,35 @@ namespace ShinyBearToolkit.MenuEditor
                     {
                         MessageBox.Show("File not found");
                     }
-
-                
             }
+        }
 
+        /// <summary>
+        /// Determines if the files in the folder has one of the accepted extensions
+        /// </summary>
+        /// <param name="dirPath"></param>
+        /// <param name="validExtension"></param>
+        /// <returns></returns>
+        private bool IsFilesInDirectoryCorrectType(string dirPath, string[] validExtension)
+        {
+            var hej = Directory.EnumerateFiles(dirPath).Select(p => Path.GetFileName(p));
+
+            var folders = hej.Where(file => Path.GetExtension(file) == ".jpg").Select(
+                file => Path.GetFileNameWithoutExtension(file));
         }
 
         /// <summary>
         /// Determines if the file has one of the accepted extensions.
         /// </summary>
-        /// <param name="filepath"></param>
+        /// <param name="filePath"></param>
         /// <param name="validExtensions"></param>
         /// <returns></returns>
-        private bool IsFileCorrectType(string filepath, string[] validExtensions)
+        private bool IsFileCorrectType(string filePath, string[] validExtensions)
         {
             bool isCorrect = false;
             foreach (string extension in validExtensions)
             {
-                if (string.Compare(Path.GetExtension(filepath), extension, true) == 0)
+                if (string.Compare(Path.GetExtension(filePath), extension, true) == 0)
                 {
                     isCorrect = true;
                     break;
