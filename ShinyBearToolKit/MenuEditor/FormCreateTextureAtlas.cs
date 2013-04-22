@@ -17,6 +17,13 @@ namespace ShinyBearToolKit.MenuEditor
 
         //private Point defaultPosition = new Point(100, 100);
 
+        // make it possible to change the texture in the pabel.
+        private Graphics PanelGraphics { get; set; }
+
+        private Point clickedPointOne;
+
+        private Image currentDraggedImage;
+
         private const int FORM_PADDING = 5;
 
         public FormCreateTextureAtlas()
@@ -79,17 +86,37 @@ namespace ShinyBearToolKit.MenuEditor
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-               // this.DoDragDrop(e.Item, DragDropEffects.Copy);
+               
 
             }
         }
 
-        private void selectedTexturePanel_MouseDown(object sender, MouseEventArgs e)
+        /// <summary>
+        ///  Paint the bitmap on the panel if the currentDraggedImage contains a Image.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextureAtlasPanel_Paint(object sender, PaintEventArgs e)
+        {
+            if (currentDraggedImage != null)
+            {
+                Bitmap bmp = new Bitmap(currentDraggedImage.Width, currentDraggedImage.Height);
+                PanelGraphics = Graphics.FromImage(bmp);
+                PanelGraphics.FillRectangle(new SolidBrush(TextureAtlasPanel.BackColor), new Rectangle(new Point(0, 0), currentDraggedImage.Size));
+
+                PanelGraphics = Graphics.FromImage(bmp);
+                PanelGraphics.DrawImage(bmp, clickedPointOne);
+            }
+        }
+
+        private void TextureAtlasPanel_MouseDown(object sender, MouseEventArgs e)
         {
             //Här initieras markering, man ska kunna hålla ner musen och rita en rektangel för att markera en yta
             //Här initieras dragndrop, om en markering har gjorts.
             //Här initieras animering när användaren drar/markerar
         }
+
+       
         private void TextureAtlasPanel_DragDrop(object sender, DragEventArgs e)
         {
             //Denna hämtar dragndrop från selectedTexturePanel
@@ -143,19 +170,23 @@ namespace ShinyBearToolKit.MenuEditor
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.DoDragDrop(e.Item, DragDropEffects.Copy);
-
+                
             }
         }
 
         private void selectedPictureBox_DragDrop(object sender, DragEventArgs e)
         {
-
+            
         }
 
         private void selectedPictureBox_DragEnter(object sender, DragEventArgs e)
         {
             
         }
+
+       
+
+       
 
         
     }

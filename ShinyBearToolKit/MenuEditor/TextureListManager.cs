@@ -21,11 +21,10 @@ namespace ShinyBearToolkit.MenuEditor
 
         // DragDrop
         private bool draggingOverAtlas = false;
-        private Image currentDraggedImage;
-
-        // make it possible to change the texture in the pabel.
-        private Graphics panelGraphics { get; set; }
       
+
+       
+
         //list with sprites.
         List<Image> image = new List<Image>();
         /// <summary>
@@ -111,11 +110,19 @@ namespace ShinyBearToolkit.MenuEditor
             }
         }
 
-       
-
+        /// <summary>
+        ///  Leave the DragDrop events
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void DragDropLeave(object sender, DragEventArgs e)
         {
             draggingOverAtlas = false;
+        }
+
+        public void DragDropPicturePices(object sender, DragEventArgs e)
+        {
+           
         }
 
         /// <summary>
