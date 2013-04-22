@@ -74,6 +74,16 @@ namespace ShinyBearToolKit.MenuEditor
             }
 
         }
+
+        private void selectedPictureBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+               // this.DoDragDrop(e.Item, DragDropEffects.Copy);
+
+            }
+        }
+
         private void selectedTexturePanel_MouseDown(object sender, MouseEventArgs e)
         {
             //Här initieras markering, man ska kunna hålla ner musen och rita en rektangel för att markera en yta
@@ -88,13 +98,13 @@ namespace ShinyBearToolKit.MenuEditor
         private void TextureAtlasPanel_DragEnter(object sender, DragEventArgs e)
         {
             //Här initieras animeringen när användaren draggar in en bild från selectedTexturePanel
-
             textureListManager.GenericDragEnter(sender, e);
         }
 
-        private void TextureAtlasPanel_DragLeave(object sender, EventArgs e)
+        private void TextureAtlasPanel_DragLeave(object sender, DragEventArgs e)
         {
             //Här avslutas animeringen, eftersom användaren inte draggar något i den
+            textureListManager.DragDropLeave(sender, e);
         }
 
         private void loadedTextureList_DragEnter(object sender, DragEventArgs e)
@@ -146,5 +156,7 @@ namespace ShinyBearToolKit.MenuEditor
         {
             
         }
+
+        
     }
 }

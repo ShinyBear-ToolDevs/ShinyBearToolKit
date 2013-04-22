@@ -111,6 +111,13 @@ namespace ShinyBearToolkit.MenuEditor
             }
         }
 
+       
+
+        public void DragDropLeave(object sender, DragEventArgs e)
+        {
+            draggingOverAtlas = false;
+        }
+
         /// <summary>
         ///  Check to se if the choosen object exist and uses the method IsFileCorrectType to verify that the format is ok.
         ///  If ok add image to listView via  AddFileToListView and AddImage.
@@ -126,7 +133,7 @@ namespace ShinyBearToolkit.MenuEditor
                     if (File.Exists(s) || Directory.Exists(s))
                     {
 
-                        if (IsFileCorrectType(s, ALLOWED_IMAGE_EXTENSIONS) || IsFilesInDirectoryCorrectType(s, ALLOWED_IMAGE_EXTENSIONS))
+                        if (IsFileCorrectType(s, ALLOWED_IMAGE_EXTENSIONS))
                         {
                             AddFileToListView(s);
                         }
@@ -149,13 +156,13 @@ namespace ShinyBearToolkit.MenuEditor
         /// <param name="dirPath"></param>
         /// <param name="validExtension"></param>
         /// <returns></returns>
-        private bool IsFilesInDirectoryCorrectType(string dirPath, string[] validExtension)
-        {
-            var hej = Directory.EnumerateFiles(dirPath).Select(p => Path.GetFileName(p));
+        //private bool IsFilesInDirectoryCorrectType(string dirPath, string[] validExtension)
+        //{
+        //    var hej = Directory.EnumerateFiles(dirPath).Select(p => Path.GetFileName(p));
 
-            var folders = hej.Where(file => Path.GetExtension(file) == ".jpg").Select(
-                file => Path.GetFileNameWithoutExtension(file));
-        }
+        //    var folders = hej.Where(file => Path.GetExtension(file) == ".jpg").Select(
+        //        file => Path.GetFileNameWithoutExtension(file));
+        //}
 
         /// <summary>
         /// Determines if the file has one of the accepted extensions.
