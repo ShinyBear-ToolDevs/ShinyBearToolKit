@@ -134,8 +134,10 @@ namespace ShinyBearToolkit.MenuEditor
         public void DragDropDesktop(object sender, DragEventArgs e)
         {
             string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            foreach (string s in handles)
+            if (handles != null)
             {
+                foreach (string s in handles)
+                {
 
                     if (File.Exists(s) || Directory.Exists(s))
                     {
@@ -154,6 +156,7 @@ namespace ShinyBearToolkit.MenuEditor
                     {
                         MessageBox.Show("File not found");
                     }
+                }
             }
         }
 
