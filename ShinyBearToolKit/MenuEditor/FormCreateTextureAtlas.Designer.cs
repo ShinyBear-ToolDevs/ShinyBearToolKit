@@ -103,6 +103,7 @@
             this.selectedPictureBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.selectedPictureBox_DragDrop);
             this.selectedPictureBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.selectedPictureBox_DragEnter);
             this.selectedPictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.selectedPictureBox_MouseClick);
+            
             // 
             // TextureAtlasPanel
             // 
@@ -119,6 +120,7 @@
             this.TextureAtlasPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragEnter);
             this.TextureAtlasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TextureAtlasPanel_Paint);
             this.TextureAtlasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextureAtlasPanel_MouseDown);
+
             // 
             // splitContainer1
             // 

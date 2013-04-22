@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -21,8 +22,11 @@ namespace ShinyBearToolKit.MenuEditor
         private Graphics PanelGraphics { get; set; }
       
         private Point clickedPointOne;
+        private Rectangle rec;
+        private bool allowMouseToMove;
 
-        private Image currentDraggedImage;
+        private Bitmap imageInPictureBox;
+        private Bitmap currentDraggedImage;
 
         private const int FORM_PADDING = 5;
 
@@ -104,7 +108,7 @@ namespace ShinyBearToolKit.MenuEditor
                 PanelGraphics = Graphics.FromImage(bmp);
                 PanelGraphics.FillRectangle(new SolidBrush(TextureAtlasPanel.BackColor), new Rectangle(new Point(0, 0), currentDraggedImage.Size));
 
-                PanelGraphics = Graphics.FromImage(bmp);
+                PanelGraphics = Graphics.FromImage(imageInPictureBox);
                 PanelGraphics.DrawImage(bmp, clickedPointOne);
             }
         }
@@ -114,12 +118,17 @@ namespace ShinyBearToolKit.MenuEditor
             //Här initieras markering, man ska kunna hålla ner musen och rita en rektangel för att markera en yta
             //Här initieras dragndrop, om en markering har gjorts.
             //Här initieras animering när användaren drar/markerar
+
+            rec = new Rectangle(clickedPointOne, selectedPictureBox.Size);
+            currentDraggedImage = imageInPictureBox.Clone(rec, PixelFormat.Format32bppArgb);
+            selectedPictureBox.Invalidate();
         }
 
-       
         private void TextureAtlasPanel_DragDrop(object sender, DragEventArgs e)
         {
             //Denna hämtar dragndrop från selectedTexturePanel
+            selectedPictureBox.Size = new Size(Math.Abs(e.X - clickedPointOne.X - 2),
+                Math.Abs(e.Y - clickedPointOne.Y - 2));
         }
 
         private void TextureAtlasPanel_DragEnter(object sender, DragEventArgs e)
@@ -183,6 +192,8 @@ namespace ShinyBearToolKit.MenuEditor
         {
             
         }
+
+       
 
        
 
