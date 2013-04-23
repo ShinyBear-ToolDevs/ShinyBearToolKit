@@ -125,21 +125,26 @@ namespace ShinyBearToolkit.MenuEditor
            
         }
 
+        /// <summary>
+        ///  Check to se if a object has been chosen. If ok add image to panel via AddFile and AddImage.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void DragDropRectangle(object sender, DragEventArgs e)
         {
-            Bitmap[] handles = (Bitmap[])e.Data.GetData(DataFormats.FileDrop, false);
+            string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             if (handles != null)
             {
-                foreach (Bitmap s in handles)
+                foreach (string s in handles)
                 {
-                    AddFileToListView(s);
+                    AddFile(s);
                 }
             }
         }
 
         /// <summary>
         ///  Check to se if the choosen object exist and uses the method IsFileCorrectType to verify that the format is ok.
-        ///  If ok add image to listView via  AddFileToListView and AddImage.
+        ///  If ok add image to listView via  AddFile and AddImage.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -156,7 +161,7 @@ namespace ShinyBearToolkit.MenuEditor
 
                         if (IsFileCorrectType(s, ALLOWED_IMAGE_EXTENSIONS))
                         {
-                            AddFileToListView(s);
+                            AddFile(s);
                         }
                         else
                         {
@@ -211,16 +216,10 @@ namespace ShinyBearToolkit.MenuEditor
         /// Adds the files to the list<Image>image in TextureListManager
         /// </summary>
         /// <param name="fullFilePath"></param>
-        private void AddFileToListView(string fullFilePath)
+        private void AddFile(string fullFilePath)
         {
             Image picture = Image.FromFile(fullFilePath);
             AddImage(picture);
-        }
-
-        private void AddBitmaToPanel(Bitmap rectanglePath)
-        {
-            Bitmap rectangle = Bitmap.FromFile(rectanglePath);
-            AddImage(rectangle);
         }
 
     }
