@@ -100,11 +100,8 @@
             this.selectedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.selectedPictureBox.TabIndex = 0;
             this.selectedPictureBox.TabStop = false;
-            this.selectedPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.selectedPictureBox_Paint);
-            this.selectedPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.selectedPictureBox_MouseDown);
+            this.selectedPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.selectedPIctureBox_MouseDown);
             this.selectedPictureBox.MouseEnter += new System.EventHandler(this.selectedPictureBox_MouseEnter);
-            this.selectedPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.selectedPictureBox_MouseMove);
-            this.selectedPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.selectedPictureBox_MouseUp);
             // 
             // TextureAtlasPanel
             // 
@@ -119,7 +116,6 @@
             this.TextureAtlasPanel.TabIndex = 3;
             this.TextureAtlasPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragDrop);
             this.TextureAtlasPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragEnter);
-            this.TextureAtlasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TextureAtlasPanel_Paint);
             this.TextureAtlasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextureAtlasPanel_MouseDown);
             // 
             // splitContainer1
