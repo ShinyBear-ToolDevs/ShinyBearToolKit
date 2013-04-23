@@ -140,6 +140,10 @@ namespace ShinyBearToolkit.MenuEditor
                     AddFile(s);
                 }
             }
+            else
+            {
+                MessageBox.Show("You need to mark a area before you can move it");
+            }
         }
 
         /// <summary>

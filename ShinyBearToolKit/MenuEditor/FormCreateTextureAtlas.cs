@@ -169,8 +169,8 @@ namespace ShinyBearToolKit.MenuEditor
                 Bitmap bitMap = new Bitmap(r.Width, r.Height);
 
                 // draw the selected part of the original image
-                using (Graphics g = Graphics.FromImage(currentDraggedImage))
-                    g.DrawImage(this.TextureAtlasPanel.BackgroundImage, new Rectangle(0, 0, r.Width, r.Height), r, GraphicsUnit.Pixel);
+                using (PanelGraphics = Graphics.FromImage(currentDraggedImage))
+                    PanelGraphics.DrawImage(this.TextureAtlasPanel.BackgroundImage, new Rectangle(0, 0, r.Width, r.Height), r, GraphicsUnit.Pixel);
 
                 // select the picture in pictureBoxen
                 Image picture = this.selectedPictureBox.Image;
@@ -190,7 +190,7 @@ namespace ShinyBearToolKit.MenuEditor
         private void TextureAtlasPanel_DragDrop(object sender, DragEventArgs e)
         {
             //Denna hämtar dragndrop från selectedPictureBox
-            
+            textureListManager.DragDropRectangle(sender, e);
         }
 
         private void TextureAtlasPanel_DragEnter(object sender, DragEventArgs e)
