@@ -21,7 +21,7 @@ namespace ShinyBearToolKit.MenuEditor
       
         private Point clickedPointOne;
         private Point clickedPointTwo;
-        private Rectangle rec;
+        private Rectangle rec = new Rectangle();
         private bool allowMouseToDraw;
 
         private Bitmap imageInPictureBox;
@@ -36,6 +36,7 @@ namespace ShinyBearToolKit.MenuEditor
         }
         private void initLocalComponents()
         {
+            PanelGraphics = selectedPictureBox.CreateGraphics();
             textureListManager = new TextureListManager();
         }
         private void addTextureButton_Click(object sender, EventArgs e)
@@ -148,7 +149,20 @@ namespace ShinyBearToolKit.MenuEditor
         {
             if (e.Button == MouseButtons.Left)
             {
-                MessageBox.Show("");
+                rec = new Rectangle(selectedPictureBox.Image.Height,
+                    selectedPictureBox.Image.Width,
+                    selectedPictureBox.Size.Height / 2,
+                    selectedPictureBox.Size.Width / 2);
+
+                Brush brush = new SolidBrush(Color.Black);
+
+                if (rec != null)
+                {
+                    PanelGraphics.FillRectangle(Brushes.Blue, selectedPictureBox.ClientRectangle.Left,
+                        selectedPictureBox.ClientRectangle.Top,
+                        selectedPictureBox.ClientRectangle.Right - selectedPictureBox.ClientRectangle.Left,
+                        selectedPictureBox.ClientRectangle.Bottom - selectedPictureBox.Top);
+                }
             }
         } 
     }
