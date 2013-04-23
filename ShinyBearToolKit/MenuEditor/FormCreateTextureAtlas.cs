@@ -189,7 +189,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void TextureAtlasPanel_DragDrop(object sender, DragEventArgs e)
         {
-            //Denna hämtar dragndrop från selectedTexturePanel
+            //Denna hämtar dragndrop från selectedPictureBox
             
         }
 

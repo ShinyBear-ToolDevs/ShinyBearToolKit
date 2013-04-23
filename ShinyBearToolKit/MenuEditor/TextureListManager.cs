@@ -125,6 +125,18 @@ namespace ShinyBearToolkit.MenuEditor
            
         }
 
+        public void DragDropRectangle(object sender, DragEventArgs e)
+        {
+            Bitmap[] handles = (Bitmap[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (handles != null)
+            {
+                foreach (Bitmap s in handles)
+                {
+                    AddFileToListView(s);
+                }
+            }
+        }
+
         /// <summary>
         ///  Check to se if the choosen object exist and uses the method IsFileCorrectType to verify that the format is ok.
         ///  If ok add image to listView via  AddFileToListView and AddImage.
@@ -203,6 +215,12 @@ namespace ShinyBearToolkit.MenuEditor
         {
             Image picture = Image.FromFile(fullFilePath);
             AddImage(picture);
+        }
+
+        private void AddBitmaToPanel(Bitmap rectanglePath)
+        {
+            Bitmap rectangle = Bitmap.FromFile(rectanglePath);
+            AddImage(rectangle);
         }
 
     }
