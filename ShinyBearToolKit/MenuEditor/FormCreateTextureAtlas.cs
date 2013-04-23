@@ -19,13 +19,12 @@ namespace ShinyBearToolKit.MenuEditor
         // make it possible to change the texture in the panel.
         private Graphics PanelGraphics;
       
-        private Point clickedPointOne;
-        private Point clickedPointTwo;
-        private Rectangle rec = new Rectangle();
+       
         private bool mouseDrawRec = false;
-        private bool allowMouseToDraw;
+        int recPositionX;
+        int recPositionY;
 
-        private Bitmap imageInPictureBox;
+        
         private Bitmap currentDraggedImage;
 
         private const int FORM_PADDING = 5;
@@ -150,29 +149,49 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void selectedPIctureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                // Create pen.
-                Pen Pen = new Pen(Color.Black, 3);
+            //if (e.Button == MouseButtons.Left)
+            //{
+            //     Create pen.
+            //    Pen Pen = new Pen(Color.Black, 3);
 
-                // Create location and size of rectangle.
-                float x = 0.0F;
-                float y = 0.0F;
-                float width = 20.0F;
-                float height = 20.0F;
+            //     Create location and size of rectangle.
+            //    int x = 0;
+            //    int y = 0;
+            //    int width = 20;
+            //    int height = 20;
 
-                // Draw rectangle to screen.
-                PanelGraphics.DrawRectangle(Pen, x, y, width, height);
-            }
+            //     Draw rectangle to screen.
+            //    PanelGraphics.DrawRectangle(Pen, x, y, width, height);
+            //    this.RectangleToClient = mo
+            //}
+
+            mouseDrawRec = true;
+            recPositionX = e.X;
+            recPositionY = e.Y;
         }
 
         private void selectedPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if(e.Button == MouseButtons.Left && mouseDrawRec == true)
             {
-                rec.X = MousePosition.X;
-                rec.Y = MousePosition.Y;
+                this.Refresh();
+                Pen pen = new Pen(Color.Black, 2);
+                int width = e.X - recPositionX, height = e.Y - recPositionY;
+
+                Rectangle rect = new Rectangle(Math.Min(e.X, recPositionX),
+                                Math.Min(e.Y, recPositionY),
+                                Math.Abs(e.X - recPositionX),
+                                Math.Abs(e.Y - recPositionY));
+
+                PanelGraphics = this.CreateGraphics();
+                PanelGraphics.DrawRectangle(pen, rect);
+                
             }
+        }
+
+        private void selectedPictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDrawRec = false;
         } 
     }
 }
