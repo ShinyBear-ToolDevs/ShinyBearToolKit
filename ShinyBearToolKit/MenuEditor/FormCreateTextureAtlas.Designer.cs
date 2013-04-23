@@ -102,6 +102,7 @@
             this.selectedPictureBox.TabStop = false;
             this.selectedPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.selectedPIctureBox_MouseDown);
             this.selectedPictureBox.MouseEnter += new System.EventHandler(this.selectedPictureBox_MouseEnter);
+            this.selectedPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.selectedPictureBox_MouseMove);
             // 
             // TextureAtlasPanel
             // 

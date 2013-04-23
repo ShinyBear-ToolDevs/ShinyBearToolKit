@@ -16,12 +16,13 @@ namespace ShinyBearToolKit.MenuEditor
     {
         TextureListManager textureListManager;
 
-        // make it possible to change the texture in the pabel.
-        private Graphics PanelGraphics { get; set; }
+        // make it possible to change the texture in the panel.
+        private Graphics PanelGraphics;
       
         private Point clickedPointOne;
         private Point clickedPointTwo;
         private Rectangle rec = new Rectangle();
+        private bool mouseDrawRec = false;
         private bool allowMouseToDraw;
 
         private Bitmap imageInPictureBox;
@@ -82,7 +83,9 @@ namespace ShinyBearToolKit.MenuEditor
                 selectedPictureBox.Image = textureListManager.getImageAtIndex(index);
                 //g.Clear(Color.White);
                 //g.DrawImageUnscaled(textureListManager.getImageAtIndex(index), 0, 0);
+                
             }
+            
 
         }
        
@@ -149,20 +152,26 @@ namespace ShinyBearToolKit.MenuEditor
         {
             if (e.Button == MouseButtons.Left)
             {
-                rec = new Rectangle(selectedPictureBox.Image.Height,
-                    selectedPictureBox.Image.Width,
-                    selectedPictureBox.Size.Height / 2,
-                    selectedPictureBox.Size.Width / 2);
+                // Create pen.
+                Pen Pen = new Pen(Color.Black, 3);
 
-                Brush brush = new SolidBrush(Color.Black);
+                // Create location and size of rectangle.
+                float x = 0.0F;
+                float y = 0.0F;
+                float width = 20.0F;
+                float height = 20.0F;
 
-                if (rec != null)
-                {
-                    PanelGraphics.FillRectangle(Brushes.Blue, selectedPictureBox.ClientRectangle.Left,
-                        selectedPictureBox.ClientRectangle.Top,
-                        selectedPictureBox.ClientRectangle.Right - selectedPictureBox.ClientRectangle.Left,
-                        selectedPictureBox.ClientRectangle.Bottom - selectedPictureBox.Top);
-                }
+                // Draw rectangle to screen.
+                PanelGraphics.DrawRectangle(Pen, x, y, width, height);
+            }
+        }
+
+        private void selectedPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                rec.X = MousePosition.X;
+                rec.Y = MousePosition.Y;
             }
         } 
     }
