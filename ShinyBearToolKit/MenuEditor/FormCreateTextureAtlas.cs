@@ -36,7 +36,7 @@ namespace ShinyBearToolKit.MenuEditor
         }
         private void initLocalComponents()
         {
-            PanelGraphics = selectedPictureBox.CreateGraphics();
+            //PanelGraphics = selectedPictureBox.CreateGraphics();
             textureListManager = new TextureListManager();
         }
         private void addTextureButton_Click(object sender, EventArgs e)
@@ -149,41 +149,29 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void selectedPIctureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            //if (e.Button == MouseButtons.Left)
-            //{
-            //     Create pen.
-            //    Pen Pen = new Pen(Color.Black, 3);
-
-            //     Create location and size of rectangle.
-            //    int x = 0;
-            //    int y = 0;
-            //    int width = 20;
-            //    int height = 20;
-
-            //     Draw rectangle to screen.
-            //    PanelGraphics.DrawRectangle(Pen, x, y, width, height);
-            //    this.RectangleToClient = mo
-            //}
-
             mouseDrawRec = true;
             recPositionX = e.X;
             recPositionY = e.Y;
+            Update();
         }
 
         private void selectedPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             if(e.Button == MouseButtons.Left && mouseDrawRec == true)
             {
+                Image picture = selectedPictureBox.Image;
+
                 this.Refresh();
                 Pen pen = new Pen(Color.Black, 2);
-                int width = e.X - recPositionX, height = e.Y - recPositionY;
+                int width = e.X - recPositionX;
+                int height = e.Y - recPositionY;
 
-                Rectangle rect = new Rectangle(Math.Min(e.X, recPositionX),
-                                Math.Min(e.Y, recPositionY),
-                                Math.Abs(e.X - recPositionX),
-                                Math.Abs(e.Y - recPositionY));
+                Rectangle rect = new Rectangle(Math.Min(width, recPositionX),
+                                Math.Min(height, recPositionY),
+                                Math.Abs(width - recPositionX),
+                                Math.Abs(height - recPositionY));
 
-                PanelGraphics = this.CreateGraphics();
+                PanelGraphics = selectedPictureBox.CreateGraphics();
                 PanelGraphics.DrawRectangle(pen, rect);
                 
             }
