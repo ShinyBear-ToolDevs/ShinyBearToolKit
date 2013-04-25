@@ -152,7 +152,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void selectedPIctureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (cutRectangle != null)
+            if (cutRectangle != null && selectedPictureBox.Image != null)
             {
                 if (e.X >= recPositionX && e.X <= (recPositionX + cutRectangle.Width) && e.Y >= recPositionY && e.Y <= (recPositionY + cutRectangle.Height))
                 {
@@ -205,8 +205,11 @@ namespace ShinyBearToolKit.MenuEditor
         private void selectedPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDrawRec = false;
-            cutImage = null;
-            cutImage = currentSelectedImage.Clone(cutRectangle, PixelFormat.Format32bppArgb);
+            if (cutRectangle != null && currentSelectedImage != null)
+            {
+                cutImage = null;
+                cutImage = currentSelectedImage.Clone(cutRectangle, PixelFormat.Format32bppArgb);
+            }
         } 
     }
 }
