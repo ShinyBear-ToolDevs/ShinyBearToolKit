@@ -127,27 +127,6 @@ namespace ShinyBearToolkit.MenuEditor
         }
 
         /// <summary>
-        ///  Check to se if a object has been chosen. If ok add image to panel via AddFile and AddImage.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void DragDropRectangle(object sender, DragEventArgs e)
-        {
-            string[] handles = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (handles != null)
-            {
-                foreach (string s in handles)
-                {
-                    AddFile(s);
-                }
-            }
-            else
-            {
-                MessageBox.Show("You need to mark a area before you can move it");
-            }
-        }
-
-        /// <summary>
         ///  Check to se if the choosen object exist and uses the method IsFileCorrectType to verify that the format is ok.
         ///  If ok add image to listView via  AddFile and AddImage.
         /// </summary>
@@ -181,20 +160,6 @@ namespace ShinyBearToolkit.MenuEditor
                 }
             }
         }
-
-        /// <summary>
-        /// Determines if the files in the folder has one of the accepted extensions
-        /// </summary>
-        /// <param name="dirPath"></param>
-        /// <param name="validExtension"></param>
-        /// <returns></returns>
-        //private bool IsFilesInDirectoryCorrectType(string dirPath, string[] validExtension)
-        //{
-        //    var hej = Directory.EnumerateFiles(dirPath).Select(p => Path.GetFileName(p));
-
-        //    var folders = hej.Where(file => Path.GetExtension(file) == ".jpg").Select(
-        //        file => Path.GetFileNameWithoutExtension(file));
-        //}
 
         /// <summary>
         /// Determines if the file has one of the accepted extensions.

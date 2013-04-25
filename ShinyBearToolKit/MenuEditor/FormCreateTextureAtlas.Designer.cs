@@ -60,8 +60,8 @@
             // loadedTextureList
             // 
             this.loadedTextureList.AllowDrop = true;
-            this.loadedTextureList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.loadedTextureList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.loadedTextureList.GridLines = true;
             this.loadedTextureList.LargeImageList = this.loadedImages;
             this.loadedTextureList.Location = new System.Drawing.Point(12, 84);
@@ -84,9 +84,9 @@
             // selectedTexturePanel
             // 
             this.selectedTexturePanel.AllowDrop = true;
-            this.selectedTexturePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectedTexturePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.selectedTexturePanel.AutoScroll = true;
             this.selectedTexturePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.selectedTexturePanel.Controls.Add(this.selectedPictureBox);
@@ -111,18 +111,16 @@
             // TextureAtlasPanel
             // 
             this.TextureAtlasPanel.AllowDrop = true;
-            this.TextureAtlasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextureAtlasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextureAtlasPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TextureAtlasPanel.Controls.Add(this.secondPictureBox);
             this.TextureAtlasPanel.Location = new System.Drawing.Point(3, 3);
             this.TextureAtlasPanel.Name = "TextureAtlasPanel";
             this.TextureAtlasPanel.Size = new System.Drawing.Size(552, 473);
             this.TextureAtlasPanel.TabIndex = 3;
-            this.TextureAtlasPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragDrop);
             this.TextureAtlasPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragEnter);
-            this.TextureAtlasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextureAtlasPanel_MouseDown);
             // 
             // secondPictureBox
             // 
@@ -132,12 +130,14 @@
             this.secondPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.secondPictureBox.TabIndex = 0;
             this.secondPictureBox.TabStop = false;
+            this.secondPictureBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.secondPictureBox_DragDrop);
+            this.secondPictureBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.secondPictureBox_DragEnter);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(206, 84);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -154,6 +154,7 @@
             // 
             // FormCreateTextureAtlas
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;

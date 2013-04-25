@@ -17,30 +17,52 @@ namespace ShinyBearToolKit.MenuEditor
         TextureListManager textureListManager;
 
         // make it possible to change the texture in the panel.
-        private Graphics PanelGraphics;
- { get; set; }
-
+        private Graphics PanelGraphics { get; set; }
+ 
         private bool dragRec = false;
         private bool mouseDrawRec = false;
         int recPositionX;
         int recPositionY;
 
-        
-        private Bitmap currentDraggedImage;
         private Bitmap currentSelectedImage;
         private Bitmap cutImage;
         private Rectangle cutRectangle;
+
+        private Bitmap canvas;
+        private int pictureBoxSizeX = 1024;
+        private int pictureBoxSizeY = 1024;
+
         private const int FORM_PADDING = 5;
 
         public FormCreateTextureAtlas()
         {
             InitializeComponent();
             initLocalComponents();
+
         }
         private void initLocalComponents()
         {
             //PanelGraphics = selectedPictureBox.CreateGraphics();
             textureListManager = new TextureListManager();
+
+            // create a new bitmap for the background in secondPictureBox and set the size.
+            canvas = new Bitmap(pictureBoxSizeX, pictureBoxSizeY);
+
+            secondPictureBox.Paint += new PaintEventHandler(delegate(object sender, PaintEventArgs e)
+            {
+                // casta from Image to canvas (bitmap)
+                Graphics graphicsCanvas = Graphics.FromImage((Image)canvas);
+                Brush brush = new SolidBrush(Color.Magenta);
+
+                graphicsCanvas.FillRectangle(brush, new Rectangle(0, 0, 1024, 1024));
+
+                graphicsCanvas = secondPictureBox.CreateGraphics();
+                graphicsCanvas.DrawImage(canvas, new Point(0, 0));
+            }
+            );
+            
+            
+
         }
         private void addTextureButton_Click(object sender, EventArgs e)
         {
@@ -86,29 +108,9 @@ namespace ShinyBearToolKit.MenuEditor
                 currentSelectedImage = (Bitmap)selectedPictureBox.Image;
                 //g.Clear(Color.White);
                 //g.DrawImageUnscaled(textureListManager.getImageAtIndex(index), 0, 0);
-                
             }
-            
-
         }
        
-        private void TextureAtlasPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            //Här initieras markering, man ska kunna hålla ner musen och rita en rektangel för att markera en yta
-            //Här initieras dragndrop, om en markering har gjorts.
-            //Här initieras animering när användaren drar/markerar
-            
-
-               
-        }
-
-       
-        private void TextureAtlasPanel_DragDrop(object sender, DragEventArgs e)
-        {
-            //Denna hämtar dragndrop från selectedPictureBox
-            textureListManager.DragDropRectangle(sender, e);
-        }
-
         private void TextureAtlasPanel_DragEnter(object sender, DragEventArgs e)
         {
             //Här initieras animeringen när användaren draggar in en bild från selectedTexturePanel
@@ -169,11 +171,7 @@ namespace ShinyBearToolKit.MenuEditor
                 }
             }
         }
-
-        private void selectedPictureBox_MouseMove(object sender, MouseEventArgs e)
-        {
-            drawRectangle(e, "selectedPictureBox");
-        }
+        
         private void drawRectangle(MouseEventArgs e, string pictureBox)
         {
             if (e.Button == MouseButtons.Left && mouseDrawRec == true)
@@ -203,6 +201,12 @@ namespace ShinyBearToolKit.MenuEditor
                 }
             }
         }
+        
+        private void selectedPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            drawRectangle(e, "selectedPictureBox");
+        }
+       
         private void selectedPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDrawRec = false;
@@ -211,6 +215,23 @@ namespace ShinyBearToolKit.MenuEditor
                 cutImage = null;
                 cutImage = currentSelectedImage.Clone(cutRectangle, PixelFormat.Format32bppArgb);
             }
+        }
+
+        private void secondPictureBox_DragDrop(object sender, DragEventArgs e)
+        {
+           //using (Graphics grfx = Graphics.FromImage(image))
+           // {
+           //     grfx.DrawImage(newImage, x, y);
+           // }
+
+        }
+
+        private void secondPictureBox_DragEnter(object sender, DragEventArgs e)
+        {
+            textureListManager.GenericDragEnter(sender, e);
         } 
+
+        
     }
 }
+// delegates
