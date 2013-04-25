@@ -18,7 +18,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         // make it possible to change the texture in the panel.
         private Graphics PanelGraphics { get; set; }
- 
+
         private bool dragRec = false;
         private bool mouseDrawRec = false;
         int recPositionX;
@@ -190,11 +190,14 @@ namespace ShinyBearToolKit.MenuEditor
                     Pen pen = new Pen(Color.Black, 2);
                     int width = e.X - recPositionX;
                     int height = e.Y - recPositionY;
-
+                    if (width <= 1)
+                        width = 1;
+                    if (height <= 1)
+                        height = 1;
                     cutRectangle = new Rectangle(recPositionX,
                                     recPositionY,
-                                    Math.Abs(width - recPositionX),
-                                    Math.Abs(height - recPositionY));
+                                    width,
+                                    height);
 
                     PanelGraphics = selectedPictureBox.CreateGraphics();
                     PanelGraphics.DrawRectangle(pen, cutRectangle);
