@@ -17,8 +17,7 @@ namespace ShinyBearToolKit.MenuEditor
         TextureListManager textureListManager;
 
         // make it possible to change the texture in the panel.
-        private Graphics PanelGraphics;
- { get; set; }
+        private Graphics PanelGraphics { get; set; }
 
         private bool dragRec = false;
         private bool mouseDrawRec = false;
@@ -195,8 +194,8 @@ namespace ShinyBearToolKit.MenuEditor
 
                     cutRectangle = new Rectangle(recPositionX,
                                     recPositionY,
-                                    Math.Abs(width - recPositionX),
-                                    Math.Abs(height - recPositionY));
+                                    Math.Abs(width),
+                                    Math.Abs(height));
 
                     PanelGraphics = selectedPictureBox.CreateGraphics();
                     PanelGraphics.DrawRectangle(pen, cutRectangle);
