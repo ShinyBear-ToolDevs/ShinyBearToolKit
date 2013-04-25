@@ -35,9 +35,12 @@
             this.selectedTexturePanel = new System.Windows.Forms.Panel();
             this.selectedPictureBox = new System.Windows.Forms.PictureBox();
             this.TextureAtlasPanel = new System.Windows.Forms.Panel();
+            this.secondPictureBox = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.selectedTexturePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.selectedPictureBox)).BeginInit();
+            this.TextureAtlasPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.secondPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -57,8 +60,8 @@
             // loadedTextureList
             // 
             this.loadedTextureList.AllowDrop = true;
-            this.loadedTextureList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.loadedTextureList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
             this.loadedTextureList.GridLines = true;
             this.loadedTextureList.LargeImageList = this.loadedImages;
             this.loadedTextureList.Location = new System.Drawing.Point(12, 84);
@@ -81,9 +84,9 @@
             // selectedTexturePanel
             // 
             this.selectedTexturePanel.AllowDrop = true;
-            this.selectedTexturePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.selectedTexturePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.selectedTexturePanel.AutoScroll = true;
             this.selectedTexturePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.selectedTexturePanel.Controls.Add(this.selectedPictureBox);
@@ -108,10 +111,11 @@
             // TextureAtlasPanel
             // 
             this.TextureAtlasPanel.AllowDrop = true;
-            this.TextureAtlasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextureAtlasPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.TextureAtlasPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.TextureAtlasPanel.Controls.Add(this.secondPictureBox);
             this.TextureAtlasPanel.Location = new System.Drawing.Point(3, 3);
             this.TextureAtlasPanel.Name = "TextureAtlasPanel";
             this.TextureAtlasPanel.Size = new System.Drawing.Size(552, 473);
@@ -120,11 +124,20 @@
             this.TextureAtlasPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.TextureAtlasPanel_DragEnter);
             this.TextureAtlasPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TextureAtlasPanel_MouseDown);
             // 
+            // secondPictureBox
+            // 
+            this.secondPictureBox.Location = new System.Drawing.Point(1, 1);
+            this.secondPictureBox.Name = "secondPictureBox";
+            this.secondPictureBox.Size = new System.Drawing.Size(552, 473);
+            this.secondPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.secondPictureBox.TabIndex = 0;
+            this.secondPictureBox.TabStop = false;
+            // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(206, 84);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -153,6 +166,9 @@
             this.selectedTexturePanel.ResumeLayout(false);
             this.selectedTexturePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.selectedPictureBox)).EndInit();
+            this.TextureAtlasPanel.ResumeLayout(false);
+            this.TextureAtlasPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.secondPictureBox)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -170,5 +186,6 @@
         private System.Windows.Forms.ImageList loadedImages;
         private System.Windows.Forms.PictureBox selectedPictureBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.PictureBox secondPictureBox;
     }
 }
