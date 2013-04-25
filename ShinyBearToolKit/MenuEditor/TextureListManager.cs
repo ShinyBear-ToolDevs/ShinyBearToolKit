@@ -100,7 +100,8 @@ namespace ShinyBearToolkit.MenuEditor
             draggingOverAtlas = true;
             //if the data is a file or a bitmap
             if (e.Data.GetDataPresent(typeof(ListViewItem)) ||
-                e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Data.GetDataPresent(DataFormats.FileDrop) || 
+                e.Data.GetDataPresent(DataFormats.Bitmap))
             {
                 e.Effect = DragDropEffects.Copy;
             }

@@ -18,15 +18,17 @@ namespace ShinyBearToolKit.MenuEditor
 
         // make it possible to change the texture in the panel.
         private Graphics PanelGraphics;
-      
-       
+
+        private bool dragRec = false;
         private bool mouseDrawRec = false;
         int recPositionX;
         int recPositionY;
 
         
         private Bitmap currentDraggedImage;
-
+        private Bitmap currentSelectedImage;
+        private Bitmap cutImage;
+        private Rectangle cutRectangle;
         private const int FORM_PADDING = 5;
 
         public FormCreateTextureAtlas()
@@ -80,6 +82,7 @@ namespace ShinyBearToolKit.MenuEditor
             using (Graphics g = selectedTexturePanel.CreateGraphics())
             {
                 selectedPictureBox.Image = textureListManager.getImageAtIndex(index);
+                currentSelectedImage = (Bitmap)selectedPictureBox.Image;
                 //g.Clear(Color.White);
                 //g.DrawImageUnscaled(textureListManager.getImageAtIndex(index), 0, 0);
                 
@@ -149,37 +152,61 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void selectedPIctureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            mouseDrawRec = true;
-            recPositionX = e.X;
-            recPositionY = e.Y;
-            Update();
+            if (cutRectangle != null)
+            {
+                if (e.X >= recPositionX && e.X <= (recPositionX + cutRectangle.Width) && e.Y >= recPositionY && e.Y <= (recPositionY + cutRectangle.Height))
+                {
+                    dragRec = true;
+                    DoDragDrop(cutImage, DragDropEffects.Copy);
+                }
+                else
+                {
+                    mouseDrawRec = true;
+                    recPositionX = e.X;
+                    recPositionY = e.Y;
+                    Update();
+                }
+            }
         }
 
         private void selectedPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left && mouseDrawRec == true)
+            drawRectangle(e, "selectedPictureBox");
+        }
+        private void drawRectangle(MouseEventArgs e, string pictureBox)
+        {
+            if (e.Button == MouseButtons.Left && mouseDrawRec == true)
             {
-                Image picture = selectedPictureBox.Image;
+                Image picture = null;
+                if (pictureBox == "selectedPictureBox")
+                    picture = selectedPictureBox.Image;
+                else if (pictureBox == "textureAtlasPictureBox")
+                {
+                    //picture = textureAtlasPictureBox.Image;
+                }
 
-                this.Refresh();
-                Pen pen = new Pen(Color.Black, 2);
-                int width = e.X - recPositionX;
-                int height = e.Y - recPositionY;
+                if (picture != null)
+                {
+                    this.Refresh();
+                    Pen pen = new Pen(Color.Black, 2);
+                    int width = e.X - recPositionX;
+                    int height = e.Y - recPositionY;
 
-                Rectangle rect = new Rectangle(Math.Min(width, recPositionX),
-                                Math.Min(height, recPositionY),
-                                Math.Abs(width - recPositionX),
-                                Math.Abs(height - recPositionY));
+                    cutRectangle = new Rectangle(recPositionX,
+                                    recPositionY,
+                                    Math.Abs(width - recPositionX),
+                                    Math.Abs(height - recPositionY));
 
-                PanelGraphics = selectedPictureBox.CreateGraphics();
-                PanelGraphics.DrawRectangle(pen, rect);
-                
+                    PanelGraphics = selectedPictureBox.CreateGraphics();
+                    PanelGraphics.DrawRectangle(pen, cutRectangle);
+                }
             }
         }
-
         private void selectedPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDrawRec = false;
+            cutImage = null;
+            cutImage = currentSelectedImage.Clone(cutRectangle, PixelFormat.Format32bppArgb);
         } 
     }
 }
