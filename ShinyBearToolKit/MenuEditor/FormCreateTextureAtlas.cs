@@ -18,6 +18,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         // make it possible to change the texture in the panel.
         private Graphics PanelGraphics;
+ { get; set; }
 
         private bool dragRec = false;
         private bool mouseDrawRec = false;
