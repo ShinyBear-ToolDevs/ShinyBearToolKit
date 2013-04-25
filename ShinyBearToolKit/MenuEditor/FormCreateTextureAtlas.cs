@@ -191,11 +191,14 @@ namespace ShinyBearToolKit.MenuEditor
                     Pen pen = new Pen(Color.Black, 2);
                     int width = e.X - recPositionX;
                     int height = e.Y - recPositionY;
-
+                    if (width <= 1)
+                        width = 1;
+                    if (height <= 1)
+                        height = 1;
                     cutRectangle = new Rectangle(recPositionX,
                                     recPositionY,
-                                    Math.Abs(width),
-                                    Math.Abs(height));
+                                    width,
+                                    height);
 
                     PanelGraphics = selectedPictureBox.CreateGraphics();
                     PanelGraphics.DrawRectangle(pen, cutRectangle);
