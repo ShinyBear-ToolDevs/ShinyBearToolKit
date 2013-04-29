@@ -22,9 +22,6 @@ namespace ShinyBearToolkit.MenuEditor
         // DragDrop
         private bool draggingOverAtlas = false;
       
-
-       
-
         //list with sprites.
         List<Image> image = new List<Image>();
         /// <summary>

@@ -48,20 +48,27 @@ namespace ShinyBearToolKit.MenuEditor
             // create a new bitmap for the background in secondPictureBox and set the size.
             canvas = new Bitmap(pictureBoxSizeX, pictureBoxSizeY);
 
-            secondPictureBox.Paint += new PaintEventHandler(delegate(object sender, PaintEventArgs e)
-            {
-                // casta from Image to canvas (bitmap)
-                Graphics graphicsCanvas = Graphics.FromImage((Image)canvas);
-                Brush brush = new SolidBrush(Color.Magenta);
-
-                graphicsCanvas.FillRectangle(brush, new Rectangle(0, 0, 1024, 1024));
-
-                graphicsCanvas = secondPictureBox.CreateGraphics();
-                graphicsCanvas.DrawImage(canvas, new Point(0, 0));
-            }
-            );
-            
+            secondPictureBox.Image = canvas;
+            //secondPictureBox.Paint += new PaintEventHandler(ReDraw);
+            //secondPictureBox.R += new PaintEventHandler(ReDraw);
+            //secondPictureBox.Invalidated += new InvalidateEventHandler(delegate(object sender, InvalidateEventArgs e)
+            //  {
+            //    ReDraw(sender, new PaintEventArgs(null, Rectangle.Empty));
+            //  });
         }
+
+        void ReDraw(object sender, PaintEventArgs e)
+        {
+          // casta from Image to canvas (bitmap)
+          Graphics graphicsCanvas = Graphics.FromImage((Image)canvas);
+          Brush brush = new SolidBrush(Color.Magenta);
+
+          graphicsCanvas.FillRectangle(brush, new Rectangle(0, 0, 1024, 1024));
+
+          graphicsCanvas = secondPictureBox.CreateGraphics();
+          graphicsCanvas.DrawImage(canvas, new Point(0, 0));
+        }
+
         private void addTextureButton_Click(object sender, EventArgs e)
         {
             textureListManager.OpenImage();
@@ -215,6 +222,8 @@ namespace ShinyBearToolKit.MenuEditor
             {
                 cutImage = null;
                 cutImage = currentSelectedImage.Clone(cutRectangle, PixelFormat.Format32bppArgb);
+
+
             }
         }
 
@@ -232,6 +241,38 @@ namespace ShinyBearToolKit.MenuEditor
         private void secondPictureBox_DragEnter(object sender, DragEventArgs e)
         {
             textureListManager.GenericDragEnter(sender, e);
+        }
+        
+        // Move etc..
+        bool mouseIsDown = false;
+        Point rectPos = new Point(0, 0);
+
+        private void secondPictureBox_Click(object sender, EventArgs e)
+        {
+          if (cutImage != null)
+          {
+            rectPos = Cursor.Position;
+            rectPos = secondPictureBox.PointToClient(rectPos);
+            rectPos.X -= cutImage.Width / 2;
+            rectPos.Y -= cutImage.Height / 2;
+
+            Graphics g = Graphics.FromImage(canvas);
+            g.DrawImage(cutImage, rectPos);
+            secondPictureBox.Image = canvas;
+            secondPictureBox.Refresh();
+
+
+          }
+        }
+
+        private void secondPictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+          //if (mouseIsDown)
+          //{
+          //  rectPos = Cursor.Position;
+          //  rectPos.X -= cutImage.Width / 2;
+          //  rectPos.Y -= cutImage.Height / 2;
+          //}
         }
 
     }
