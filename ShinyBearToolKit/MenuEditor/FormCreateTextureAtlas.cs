@@ -61,8 +61,6 @@ namespace ShinyBearToolKit.MenuEditor
             }
             );
             
-            
-
         }
         private void addTextureButton_Click(object sender, EventArgs e)
         {
@@ -222,19 +220,20 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void secondPictureBox_DragDrop(object sender, DragEventArgs e)
         {
-           //using (Graphics grfx = Graphics.FromImage(image))
-           // {
-           //     grfx.DrawImage(newImage, x, y);
-           // }
+            mouseDrawRec = true;
+
+            using (Graphics grfx = Graphics.FromImage(cutImage))
+            {
+                grfx.DrawImage(cutImage, secondPictureBox.ClientSize.Width, secondPictureBox.ClientSize.Height);
+            }
 
         }
 
         private void secondPictureBox_DragEnter(object sender, DragEventArgs e)
         {
             textureListManager.GenericDragEnter(sender, e);
-        } 
+        }
 
-        
     }
 }
 // delegates
