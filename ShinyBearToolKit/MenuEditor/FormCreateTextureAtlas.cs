@@ -103,7 +103,7 @@ namespace ShinyBearToolKit.MenuEditor
             //När användaren markerar en bild i listan, ska denne visas upp i selectedTexturePanel
             int selectedImageIndex = loadedTextureList.SelectedItems[0].ImageIndex;
             drawSelectedTexture(selectedImageIndex);
-
+          
         }
         private void drawSelectedTexture(int index)
         {
@@ -264,17 +264,6 @@ namespace ShinyBearToolKit.MenuEditor
 
           }
         }
-
-        private void secondPictureBox_MouseMove(object sender, MouseEventArgs e)
-        {
-          //if (mouseIsDown)
-          //{
-          //  rectPos = Cursor.Position;
-          //  rectPos.X -= cutImage.Width / 2;
-          //  rectPos.Y -= cutImage.Height / 2;
-          //}
-        }
-
     }
 }
-// delegates
+// göra det möjligt att låsa vid 2^? genom ex en textbox samt automatiskt.
