@@ -41,6 +41,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.selectedPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.secondPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.TextureAtlasPanel.SuspendLayout();
@@ -89,14 +90,14 @@
             this.selectedTexturePanel.AutoScroll = true;
             this.selectedTexturePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.selectedTexturePanel.Controls.Add(this.selectedPictureBox);
-            this.selectedTexturePanel.Location = new System.Drawing.Point(206, 84);
+            this.selectedTexturePanel.Location = new System.Drawing.Point(0, 1);
             this.selectedTexturePanel.Name = "selectedTexturePanel";
             this.selectedTexturePanel.Size = new System.Drawing.Size(349, 478);
             this.selectedTexturePanel.TabIndex = 2;
             // 
             // selectedPictureBox
             // 
-            this.selectedPictureBox.Location = new System.Drawing.Point(-21, 12);
+            this.selectedPictureBox.Location = new System.Drawing.Point(-2, 1);
             this.selectedPictureBox.Name = "selectedPictureBox";
             this.selectedPictureBox.Size = new System.Drawing.Size(375, 470);
             this.selectedPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -105,7 +106,7 @@
             this.selectedPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.selectedPIctureBox_MouseDown);
             this.selectedPictureBox.MouseEnter += new System.EventHandler(this.selectedPictureBox_MouseEnter);
             this.selectedPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.selectedPictureBox_MouseMove);
-            this.selectedPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.selectedPictureBox_MouseUp);
+            this.selectedPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.scelectedPictureBox_MouseUp);
             // 
             // secondPictureBox
             // 
@@ -126,6 +127,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(206, 84);
             this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.selectedTexturePanel);
             // 
             // splitContainer1.Panel2
             // 
@@ -155,7 +160,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1148, 577);
-            this.Controls.Add(this.selectedTexturePanel);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.loadedTextureList);
             this.Controls.Add(this.addTextureButton);
@@ -165,6 +169,7 @@
             this.selectedTexturePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.selectedPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.secondPictureBox)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);

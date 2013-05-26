@@ -100,7 +100,7 @@ namespace ShinyBearToolKit.MenuEditor
 
         private void loadedTextureList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //När användaren markerar en bild i listan, ska denne visas upp i selectedTexturePanel
+            //När användaren markerar en bild i listan, ska den visas upp i selectedTexturePanel
             int selectedImageIndex = loadedTextureList.SelectedItems[0].ImageIndex;
             drawSelectedTexture(selectedImageIndex);
           
@@ -109,8 +109,8 @@ namespace ShinyBearToolKit.MenuEditor
         {
             using (Graphics g = selectedTexturePanel.CreateGraphics())
             {
-                selectedPictureBox.Image = textureListManager.getImageAtIndex(index);
-                currentSelectedImage = (Bitmap)selectedPictureBox.Image;
+                selectedPictureBox.BackgroundImage = textureListManager.getImageAtIndex(index);
+                currentSelectedImage = (Bitmap)selectedPictureBox.BackgroundImage;
                 //g.Clear(Color.White);
                 //g.DrawImageUnscaled(textureListManager.getImageAtIndex(index), 0, 0);
             }
@@ -215,7 +215,7 @@ namespace ShinyBearToolKit.MenuEditor
             drawRectangle(e, "selectedPictureBox");
         }
        
-        private void selectedPictureBox_MouseUp(object sender, MouseEventArgs e)
+        private void scelectedPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDrawRec = false;
             if (cutRectangle != null && currentSelectedImage != null)
